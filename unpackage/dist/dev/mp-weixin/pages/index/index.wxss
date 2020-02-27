@@ -1,0 +1,8 @@
+
+.top-tit{
+	width:40rpx;
+	height:40rpx;
+	background:#F9E46C;
+	border-radius:12rpx;
+}
+

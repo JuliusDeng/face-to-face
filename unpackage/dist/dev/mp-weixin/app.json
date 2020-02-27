@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/earn-search/earn-search",
+    "pages/user/user",
+    "pages/index/index",
+    "pages/earn/earn"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap4.json"
+}
