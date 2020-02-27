@@ -1,9 +1,9 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/earn-search/earn-search",
+			"path": "pages/shops/shops",
 			"style": {
-				"navigationBarTitleText": "设备搜索4"
+				"navigationBarTitleText": "商户管理5"
 			}
 		}, {
 			"path": "pages/user/user",
@@ -19,6 +19,11 @@
 			"path": "pages/earn/earn",
 			"style": {
 				"navigationBarTitleText": "收益统计3"
+			}
+		}, {
+			"path": "pages/earn-search/earn-search",
+			"style": {
+				"navigationBarTitleText": "设备搜索4"
 			}
 		}
 	],

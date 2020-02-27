@@ -108,6 +108,10 @@ var render = function() {
     _vm.e1 = function($event) {
       return this.$navigate("earn")
     }
+
+    _vm.e2 = function($event) {
+      return this.$navigate("shop")
+    }
   }
 }
 var recyclableRender = false
@@ -143,6 +147,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //

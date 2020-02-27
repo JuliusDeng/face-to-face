@@ -8758,7 +8758,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/earn-search/earn-search": { "navigationBarTitleText": "设备搜索4" }, "pages/user/user": { "navigationBarTitleText": "个人中心2" }, "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1" }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/earn-search/earn-search": { "navigationBarTitleText": "设备搜索4", "usingComponents": { "uni-search-bar": "/components/uni-search-bar/uni-search-bar" }, "usingAutoImportComponents": { "uni-search-bar": "/components/uni-search-bar/uni-search-bar" } }, "pages/user/user": { "navigationBarTitleText": "个人中心2", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/shops/shops": { "navigationBarTitleText": "商户管理5", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

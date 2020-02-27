@@ -38,6 +38,14 @@
 					<text class="cuIcon-edit"></text>
 				</view>
 				
+				<view class="bg-white shadow-nom rounded-12 d-flex j-sb border a-center">
+					<view class="d-flex" @click="this.$navigate('shop')">
+						<text class="cuIcon-edit"></text>
+						<view class="">商户管理</view>
+					</view>
+					<text class="cuIcon-edit"></text>
+				</view>
+				
 				
 				
 			</view>
