@@ -14,8 +14,8 @@
 		<!-- 列表 -->
 		<text class="ml-3 font-24 text-gray">共有2户商家</text>
 			
-		<view class="mt-2 mx-3 d-flex a-center border shadow-nom bg-white mb-2" style="height: 180rpx;"
-		v-for="i in 2" :key="i">
+		<view class="mt-2 mx-25 d-flex a-center border shadow-nom bg-white mb-2" style="height: 180rpx;"
+		v-for="i in 2" :key="i" @click="this.$navigate('shops-earn')">
 			<image class="ml-3" src="../../static/logo.png" style="width: 120rpx;height: 120rpx;"></image>
 			<view class="d-flex flex-column ml-3 font-24 text-black">
 				<text>水母餐厅</text>

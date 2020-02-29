@@ -1,21 +1,18 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/shops/shops",
-			"style": {
-				"navigationBarTitleText": "商户管理5"
-			}
-		}, {
-			"path": "pages/user/user",
-			"style": {
-				"navigationBarTitleText": "个人中心2"
-			}
-		}, {
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "面对面交易(商户服务)1"
 			}
-		}, {
+		},
+		{
+			"path": "pages/user/user",
+			"style": {
+				"navigationBarTitleText": "个人中心2"
+			}
+		},
+		{
 			"path": "pages/earn/earn",
 			"style": {
 				"navigationBarTitleText": "收益统计3"
@@ -24,6 +21,41 @@
 			"path": "pages/earn-search/earn-search",
 			"style": {
 				"navigationBarTitleText": "设备搜索4"
+			}
+		}, {
+			"path": "pages/shops/shops",
+			"style": {
+				"navigationBarTitleText": "商户管理5"
+			}
+		}, {
+			"path": "pages/shops-earn/shops-earn",
+			"style": {
+				"navigationBarTitleText": "商户详情6"
+			}
+		}, {
+			"path": "pages/staff/staff",
+			"style": {
+				"navigationBarTitleText": "员工管理7"
+			}
+		}, {
+			"path": "pages/staff-add/staff-add",
+			"style": {
+				"navigationBarTitleText": "添加员工8"
+			}
+		}, {
+			"path": "pages/staff-remove/staff-remove",
+			"style": {
+				"navigationBarTitleText": "移除员工9"
+			}
+		}, {
+			"path": "pages/device/device",
+			"style": {
+				"navigationBarTitleText": "设备交易统计10"
+			}
+		}, {
+			"path": "pages/device-order/device-order",
+			"style": {
+				"navigationBarTitleText": "账单详情11"
 			}
 		}
 	],

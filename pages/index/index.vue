@@ -31,7 +31,7 @@
 			<view class="position-absolute border w-700 mx-25"  style="margin-top: -80rpx;">
 				
 				<view class="bg-white shadow-nom rounded-12 d-flex j-sb border a-center">
-					<view class="d-flex" @click="this.$navigate('earn')">
+					<view class="d-flex text-black" @click="this.$navigate('earn')">
 						<text class="cuIcon-edit"></text>
 						<view class="">收益统计</view>
 					</view>
@@ -39,14 +39,40 @@
 				</view>
 				
 				<view class="bg-white shadow-nom rounded-12 d-flex j-sb border a-center">
-					<view class="d-flex" @click="this.$navigate('shop')">
+					<view class="d-flex text-black" @click="this.$navigate('shops')">
 						<text class="cuIcon-edit"></text>
 						<view class="">商户管理</view>
 					</view>
 					<text class="cuIcon-edit"></text>
 				</view>
-				
-				
+				<view class="bg-white shadow-nom rounded-12 d-flex j-sb border a-center">
+					<view class="d-flex text-black" @click="this.$navigate('staff')">
+						<text class="cuIcon-edit"></text>
+						<view class="">员工管理</view>
+					</view>
+					<text class="cuIcon-edit"></text>
+				</view>
+				<view class="bg-white shadow-nom rounded-12 d-flex j-sb border a-center">
+					<view class="d-flex text-black" @click="this.$navigate('earn-search')">
+						<text class="cuIcon-edit"></text>
+						<view class="">设备列表</view>
+					</view>
+					<text class="cuIcon-edit"></text>
+				</view>
+				<view class="bg-white shadow-nom rounded-12 d-flex j-sb border a-center">
+					<view class="d-flex text-black" @click="this.$navigate('shop')">
+						<text class="cuIcon-edit"></text>
+						<view class="">面对面交易流水</view>
+					</view>
+					<text class="cuIcon-edit"></text>
+				</view>
+				<view class="bg-white shadow-nom rounded-12 d-flex j-sb border a-center">
+					<view class="d-flex text-black" @click="this.$navigate('shop')">
+						<text class="cuIcon-edit"></text>
+						<view class="">退单</view>
+					</view>
+					<text class="cuIcon-edit"></text>
+				</view>
 				
 			</view>
 			

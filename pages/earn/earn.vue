@@ -6,11 +6,11 @@
 			<switch class="mr-3" checked color="#F1F1F1"/>
 		</view>
 		<!-- 两行状态 -->
-		<view class="d-flex flex-column bg-main">
+		<view class="d-flex flex-column bg-main" @click="this.$navigate('earn-search')">
 			<!-- 上面 -->
 			<view class="ml-3  d-flex a-center" style="height: 100rpx;">
 				
-				<view class="border d-flex font-20 bg-white mr-3" style="width: 210rpx;height: 70rpx;" 
+				<view class="border d-flex font-20 bg-white mr-3 text-gray" style="width: 210rpx;height: 70rpx;" 
 				v-for="i in 3" :key="i">
 					<view class="flex-1 border-right d-flex a-center j-center">状态</view>
 					<view class="flex-2  d-flex a-center j-center">全部</view>
@@ -19,7 +19,7 @@
 			</view>
 			<!-- 下面 -->
 			<view class="mx-3 border-top d-flex a-center" style="height: 111rpx;">
-				<view class="border d-flex a-center bg-white" style="width: 280rpx;height: 70rpx;">
+				<view class="border d-flex a-center bg-white text-gray" style="width: 280rpx;height: 70rpx;">
 					<view class="d-flex a-center j-center border-right" 
 					style="width: 70rpx;height: 70rpx;">图</view>
 					<view class="d-flex a-center j-center font-20" style="width: 210rpx;">开始时间</view>
@@ -27,7 +27,7 @@
 				<view class="d-flex a-center j-center" style="width: 130rpx;height: 70rpx;">
 					<view style="width: 60rpx;height: 2rpx;background: #8A8A8A;"></view>
 				</view>
-				<view class="border d-flex a-center bg-white" style="width: 280rpx;height: 70rpx;">
+				<view class="border d-flex a-center bg-white text-gray" style="width: 280rpx;height: 70rpx;">
 					<view class="d-flex a-center j-center border-right" 
 					style="width: 70rpx;height: 70rpx;">图</view>
 					<view class="d-flex a-center j-center font-20" style="width: 210rpx;">结束时间</view>
@@ -41,7 +41,7 @@
 			style="height: 80rpx;">￥12000.25</view>
 		</view> 
 		<!-- 订单均价 -->
-		<view class="d-flex" style="height: 90rpx;">
+		<view class="d-flex text-black" style="height: 90rpx;">
 			<view class="flex-1 d-flex flex-column a-center border-right">
 				<text class="font-26 text-gray">订单数量</text>
 				<text class="font-26 ">1000</text>

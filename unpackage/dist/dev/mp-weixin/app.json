@@ -1,10 +1,16 @@
 {
   "pages": [
-    "pages/shops/shops",
-    "pages/user/user",
     "pages/index/index",
+    "pages/user/user",
     "pages/earn/earn",
-    "pages/earn-search/earn-search"
+    "pages/earn-search/earn-search",
+    "pages/shops/shops",
+    "pages/shops-earn/shops-earn",
+    "pages/staff/staff",
+    "pages/staff-add/staff-add",
+    "pages/staff-remove/staff-remove",
+    "pages/device/device",
+    "pages/device-order/device-order"
   ],
   "subPackages": [],
   "window": {

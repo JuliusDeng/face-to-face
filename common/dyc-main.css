@@ -236,8 +236,10 @@ body{
 .mx-2 { margin-left: 20upx;margin-right: 20upx;}
 .mx-25 { margin-left: 25rpx;margin-right: 25rpx;}
 .mx-3 { margin-left: 30upx;margin-right: 30upx;}
+.mx-35 { margin-left: 35rpx;margin-right: 35rpx;}
 .mx-4 { margin-left: 40upx;margin-right: 40upx;}
 .mx-5 { margin-left: 50upx;margin-right: 50upx;}
+.mx-75 { margin-left: 75rpx;margin-right: 75rpx;}
 
 .my-0 { margin-top: 0;margin-bottom: 0;}
 .my { margin-top: 5upx;margin-bottom: 5upx;}
@@ -270,6 +272,7 @@ body{
 .ml { margin-left: 5upx;}
 .ml-auto { margin-left: auto;}
 .ml-1 { margin-left: 10upx;}
+.ml-15 { margin-left: 15rpx;}
 .ml-2 { margin-left: 20upx;}
 .ml-3 { margin-left: 30upx;}
 .ml-4 { margin-left: 40upx;}
@@ -294,11 +297,13 @@ body{
 .px-0 { padding-left: 0;padding-right: 0;}
 .px { padding-left: 5upx;padding-right: 5upx;}
 .px-1 { padding-left: 10upx;padding-right: 10upx;}
+.px-15 { padding-left: 15rpx;padding-right: 15rpx;}
 .px-2 { padding-left: 20upx;padding-right: 20upx;}
 .px-25 { padding-left: 25rpx;padding-right: 25rpx;}
 .px-3 { padding-left: 30upx;padding-right: 30upx;}
 .px-4 { padding-left: 40upx;padding-right: 40upx;}
 .px-5 { padding-left: 50upx;padding-right: 50upx;}
+.px-75 { padding-left: 75rupx;padding-right: 75rpx;}
 
 .py-0 { padding-top: 0;padding-bottom: 0;}
 .py { padding-top: 5upx;padding-bottom: 5upx;}

@@ -5,7 +5,7 @@
 		<!-- POS机 -->
 		<view class="mx-2 mt-2">
 			<view class="d-flex j-sb bg-white rounded-12 text-black mb-2 shadow-nom" 
-			style="height: 215rpx;" v-for="i in 3" :key="i">
+			style="height: 215rpx;" v-for="i in 3" :key="i" @click="this.$navigate('device')">
 				<view class="ml-3 span-6 d-flex flex-column">
 					<image class="mt-4 border bg-blue" src="../../static/logo.png"
 					style="width: 92rpx;height: 94rpx;"></image>

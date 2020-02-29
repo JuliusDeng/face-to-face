@@ -3476,7 +3476,7 @@ scroll-view.cu-steps .cu-item {
 
 .bg-white {
 	background-color: #ffffff;
-	color: #666666;
+	color: #ffffff;
 }
 
 .bg-shadeTop {
@@ -3855,7 +3855,7 @@ scroll-view.cu-steps .cu-item {
 .text-cyan,
 .line-cyan,
 .lines-cyan {
-	color: #1cbbb4;
+	color: #00D499;
 }
 
 .text-blue,
@@ -3903,7 +3903,7 @@ scroll-view.cu-steps .cu-item {
 .text-black,
 .line-black,
 .lines-black {
-	color: #333333;
+	color: #000000;
 }
 
 .text-white,
