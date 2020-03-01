@@ -58,6 +58,40 @@
 				"navigationBarTitleText": "账单详情11"
 			}
 		}
+
+		, {
+			"path": "pages/deal-order/deal-order",
+			"style": {
+				"navigationBarTitleText": "交易流水12"
+			}
+
+		}, {
+			"path": "pages/deal-check/deal-check",
+			"style": {
+				"navigationBarTitleText": "交易流水(check)13"
+			}
+		}, {
+			"path": "pages/order-check/order-check",
+			"style": {
+				"navigationBarTitleText": "校正订单14"
+			}
+		}, {
+			"path": "pages/order-time/order-time",
+			"style": {
+				"navigationBarTitleText": "校正订单(time)15"
+			}
+		},
+		{
+			"path": "pages/order-refund/order-refund",
+			"style": {
+				"navigationBarTitleText": "退单校正16"
+			}
+		}, {
+			"path": "pages/order-detail/order-detail",
+			"style": {
+				"navigationBarTitleText": "账单详情17"
+			}
+		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -133,11 +133,11 @@ var render = function() {
     }
 
     _vm.e5 = function($event) {
-      return this.$navigate("shop")
+      return this.$navigate("deal-order")
     }
 
     _vm.e6 = function($event) {
-      return this.$navigate("shop")
+      return this.$navigate("order-check")
     }
   }
 }
@@ -172,7 +172,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
 //
 //
 //

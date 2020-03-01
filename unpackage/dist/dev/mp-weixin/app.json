@@ -10,7 +10,13 @@
     "pages/staff-add/staff-add",
     "pages/staff-remove/staff-remove",
     "pages/device/device",
-    "pages/device-order/device-order"
+    "pages/device-order/device-order",
+    "pages/deal-order/deal-order",
+    "pages/deal-check/deal-check",
+    "pages/order-check/order-check",
+    "pages/order-time/order-time",
+    "pages/order-refund/order-refund",
+    "pages/order-detail/order-detail"
   ],
   "subPackages": [],
   "window": {

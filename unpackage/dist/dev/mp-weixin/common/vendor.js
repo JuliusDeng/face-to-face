@@ -754,7 +754,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1548,6 +1548,112 @@ wx.createComponent = createComponent;
 var uni$1 = uni;var _default =
 
 uni$1;exports.default = _default;
+
+/***/ }),
+
+/***/ 131:
+/*!********************************************************************************************************!*\
+  !*** C:/Users/15765/Desktop/Vue.前端/uniapp-4项目模板/A-uni项0220/face-to-face/components/uni-icons/icons.js ***!
+  \********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  'contact': "\uE100",
+  'person': "\uE101",
+  'personadd': "\uE102",
+  'contact-filled': "\uE130",
+  'person-filled': "\uE131",
+  'personadd-filled': "\uE132",
+  'phone': "\uE200",
+  'email': "\uE201",
+  'chatbubble': "\uE202",
+  'chatboxes': "\uE203",
+  'phone-filled': "\uE230",
+  'email-filled': "\uE231",
+  'chatbubble-filled': "\uE232",
+  'chatboxes-filled': "\uE233",
+  'weibo': "\uE260",
+  'weixin': "\uE261",
+  'pengyouquan': "\uE262",
+  'chat': "\uE263",
+  'qq': "\uE264",
+  'videocam': "\uE300",
+  'camera': "\uE301",
+  'mic': "\uE302",
+  'location': "\uE303",
+  'mic-filled': "\uE332",
+  'speech': "\uE332",
+  'location-filled': "\uE333",
+  'micoff': "\uE360",
+  'image': "\uE363",
+  'map': "\uE364",
+  'compose': "\uE400",
+  'trash': "\uE401",
+  'upload': "\uE402",
+  'download': "\uE403",
+  'close': "\uE404",
+  'redo': "\uE405",
+  'undo': "\uE406",
+  'refresh': "\uE407",
+  'star': "\uE408",
+  'plus': "\uE409",
+  'minus': "\uE410",
+  'circle': "\uE411",
+  'checkbox': "\uE411",
+  'close-filled': "\uE434",
+  'clear': "\uE434",
+  'refresh-filled': "\uE437",
+  'star-filled': "\uE438",
+  'plus-filled': "\uE439",
+  'minus-filled': "\uE440",
+  'circle-filled': "\uE441",
+  'checkbox-filled': "\uE442",
+  'closeempty': "\uE460",
+  'refreshempty': "\uE461",
+  'reload': "\uE462",
+  'starhalf': "\uE463",
+  'spinner': "\uE464",
+  'spinner-cycle': "\uE465",
+  'search': "\uE466",
+  'plusempty': "\uE468",
+  'forward': "\uE470",
+  'back': "\uE471",
+  'left-nav': "\uE471",
+  'checkmarkempty': "\uE472",
+  'home': "\uE500",
+  'navigate': "\uE501",
+  'gear': "\uE502",
+  'paperplane': "\uE503",
+  'info': "\uE504",
+  'help': "\uE505",
+  'locked': "\uE506",
+  'more': "\uE507",
+  'flag': "\uE508",
+  'home-filled': "\uE530",
+  'gear-filled': "\uE532",
+  'info-filled': "\uE534",
+  'help-filled': "\uE535",
+  'more-filled': "\uE537",
+  'settings': "\uE560",
+  'list': "\uE562",
+  'bars': "\uE563",
+  'loop': "\uE565",
+  'paperclip': "\uE567",
+  'eye': "\uE568",
+  'arrowup': "\uE580",
+  'arrowdown': "\uE581",
+  'arrowleft': "\uE582",
+  'arrowright': "\uE583",
+  'arrowthinup': "\uE584",
+  'arrowthindown': "\uE585",
+  'arrowthinleft': "\uE586",
+  'arrowthinright': "\uE587",
+  'pulldown': "\uE588",
+  'closefill': "\uE589",
+  'sound': "\uE590",
+  'scan': "\uE612" };exports.default = _default;
 
 /***/ }),
 
@@ -7204,7 +7310,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7225,14 +7331,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7308,7 +7414,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8652,7 +8758,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@alpha","_id":"@dcloudio/uni-stat@2
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1" }, "pages/user/user": { "navigationBarTitleText": "个人中心2" }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3" }, "pages/earn-search/earn-search": { "navigationBarTitleText": "设备搜索4" }, "pages/shops/shops": { "navigationBarTitleText": "商户管理5" }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情6" }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7" }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8" }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9" }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10" }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/user": { "navigationBarTitleText": "个人中心2", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn-search/earn-search": { "navigationBarTitleText": "设备搜索4" }, "pages/shops/shops": { "navigationBarTitleText": "商户管理5", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情6", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal-check/deal-check": { "navigationBarTitleText": "交易流水(check)13", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-time/order-time": { "navigationBarTitleText": "校正订单(time)15", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
@@ -8665,112 +8771,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "appid": "__UNI__D3955E6" };exports.default = _default;
-
-/***/ }),
-
-/***/ 95:
-/*!********************************************************************************************************!*\
-  !*** C:/Users/15765/Desktop/Vue.前端/uniapp-4项目模板/A-uni项0220/face-to-face/components/uni-icons/icons.js ***!
-  \********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  'contact': "\uE100",
-  'person': "\uE101",
-  'personadd': "\uE102",
-  'contact-filled': "\uE130",
-  'person-filled': "\uE131",
-  'personadd-filled': "\uE132",
-  'phone': "\uE200",
-  'email': "\uE201",
-  'chatbubble': "\uE202",
-  'chatboxes': "\uE203",
-  'phone-filled': "\uE230",
-  'email-filled': "\uE231",
-  'chatbubble-filled': "\uE232",
-  'chatboxes-filled': "\uE233",
-  'weibo': "\uE260",
-  'weixin': "\uE261",
-  'pengyouquan': "\uE262",
-  'chat': "\uE263",
-  'qq': "\uE264",
-  'videocam': "\uE300",
-  'camera': "\uE301",
-  'mic': "\uE302",
-  'location': "\uE303",
-  'mic-filled': "\uE332",
-  'speech': "\uE332",
-  'location-filled': "\uE333",
-  'micoff': "\uE360",
-  'image': "\uE363",
-  'map': "\uE364",
-  'compose': "\uE400",
-  'trash': "\uE401",
-  'upload': "\uE402",
-  'download': "\uE403",
-  'close': "\uE404",
-  'redo': "\uE405",
-  'undo': "\uE406",
-  'refresh': "\uE407",
-  'star': "\uE408",
-  'plus': "\uE409",
-  'minus': "\uE410",
-  'circle': "\uE411",
-  'checkbox': "\uE411",
-  'close-filled': "\uE434",
-  'clear': "\uE434",
-  'refresh-filled': "\uE437",
-  'star-filled': "\uE438",
-  'plus-filled': "\uE439",
-  'minus-filled': "\uE440",
-  'circle-filled': "\uE441",
-  'checkbox-filled': "\uE442",
-  'closeempty': "\uE460",
-  'refreshempty': "\uE461",
-  'reload': "\uE462",
-  'starhalf': "\uE463",
-  'spinner': "\uE464",
-  'spinner-cycle': "\uE465",
-  'search': "\uE466",
-  'plusempty': "\uE468",
-  'forward': "\uE470",
-  'back': "\uE471",
-  'left-nav': "\uE471",
-  'checkmarkempty': "\uE472",
-  'home': "\uE500",
-  'navigate': "\uE501",
-  'gear': "\uE502",
-  'paperplane': "\uE503",
-  'info': "\uE504",
-  'help': "\uE505",
-  'locked': "\uE506",
-  'more': "\uE507",
-  'flag': "\uE508",
-  'home-filled': "\uE530",
-  'gear-filled': "\uE532",
-  'info-filled': "\uE534",
-  'help-filled': "\uE535",
-  'more-filled': "\uE537",
-  'settings': "\uE560",
-  'list': "\uE562",
-  'bars': "\uE563",
-  'loop': "\uE565",
-  'paperclip': "\uE567",
-  'eye': "\uE568",
-  'arrowup': "\uE580",
-  'arrowdown': "\uE581",
-  'arrowleft': "\uE582",
-  'arrowright': "\uE583",
-  'arrowthinup': "\uE584",
-  'arrowthindown': "\uE585",
-  'arrowthinleft': "\uE586",
-  'arrowthinright': "\uE587",
-  'pulldown': "\uE588",
-  'closefill': "\uE589",
-  'sound': "\uE590",
-  'scan': "\uE612" };exports.default = _default;
 
 /***/ })
 

@@ -21,7 +21,7 @@
 				
 			</view>
 		</view>
-		<!-- 下方支付完成 -->
+		<!-- 下方订单详情 -->
 		<block v-for="i in 2" :key="i">
 			<view class="mx-25 m-2 rounded-12 bg-white d-flex flex-column px-3 shadow-nom" style="height: 345rpx;">
 				<view class="py-1  border-bottom d-flex a-center j-sb mb-1" @click="this.$navigate('device-order')">

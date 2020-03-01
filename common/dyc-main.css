@@ -306,7 +306,7 @@ body{
 .px-75 { padding-left: 75rupx;padding-right: 75rpx;}
 
 .py-0 { padding-top: 0;padding-bottom: 0;}
-.py { padding-top: 5upx;padding-bottom: 5upx;}
+.py { padding-top: 5rpx;padding-bottom: 5rpx;}
 .py-1 { padding-top: 10upx;padding-bottom: 10upx;}
 .py-2 { padding-top: 20upx;padding-bottom: 20upx;}
 .py-3 { padding-top: 30upx;padding-bottom: 30upx;}

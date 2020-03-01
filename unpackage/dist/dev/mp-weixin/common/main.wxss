@@ -131,6 +131,13 @@ page{
 	line-height: 1.8;
 	background: #FFFFFF;
 }
+.text-78{color: #787878;}
+.text-ba{color: #BABABA;}
+.text-b7{color: #B7B7B7;}
+.text-8a{color: #8A8A8A;}
+.text-55{color: #555555;}
+.text-bf{color: #BFBEC0;}
+.text-6e{color: #6E6E6E;}
 /* (2) 图片默认100%宽度 */
 image{width: 100%;}
 /* 主色调 */
@@ -4367,17 +4374,17 @@ scroll-view.cu-steps .cu-item {
 .text-red,
 .line-red,
 .lines-red {
-	color: #e54d42;
+	color: #FE1A1A;
 }
 .text-orange,
 .line-orange,
 .lines-orange {
-	color: #f37b1d;
+	color: #FE1A1A;
 }
 .text-yellow,
 .line-yellow,
 .lines-yellow {
-	color: #fbbd08;
+	color: #F4CB2E;
 }
 .text-olive,
 .line-olive,
@@ -4387,12 +4394,12 @@ scroll-view.cu-steps .cu-item {
 .text-green,
 .line-green,
 .lines-green {
-	color: #39b54a;
+	color: #00D499;
 }
 .text-cyan,
 .line-cyan,
 .lines-cyan {
-	color: #00D499;
+	color: #1cbbb4;
 }
 .text-blue,
 .line-blue,
@@ -4426,7 +4433,7 @@ scroll-view.cu-steps .cu-item {
 }
 .text-gray,
 .line-gray,
-.lines-gray {
+.lines-gray {  
 	color: #aaaaaa;
 }
 .text-black,

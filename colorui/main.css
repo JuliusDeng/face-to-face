@@ -3825,19 +3825,19 @@ scroll-view.cu-steps .cu-item {
 .text-red,
 .line-red,
 .lines-red {
-	color: #e54d42;
+	color: #FE1A1A;
 }
 
 .text-orange,
 .line-orange,
 .lines-orange {
-	color: #f37b1d;
+	color: #FE1A1A;
 }
 
 .text-yellow,
 .line-yellow,
 .lines-yellow {
-	color: #fbbd08;
+	color: #F4CB2E;
 }
 
 .text-olive,
@@ -3849,13 +3849,13 @@ scroll-view.cu-steps .cu-item {
 .text-green,
 .line-green,
 .lines-green {
-	color: #39b54a;
+	color: #00D499;
 }
 
 .text-cyan,
 .line-cyan,
 .lines-cyan {
-	color: #00D499;
+	color: #1cbbb4;
 }
 
 .text-blue,
@@ -3896,7 +3896,7 @@ scroll-view.cu-steps .cu-item {
 
 .text-gray,
 .line-gray,
-.lines-gray {
+.lines-gray {  
 	color: #aaaaaa;
 }
 

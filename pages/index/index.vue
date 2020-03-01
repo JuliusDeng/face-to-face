@@ -60,20 +60,19 @@
 					<text class="cuIcon-edit"></text>
 				</view>
 				<view class="bg-white shadow-nom rounded-12 d-flex j-sb border a-center">
-					<view class="d-flex text-black" @click="this.$navigate('shop')">
+					<view class="d-flex text-black" @click="this.$navigate('deal-order')">
 						<text class="cuIcon-edit"></text>
 						<view class="">面对面交易流水</view>
 					</view>
 					<text class="cuIcon-edit"></text>
 				</view>
 				<view class="bg-white shadow-nom rounded-12 d-flex j-sb border a-center">
-					<view class="d-flex text-black" @click="this.$navigate('shop')">
+					<view class="d-flex text-black" @click="this.$navigate('order-check')">
 						<text class="cuIcon-edit"></text>
 						<view class="">退单</view>
 					</view>
 					<text class="cuIcon-edit"></text>
 				</view>
-				
 			</view>
 			
 			
