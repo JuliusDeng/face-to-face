@@ -61,6 +61,7 @@ body{
 .hx-100{ height: 100%;}
 .h-50{ width: 625upx; }
 /* 字体 */
+.font-10{ font-size: 10rpx; }
 .font-18{ font-size: 18rpx; }
 .font-20{ font-size: 20rpx; }
 .font-22{ font-size: 22rpx; }
@@ -203,6 +204,8 @@ body{
 .rounded{ border-radius: 5rpx; }
 .rounded-12{ border-radius: 12rpx; }
 .rounded-24{ border-radius: 24rpx; }
+.rounded-28{ border-radius: 28rpx; }
+.rounded-36{ border-radius: 36rpx; }
 .rounded-half{ border-radius:50%; }
 .rounded-circle{ border-radius:100%; }
 .rounded-0{ border-radius:0; }

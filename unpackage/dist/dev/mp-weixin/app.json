@@ -16,7 +16,8 @@
     "pages/order-check/order-check",
     "pages/order-time/order-time",
     "pages/order-refund/order-refund",
-    "pages/order-detail/order-detail"
+    "pages/order-detail/order-detail",
+    "pages/login/login"
   ],
   "subPackages": [],
   "window": {

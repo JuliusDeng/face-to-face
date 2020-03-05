@@ -2,9 +2,10 @@ import Vue from 'vue'
 import App from './App'
 
 
-// 引入全局分割线
-// import divider from "@/components/common/divider.vue"
-// Vue.component('divider', divider)
+// 引入request.js
+import $H from "@/common/lib/request.js"
+Vue.prototype.$H = $H
+
 
 // 引入全局导航navigate
 Vue.prototype.$navigate = function navigate(path) {

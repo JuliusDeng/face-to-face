@@ -91,6 +91,11 @@
 			"style": {
 				"navigationBarTitleText": "账单详情17"
 			}
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录18"
+			}
 		}
 	],
 	"globalStyle": {
