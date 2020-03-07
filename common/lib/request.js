@@ -26,7 +26,7 @@ export default {
 				...options,
 				
 				success: (result) => {
-					console.log('result-->', result);
+					// console.log('request.js-->', result);
 					// 服务端请求失败
 					if(result.statusCode !== 200) {
 						uni.showToast({

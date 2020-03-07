@@ -39,7 +39,22 @@
 				
 			}
 		},
+		onLoad() {
+			this.__init()
+		},
 		methods: {
+			async __init() {
+				this.$H.post('/user/', {
+					code: '',
+					app: xcx
+				})
+			}.then((data) => {
+				console.log(data);
+			}).catch((data) => {
+				console.log(data);
+			})
+			
+			
 			
 		}
 	}
