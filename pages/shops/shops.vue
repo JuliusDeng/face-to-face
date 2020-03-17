@@ -12,15 +12,15 @@
 			</view>
 		</view>
 		<!-- 列表 -->
-		<text class="ml-3 font-24 text-gray">共有2户商家</text>
+		<text class="ml-3 font-24 text-gray">共有{{merchantList.length}}户商家</text>
 			
 		<view class="mt-2 mx-25 d-flex a-center border shadow-nom bg-white mb-2" style="height: 180rpx;"
-		v-for="i in 2" :key="i" @click="this.$navigate('shops-earn')">
-			<image class="ml-3" src="../../static/logo.png" style="width: 120rpx;height: 120rpx;"></image>
+		v-for="(item, index) in merchantList" :key="index" @click="shopEarn(item)">
+			<image class="ml-3" :src="item.logo_url" style="width: 120rpx;height: 120rpx;"></image>
 			<view class="d-flex flex-column ml-3 font-24 text-black">
-				<text>水母餐厅</text>
-				<text>电话：1324567899</text>
-				<text>地址：重庆市九龙坡杨家坪西郊路32号</text>
+				<text>{{item.merchant_name}}</text>
+				<text>电话：{{item.merchant_tel}}</text>
+				<text>地址：{{item.merchant_address}}</text>
 			</view>
 		</view>
 		
@@ -31,11 +31,33 @@
 	export default {
 		data() {
 			return {
+				merchantList: [],
 				
 			}
 		},
+		onLoad() {
+			this.__init()
+		},
 		methods: {
-			
+			shopEarn(item) {
+				console.log('ddd');
+				uni.navigateTo({
+					url: `/pages/shops-earn/shops-earn?id=${item.merchant_id}`,
+				})
+				console.log('ddd');
+			},
+			async __init() {
+				this.$H.post("/agent/", {
+					user_id: "183823",
+					token: "dXQyMDIwMDMxNzE2Mzg1OTYyNjA1NDM2",
+					opt: "merchant_list",
+				}).then((data) => {
+					console.log(data);
+					this.merchantList = data.arr
+				}).catch(() => {
+					console.log("catch error!!");
+				})
+			}
 		}
 	}
 </script>

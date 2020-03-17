@@ -13,7 +13,7 @@
 		<view class="mx-25 bg-white rounded-12 d-flex flex-column a-center shadow-nom"
 		style="width: 700rpx;height: 353rpx;margin-top: -100rpx;">
 			<view class="font-28 mt-35 text-8a">今日交易金额</view>
-			<view class="font-60 text-black" @click="love">{{totalAmount}}</view>
+			<view class="font-60 text-black" @click="">{{totalAmount}}</view>
 			<view class="d-flex w-100 font-26 mt-4">
 				<view class="flex-1 d-flex a-center flex-column border-right">
 					<view class="text-8a">今日订单</view>
@@ -97,7 +97,7 @@
 			async __init() {
 				this.$H.post("/agent/", {
 					user_id: "183823",
-					token: "dXQyMDIwMDMwNTE2MDQwNzc1NjExNTE5",
+					token: "dXQyMDIwMDMxNzIzMDU0MDU0NzMxMjgx",
 					opt: "home"
 				}).then((data) => {
 					console.log(data);

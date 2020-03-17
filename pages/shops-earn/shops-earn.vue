@@ -2,10 +2,10 @@
 	<view class="h-vh100 position-relative">
 		<!-- 黄色头部 -->
 		<view class="bg-yellow" style="height: 200rpx;">
-			<view class="py-2 pl-5 d-flex">
+			<view class="pt-1 pl-5 d-flex">
 				<image src="../../static/logo.png" style="width: 138rpx;height: 138rpx;"
 				class="rounded-half"></image>
-				<view class="ml-3 border font-24">
+				<view class="ml-3 font-24">
 					<view class="font-32">水母餐厅</view>
 					<view>电话：12345678910</view>
 					<view>地址：重庆市九龙坡杨家坪西郊路12号</view>

@@ -37,8 +37,21 @@
 				
 			}
 		},
+		onLoad() {
+			this.__init()
+		},
 		methods: {
-			
+			async __init() {
+				this.$H.post("/agent/", {
+					user_id: "183823",
+					token: "dXQyMDIwMDMxNjE4MDkxOTgxNTU5NjA2",
+					opt: "agent"
+				}).then((data) => {
+					console.log(data);
+				}).catch(() => {
+					console.log("catch error!!");
+				})
+			}
 		}
 	}
 </script>

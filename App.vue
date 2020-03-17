@@ -121,7 +121,7 @@
 	/*官方UI库 */
 	/* @import "/common/uni.css"; */
 	/*第三方动画库 */
-	/* @import "/common/animate.css"; */
+	@import "/common/animate.css";
 	
 	/*公共样式 */
 	@import "/common/common.css";
@@ -129,6 +129,8 @@
 	@import "/common/dyc-main.css";
 	/*自定义图标库 */
 	@import "/common/icon.css";
+	/* uni.css - 通用组件、模板样式库，可以当作一套ui库应用 */
+	 @import './common/uni.css';
 	
 	@import "colorui/main.css";
 	@import "colorui/icon.css";
