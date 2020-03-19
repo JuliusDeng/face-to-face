@@ -13,11 +13,11 @@
 		<view class="mx-25 bg-white rounded-12 d-flex flex-column a-center shadow-nom"
 		style="width: 700rpx;height: 353rpx;margin-top: -100rpx;">
 			<view class="font-28 mt-35 text-8a">今日交易金额</view>
-			<view class="font-60 text-black" @click="">{{totalAmount}}</view>
+			<view class="font-60 text-black" @click="">{{todayAmount}}</view>
 			<view class="d-flex w-100 font-26 mt-4">
 				<view class="flex-1 d-flex a-center flex-column border-right">
 					<view class="text-8a">今日订单</view>
-					<view class="text-black">{{totalPeople}}</view>
+					<view class="text-black">{{todayPeople}}</view>
 				</view>
 				<view class="flex-1 d-flex a-center flex-column">
 					<view class="text-8a">昨日金额</view>
@@ -81,10 +81,10 @@
 	export default {
 		data() {
 			return {
-				totalAmount: '',
-				totalPeople: '',
+				agentName: '',
+				todayAmount: '',
+				todayPeople: '',
 				yesAmount: '',
-				agentName: ''
 			}
 		},
 		created() {
@@ -97,27 +97,18 @@
 			async __init() {
 				this.$H.post("/agent/", {
 					user_id: "183823",
-					token: "dXQyMDIwMDMxNzIzMDU0MDU0NzMxMjgx",
+					token: "dXQyMDIwMDMxODExMTgzNjY3MjAxNTU5",
 					opt: "home"
-				}).then((data) => {
-					console.log(data);
-					let msg = data
-					this.totalAmount = msg.today.total_amount
-					this.totalPeople = msg.today.total_people
-					this.yesAmount = msg.yesterday.total_amount
-					this.agentName = msg.user_info.agent_info.agent_name
-				}).catch((data) => {
-					console.log('--catch 错误！！');
+				}).then((res) => {
+					console.log(res);
+					// let data = data
+					this.agentName = res.user_info.agent_info.agent_name
+					this.todayAmount = res.today.total_amount
+					this.todayPeople = res.today.total_people
+					this.yesAmount = res.yesterday.total_amount
+				}).catch((error) => {
+					console.log(error);
 				})
-				// 方式一
-				/* let data = await this.$H.post("/agent/", {
-					user_id: "183823",
-					token: "dXQyMDIwMDMwNTE2MDQwNzc1NjExNTE5",
-					opt: "home"
-				}) 
-				if(data) {
-					console.log(T);
-				} */
 				
 			}
 			

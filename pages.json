@@ -1,7 +1,7 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/earn-search/earn-search",
+			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "面对面交易(商户服务)1"
 			}
@@ -18,7 +18,7 @@
 				"navigationBarTitleText": "收益统计3"
 			}
 		}, {
-			"path": "pages/index/index",
+			"path": "pages/earn-search/earn-search",
 			"style": {
 				"navigationBarTitleText": "设备搜索4"
 			}

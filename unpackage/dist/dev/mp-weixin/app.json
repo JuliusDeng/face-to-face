@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/earn-search/earn-search",
+    "pages/index/index",
     "pages/user/user",
     "pages/shops/shops",
-    "pages/index/index",
+    "pages/earn-search/earn-search",
     "pages/shops-earn/shops-earn",
     "pages/earn/earn",
     "pages/staff/staff",
@@ -26,5 +26,6 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap59.json"
 }

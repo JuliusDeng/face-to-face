@@ -109,16 +109,16 @@
 		methods: {
 			async __shop() {
 				this.$H.post("/merchant/", {
-					user_id: "183823",
-					token: "dXQyMDIwMDMxNjE4MDkxOTgxNTU5NjA2",
-					opt: "merchant_info"
+					user_id: "100003",
+					token: "dXQyMDIwMDMxODA5MjUzMjY1NjA5MzI3",
+					app: "xcx"
 				}).then((data) => {
 					console.log(data);
-					this.imglogo = data.logo_url
+					/* this.imglogo = data.logo_url
 					this.userID = data.user_id
 					this.spread = 0
 					this.merchant = data.merchant_name
-					this.tel = data.merchant_tel
+					this.tel = data.merchant_tel */
 				}).catch((data) => {
 					console.log('--catch 错误！！');
 				})
