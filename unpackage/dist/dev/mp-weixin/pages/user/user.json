@@ -1,4 +1,6 @@
 {
-  "navigationBarTitleText": "个人中心2",
-  "usingComponents": {}
+  "navigationBarTitleText": "面对面交易(商户服务)1",
+  "usingComponents": {
+    "uni-popup": "/components/uni-popup/uni-popup"
+  }
 }

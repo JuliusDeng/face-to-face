@@ -110,35 +110,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  if (!_vm._isMounted) {
-    _vm.e0 = function($event) {
-      return this.$navigate("user")
-    }
-
-    _vm.e1 = function($event) {
-      return this.$navigate("earn")
-    }
-
-    _vm.e2 = function($event) {
-      return this.$navigate("shops")
-    }
-
-    _vm.e3 = function($event) {
-      return this.$navigate("staff")
-    }
-
-    _vm.e4 = function($event) {
-      return this.$navigate("earn-search")
-    }
-
-    _vm.e5 = function($event) {
-      return this.$navigate("deal-order")
-    }
-
-    _vm.e6 = function($event) {
-      return this.$navigate("order-check")
-    }
-  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -259,9 +230,6 @@ var _default =
       yesAmount: '' };
 
   },
-  created: function created() {
-    // this.__init()
-  },
   onLoad: function onLoad() {
     this.__init();
   },
@@ -269,7 +237,7 @@ var _default =
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: "183823",
-                  token: "dXQyMDIwMDMxODExMTgzNjY3MjAxNTU5",
+                  token: "dXQyMDIwMDMxOTE2MzYzMDQxNjY4MDk2",
                   opt: "home" }).
                 then(function (res) {
                   console.log(res);

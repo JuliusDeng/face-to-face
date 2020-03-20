@@ -1,6 +1,17 @@
 <template>
 	<view class="h-vh100">
-		<uni-search-bar radius="12" placeholder="请输入设备信息" bgColor="#DCDCDC" @confirm="search" />		
+		<!-- <uni-search-bar radius="12" placeholder="请输入设备信息" bgColor="#DCDCDC" @confirm="search" />		 -->
+		<view class="cu-bar bg-white search">
+			<view class="search-form radius">
+				<text class="cuIcon-search"></text>
+				<!-- <input @focus="" @blur="" :adjust-position="false" -->
+				<input :adjust-position="false" type="text" placeholder="按商户名称搜索" 
+				confirm-type="search" v-model="searchID"></input>
+			</view>
+			<view class="action" @click="search">
+				<button class="cu-btn bg-yellow shadow-blur rounded-12">搜索</button>
+			</view>
+		</view>
 		<text class="font-24 text-gray ml-2">共有{{merchant.length}}台设备</text>
 		<!-- POS机 -->
 		<view class="mx-2 mt-2">
@@ -44,10 +55,10 @@
 			async __init() {
 				this.$H.post("/agent/", {
 					user_id: "183823",
-					token: "dXQyMDIwMDMxNzIzMDU0MDU0NzMxMjgx",
+					token: "dXQyMDIwMDMxOTE2MzYzMDQxNjY4MDk2",
 					opt: "device_list",
 					slimit: "0",
-					elimit: "10"
+					elimit: "3"
 				}).then((data) => {
 					console.log(data);
 					this.merchant = data.arr

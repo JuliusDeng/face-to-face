@@ -98,11 +98,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  if (!_vm._isMounted) {
-    _vm.e0 = function($event) {
-      return this.$navigate("staff-add")
-    }
-  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -182,7 +177,7 @@ var _default =
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: "100003",
-                  token: "dXQyMDIwMDMxODA5MjUzMjY1NjA5MzI3",
+                  token: "dXQyMDIwMDMxOTE2MzYzMDQxNjY4MDk2",
                   opt: "user_list" }).
                 then(function (res) {
                   console.log(res);

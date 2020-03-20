@@ -1,10 +1,10 @@
 <template>
 	<view>
-		<view class="font-24 text-gray ml-3 pt-2">员工人数：3</view>
+		<view class="font-24 text-gray ml-3 pt-2">员工人数：{{staff.length}}</view>
 		
 		<view class="mt-2 mx-25 py-1 px-15 a-center border shadow-nom bg-white d-flex j-sb" 
 		style="height: 100rpx;"
-		v-for="(item, index) in staff" :key="index" @click="this.$navigate('staff-add')">
+		v-for="(item, index) in staff" :key="index">
 			<view class="d-flex">
 				<image :src="item.headimgurl" style="width: 80rpx;height: 80rpx;"></image>
 				<view class="d-flex flex-column ml-3 font-24 text-black">
@@ -44,7 +44,7 @@
 			async __init() {
 				this.$H.post("/agent/", {
 					user_id: "100003",
-					token: "dXQyMDIwMDMxODA5MjUzMjY1NjA5MzI3",
+					token: "dXQyMDIwMDMxOTE2MzYzMDQxNjY4MDk2",
 					opt: "user_list"
 				}).then((res) => {
 					console.log(res);

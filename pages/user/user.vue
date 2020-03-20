@@ -1,18 +1,15 @@
 <template>
 	<view>
-		
 		<!-- 黄色头部 -->
 		<view class="bg-yellow position-relative" style="height: 200rpx;">
 			<view class="position-absolute d-flex" style="top: 30rpx;height: 138rpx;">
 				<!-- 头像 -->
-				<image :src="imglogo" style="width: 138rpx;height: 138rpx;"
-				class="rounded-half ml-5"></image>
+				<image :src="imglogo" style="width: 138rpx;height: 138rpx;" class="rounded-half ml-5"></image>
 				<!-- 信息 -->
 				<view class="ml-4 d-flex flex-column border" style="width: 430rpx;height: 138rpx;">
 					<view class="d-flex a-center" style="height: 47rpx;">
 						<view class="font-36 font-w400" style="width: 210rpx;">{{merchant}}</view>
-						<view class="d-flex j-center a-center font-30 font-w400 rounded-12" 
-						style="width: 128rpx;height: 40rpx;background:#F9E46C;">服务商</view>
+						<view class="d-flex j-center a-center font-30 font-w400 rounded-12" style="width: 128rpx;height: 40rpx;background:#F9E46C;">服务商</view>
 					</view>
 					<view class="d-flex a-center font-20" style="padding-top: 16rpx;">
 						<text style="width: 170rpx;">编号：{{userID}}</text>
@@ -23,11 +20,32 @@
 					</view>
 				</view>
 				<!-- 二维码 -->
-				<view class="d-flex a-center">
+				<view class="d-flex a-center" @click="open">
 					<image src="../../static/icon/qrcode.png" style="width: 40rpx;height: 40rpx;"></image>
 				</view>
+
 			</view>
 		</view>
+		<!-- 弹出二维码 -->
+		<!-- <button @click="open">打开弹窗</button> -->
+		<uni-popup ref="popup" type="top">
+			<view class=" mx-75 d-flex a-center j-center flex-column" style="width: 600rpx;height: 857rpx;">
+				<!-- 头像 -->
+				<image src="/static/icon/weibiaoti-2.png" style="width: 138rpx;height: 138rpx;" class="rounded-half border border-white"></image>
+				<!-- 白色] -->
+				<view class="bg-white d-flex flex-column a-center text-black font-30 rounded-24 " 
+				style="width: 600rpx;height: 755rpx;margin-top: -50rpx;">
+					<view class="mt-5 pt-2">痞老板</view>
+					<view>ID：134689</view>
+					<image src="../../static/icon/qrcode.png" style="width: 378rpx;height: 378rpx;"
+					class="mt-5"></image>
+					<view class="mt-5">快速签到，一扫即可</view>
+				</view>
+			</view>
+		</uni-popup>
+		
+		
+		
 		<!-- 列表项 -->
 		<view class="w-700 mx-25 mt-3">
 			<view class="bg-white shadow-nom rounded-12 d-flex j-sb a-center mb-3" style="height: 98rpx;">
@@ -35,11 +53,10 @@
 					<image src="../../static/icon/weibiaoti-10.png" style="width: 39rpx;height: 40rpx;"></image>
 					<view class="ml-2">消息通知</view>
 				</view>
-				<switch checked="true" @change="" class="mr-4"/>
+				<switch checked="true" @change="" class="mr-4" />
 			</view>
-			
-			<view class="bg-white text-black font-32 shadow-nom rounded-12 d-flex flex-column py-25 px-3" 
-			style="height: 250rpx;">
+
+			<view class="bg-white text-black font-32 shadow-nom rounded-12 d-flex flex-column py-25 px-3" style="height: 250rpx;">
 				<view class="d-flex j-sb mb-2">
 					<view class="d-flex a-center" @click="this.$navigate('staff')">
 						<image src="../../static/icon/weibiaoti-2.png" style="width: 39rpx;height: 40rpx;"></image>
@@ -72,8 +89,7 @@
 				</view>
 			</view>
 			<!-- 意见反馈 -->
-			<view class="bg-white text-black font-32 shadow-nom rounded-12 d-flex j-sb py-25 px-3 mt-3"
-			style="height: 98rpx;">
+			<view class="bg-white text-black font-32 shadow-nom rounded-12 d-flex j-sb py-25 px-3 mt-3" style="height: 98rpx;">
 				<view class="d-flex a-center" @click="this.$navigate('staff')">
 					<image src="../../static/icon/weibiaoti-5.png" style="width: 39rpx;height: 40rpx;"></image>
 					<view class="ml-2">意见反馈</view>
@@ -82,18 +98,23 @@
 			</view>
 			<!-- 公司 -->
 			<text class="font-20 text-55 d-flex j-center mt-45">公司：比基尼海滩有限公司</text>
-			
-			
-			
+
+
+
 		</view>
-		
-		
-		
+
+
+
 	</view>
 </template>
 
 <script>
+	import uniPopup from "@/components/uni-popup/uni-popup.vue"
+
 	export default {
+		components: {
+			uniPopup
+		},
 		data() {
 			return {
 				imglogo: "",
@@ -107,6 +128,9 @@
 			this.__shop()
 		},
 		methods: {
+			open() {
+				this.$refs.popup.open()
+			},
 			async __shop() {
 				this.$H.post("/merchant/", {
 					user_id: "100003",
@@ -122,9 +146,9 @@
 				}).catch((data) => {
 					console.log('--catch 错误！！');
 				})
-				
+
 			}
-			
+
 		}
 	}
 </script>
