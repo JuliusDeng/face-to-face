@@ -3,12 +3,12 @@
 		<!-- 黄色背景 -->
 		<view class="bg-yellow" style="height: 200rpx;">
 			<view class="pt-1 pl-5 d-flex">
-				<image :src="merchant.logo_url" style="width: 138rpx;height: 138rpx;"
+				<image :src="img" style="width: 138rpx;height: 138rpx;"
 				class="rounded-half bg-red"></image>
 				<view class="ml-3 font-24">
-					<view class="font-32">{{merchant.merchant_name}}</view>
-					<view>电话：{{merchant.merchant_tel}}</view>
-					<view>地址：{{merchant.merchant_address}}</view>
+					<view class="font-32">{{name}}</view>
+					<view>电话：{{tel==null ? '' : tel}}</view>
+					<view>地址：{{address==null ? '' : address}}</view>
 				</view>
 			</view>
 			
@@ -17,15 +17,15 @@
 		<view class="mx-25 bg-white rounded-12 d-flex flex-column a-center shadow-nom"
 		style="width: 700rpx;height: 353rpx;margin-top: -35rpx;">
 			<view class="font-28 mt-35 text-8a">今日交易金额</view>
-			<view class="font-60 text-black" @click="">￥{{merchant.today.total_amount}}</view>
+			<view class="font-60 text-black" @click="">￥{{money==null ? '' : money}}</view>
 			<view class="d-flex w-100 font-26 mt-4">
 				<view class="flex-1 d-flex a-center flex-column border-right">
 					<view class="text-8a">今日订单</view>
-					<view class="text-black">{{merchant.today.total_people}}</view>
+					<view class="text-black">{{order}}</view>
 				</view>
 				<view class="flex-1 d-flex a-center flex-column">
 					<view class="text-8a">昨日金额</view>
-					<view class="text-black">{{merchant.yesterday.total_amount}}</view>
+					<view class="text-black">{{moneybf==null ? '' : moneybf}}</view>
 				</view>
 			</view>
 		</view>
@@ -55,28 +55,27 @@
 	export default {
 		data() {
 			return {
-				merchant: ""
+				img: "",
+				name: "",
+				tel: "",
+				address: "",
+				money: "",
+				order: "",
+				moneybf: ""
 			}
 		},
 		onLoad(options) {
 			console.log(options);
-			const value = uni.getStorageSync('id');
-			console.log(value);
-			for(let i=0; i< value.arr.length; i++) {
-				if(options.id == value.arr[i].merchant_id) {
-					this.merchant = value.arr[i]
-					console.log(this.merchant);
-					break
-				}
-			}
+			const id = options.id
+			const value = uni.getStorageSync('merchant');
+			this.img = value.logo_url
+			this.name = value.merchant_name
+			this.tel = value.merchant_tel
+			this.address = value.merchant_address
+			this.money = value.today.total_amount
+			this.order = value.today.total_people
+			this.moneybf = value.yesterday.total_amount
 		},
-		/* onLoad() {
-			 const value = uni.getStorageSync('id');
-			 console.log(value);
-			 function(option) {
-				 console.log(Option)
-			 }
-		}, */
 		methods: {
 			
 		}

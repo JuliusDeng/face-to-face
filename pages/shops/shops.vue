@@ -21,8 +21,8 @@
 			<image class="ml-3 bg-blue" :src="item.logo_url" style="width: 120rpx;height: 120rpx;"></image>
 			<view class="d-flex flex-column ml-3 font-24 text-black">
 				<text>{{item.merchant_name}}</text>
-				<text>电话：{{item.merchant_tel}}</text>
-				<text>地址：{{item.merchant_address}}</text>
+				<text>电话：{{item.merchant_tel==null ? '' : item.merchant_tel}}</text>
+				<text>地址：{{item.merchant_address==null ? '' : item.merchant_address}}</text>
 			</view>
 		</view>
 		
@@ -46,13 +46,13 @@
 		},
 		methods: {
 			
-			/* shopEarn(item) {
-				console.log('shopEarn');
+			toshopEarn(item) {
+				console.log('item', item);
+				uni.setStorageSync('merchant', item);
 				uni.navigateTo({
 					url: `/pages/shops-earn/shops-earn?id=${item.merchant_id}`,
 				})
-				console.log('ddd');
-			}, */
+			},
 			async __init() {
 				this.$H.post("/agent/", {
 					user_id: "100003",

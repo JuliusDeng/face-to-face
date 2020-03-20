@@ -197,28 +197,27 @@ var _default =
 {
   data: function data() {
     return {
-      merchant: "" };
+      img: "",
+      name: "",
+      tel: "",
+      address: "",
+      money: "",
+      order: "",
+      moneybf: "" };
 
   },
   onLoad: function onLoad(options) {
     console.log(options);
-    var value = uni.getStorageSync('id');
-    console.log(value);
-    for (var i = 0; i < value.arr.length; i++) {
-      if (options.id == value.arr[i].merchant_id) {
-        this.merchant = value.arr[i];
-        console.log(this.merchant);
-        break;
-      }
-    }
+    var id = options.id;
+    var value = uni.getStorageSync('merchant');
+    this.img = value.logo_url;
+    this.name = value.merchant_name;
+    this.tel = value.merchant_tel;
+    this.address = value.merchant_address;
+    this.money = value.today.total_amount;
+    this.order = value.today.total_people;
+    this.moneybf = value.yesterday.total_amount;
   },
-  /* onLoad() {
-     	 const value = uni.getStorageSync('id');
-     	 console.log(value);
-     	 function(option) {
-     		 console.log(Option)
-     	 }
-     }, */
   methods: {} };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

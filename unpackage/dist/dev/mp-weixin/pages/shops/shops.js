@@ -179,13 +179,13 @@ var _default =
   },
   methods: {
 
-    /* shopEarn(item) {
-             	console.log('shopEarn');
-             	uni.navigateTo({
-             		url: `/pages/shops-earn/shops-earn?id=${item.merchant_id}`,
-             	})
-             	console.log('ddd');
-             }, */
+    toshopEarn: function toshopEarn(item) {
+      console.log('item', item);
+      uni.setStorageSync('merchant', item);
+      uni.navigateTo({
+        url: "/pages/shops-earn/shops-earn?id=".concat(item.merchant_id) });
+
+    },
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: "100003",
