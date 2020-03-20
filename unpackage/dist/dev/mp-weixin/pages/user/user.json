@@ -1,6 +1,7 @@
 {
-  "navigationBarTitleText": "面对面交易(商户服务)1",
+  "navigationBarTitleText": "个人中心2",
   "usingComponents": {
-    "uni-popup": "/components/uni-popup/uni-popup"
+    "uni-popup": "/components/uni-popup/uni-popup",
+    "tki-qrcode": "/components/tki-qrcode/tki-qrcode"
   }
 }

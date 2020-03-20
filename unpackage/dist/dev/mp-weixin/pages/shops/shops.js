@@ -164,18 +164,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
     return {
       merchantList: [],
       searchID: "",
+      searchname: "",
       merchant: {} };
 
   },
@@ -183,57 +178,30 @@ var _default =
     this.__init();
   },
   methods: {
-    InputFocus: function InputFocus(event) {
-      console.log(event);
-    },
-    shopEarn: function shopEarn(item) {
-      console.log('shopEarn');
-      uni.navigateTo({
-        url: "/pages/shops-earn/shops-earn?id=".concat(item.merchant_id) });
 
-      console.log('ddd');
-    },
+    /* shopEarn(item) {
+             	console.log('shopEarn');
+             	uni.navigateTo({
+             		url: `/pages/shops-earn/shops-earn?id=${item.merchant_id}`,
+             	})
+             	console.log('ddd');
+             }, */
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: "100003",
-                  token: "dXQyMDIwMDMxODA5MjUzMjY1NjA5MzI3",
+                  token: "dXQyMDIwMDMyMDE1MzkyODg5NDUxODA1",
                   opt: "merchant_list",
-                  key_value: this.searchID }).
+                  key_value: this.searchID || this.searchname }).
                 then(function (data) {
-                  console.log(data);
-                  uni.setStorageSync('list', data);
+                  console.log('接口调用了一次');
                   _this.merchantList = data.arr;
+                  uni.setStorageSync('list', data);
                 }).catch(function () {
                   console.log("catch error!!");
                 });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}(),
 
-    search: function search() {var _this2 = this;
-      this.$H.post("/agent/", {
-        user_id: "100003",
-        token: "dXQyMDIwMDMxODA5MjUzMjY1NjA5MzI3",
-        opt: "merchant_list",
-        key_value: this.searchID }).
-      then(function (data) {
-        console.log("72", data);
-        uni.setStorageSync('list', data);
-        _this2.merchantList = data.arr;
-
-        for (var i = 0; i < _this2.merchantList.length; i++) {
-          console.log("79", _this2.merchantList);
-          if (_this2.searchID == _this2.merchantList[i].merchant_id) {
-            _this2.merchant = _this2.merchantList[i];
-            console.log('82', _this2.merchant);
-            break;
-          } else {
-            console.log("fls");
-          }
-        }
-
-
-      }).catch(function () {
-        console.log("catch error!!");
-      });
-
+    searchbtn: function searchbtn() {
+      this.__init();
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
