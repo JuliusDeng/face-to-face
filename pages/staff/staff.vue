@@ -44,7 +44,7 @@
 			async __init() {
 				this.$H.post("/agent/", {
 					user_id: "100003",
-					token: "dXQyMDIwMDMxOTE2MzYzMDQxNjY4MDk2",
+					token: "dXQyMDIwMDMyMDE4NDQ1NTUzNzAyMTgx",
 					opt: "user_list"
 				}).then((res) => {
 					console.log(res);

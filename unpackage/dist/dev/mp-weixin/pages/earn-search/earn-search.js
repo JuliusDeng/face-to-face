@@ -133,76 +133,9 @@ __webpack_require__.r(__webpack_exports__);
   !*** ./node_modules/babel-loader/lib!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--12-1!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!C:/Users/tt/Desktop/maiwei/face-to-face/pages/earn-search/earn-search.vue?vue&type=script&lang=js& ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var uniSearchBar = function uniSearchBar() {return __webpack_require__.e(/*! import() | components/uni-search-bar/uni-search-bar */ "components/uni-search-bar/uni-search-bar").then(__webpack_require__.bind(null, /*! @/components/uni-search-bar/uni-search-bar.vue */ 142));};var _default =
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{
-  components: {
-    uniSearchBar: uniSearchBar },
-
-  data: function data() {
-    return {
-      merchant: [] };
-
-  },
-  onLoad: function onLoad() {
-    this.__init();
-  },
-  methods: {
-    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                this.$H.post("/agent/", {
-                  user_id: "183823",
-                  token: "dXQyMDIwMDMxOTE2MzYzMDQxNjY4MDk2",
-                  opt: "device_list",
-                  slimit: "0",
-                  elimit: "3" }).
-                then(function (data) {
-                  console.log(data);
-                  _this.merchant = data.arr;
-                }).catch(function () {
-                  console.log("catch error");
-                });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;
+throw new Error("Module build failed (from ./node_modules/@dcloudio/webpack-uni-mp-loader/lib/script.js):\nError: 组件 uniSearchBar 引用错误,仅支持 import 方式引入组件\n    at names.forEach (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-mp-loader\\lib\\babel\\util.js:37:13)\n    at Array.forEach (<anonymous>)\n    at parseComponents (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-mp-loader\\lib\\babel\\util.js:31:9)\n    at handleComponentsObjectExpression (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-mp-loader\\lib\\babel\\scoped-component-traverse.js:40:22)\n    at handleObjectExpression (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-mp-loader\\lib\\babel\\scoped-component-traverse.js:33:5)\n    at ExportDefaultDeclaration (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-mp-loader\\lib\\babel\\scoped-component-traverse.js:83:9)\n    at NodePath._call (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\path\\context.js:53:20)\n    at NodePath.call (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\path\\context.js:40:17)\n    at NodePath.visit (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\path\\context.js:88:12)\n    at TraversalContext.visitQueue (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\context.js:118:16)\n    at TraversalContext.visitMultiple (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\context.js:85:17)\n    at TraversalContext.visit (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\context.js:144:19)\n    at Function.traverse.node (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\index.js:94:17)\n    at NodePath.visit (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\path\\context.js:95:18)\n    at TraversalContext.visitQueue (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\context.js:118:16)\n    at TraversalContext.visitSingle (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\context.js:90:19)\n    at TraversalContext.visit (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\context.js:146:19)\n    at Function.traverse.node (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\index.js:94:17)\n    at traverse (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@babel\\traverse\\lib\\index.js:76:12)\n    at module.exports (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-mp-loader\\lib\\babel\\scoped-component-traverse.js:53:3)\n    at Object.module.exports (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-mp-loader\\lib\\script-new.js:70:7)\n    at Object.module.exports (D:\\tools\\HBuilderX\\plugins\\uniapp-cli\\node_modules\\@dcloudio\\webpack-uni-mp-loader\\lib\\script.js:22:36)");
 
 /***/ })
 
