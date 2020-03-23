@@ -20,7 +20,7 @@
 				<view class="border d-flex bg-white mr-3 text-gray" style="width: 210rpx;height: 70rpx;" >
 					<view class="flex-1 border-right d-flex a-center j-center font-20">状态</view>
 					<view class="flex-2  d-flex a-center j-center" @click="">
-						<picker class="d-flex" @change="bindPickerChange" :value="index" :range="array" range-key="name">
+						<picker class="d-flex" @change="bindPickerChange()" :value="index" :range="array" range-key="name">
 							<view class="text-gray font-20 mr-2">{{array[index].name}}</view>
 						</picker>
 						<image src="../../static/right/bottom.png" style="width: 10rpx;height: 8rpx;"></image>
@@ -104,7 +104,8 @@
 		},
 		methods: {
 			bindPickerChange(e) {
-				console.log('---' + e.detail.value)
+				console.log('---' + e)
+				console.log('---', e.detail);
 				this.index = e.detail.value
 				this.status = e.detail.value
 				this.__init()

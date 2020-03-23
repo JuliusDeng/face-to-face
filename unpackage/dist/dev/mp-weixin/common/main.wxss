@@ -3343,6 +3343,8 @@ page{
 }
 .font-36{ font-size: 36rpx;
 }
+.font-48{ font-size: 48rpx;
+}
 .font-60{ font-size: 60rpx;
 }
 .font-w400{ font-weight: 400;
@@ -3537,6 +3539,7 @@ page{
 }
 .border-right{ border-right-width: 1rpx; border-right-style: solid; border-right-color: var(--borderColor);}
 .border-bottom{ border-bottom-width: 1rpx;border-bottom-style: solid;border-bottom-color:var(--borderColor);}
+.border-bottom-yellow{ border-bottom-width: 1rpx;border-bottom-style: solid;border-bottom-color:#F4CB2E;}
 .border-left{ border-left-width: 1rpx;border-left-style: solid;border-left-color:var(--borderColor);}
 .border-0{ border-width: 0;
 }
@@ -3628,6 +3631,7 @@ page{
 .my { margin-top: 5rpx;margin-bottom: 5rpx;}
 .my-1 { margin-top: 10rpx;margin-bottom: 10rpx;}
 .my-2 { margin-top: 20rpx;margin-bottom: 20rpx;}
+.my-25 { margin-top: 25rpx;margin-bottom: 25rpx;}
 .my-3 { margin-top: 30rpx;margin-bottom: 30rpx;}
 .my-4 { margin-top: 40rpx;margin-bottom: 40rpx;}
 .my-5 { margin-top: 50rpx;margin-bottom: 50rpx;}
@@ -3636,6 +3640,7 @@ page{
 .mt-auto { margin-top: auto;}
 .mt-1 { margin-top: 10rpx;}
 .mt-2 { margin-top: 20rpx;}
+.mt-25 { margin-top: 25rpx;}
 .mt-3 { margin-top: 30rpx;}
 .mt-35 { margin-top: 35rpx;}
 .mt-4 { margin-top: 40rpx;}

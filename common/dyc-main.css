@@ -71,6 +71,7 @@ body{
 .font-30{ font-size: 30rpx; }
 .font-32{ font-size: 32rpx; }
 .font-36{ font-size: 36rpx; }
+.font-48{ font-size: 48rpx; }
 .font-60{ font-size: 60rpx; }
 .font-w400{ font-weight: 400; }
 .font-weight{ font-weight: bold!important; }
@@ -182,6 +183,7 @@ body{
 .border-top{ border-top-width: 1upx; border-top-style: solid; border-top-color: var(--borderColor); }
 .border-right{ border-right-width: 1upx; border-right-style: solid; border-right-color: var(--borderColor);}
 .border-bottom{ border-bottom-width: 1upx;border-bottom-style: solid;border-bottom-color:var(--borderColor);}
+.border-bottom-yellow{ border-bottom-width: 1upx;border-bottom-style: solid;border-bottom-color:#F4CB2E;}
 .border-left{ border-left-width: 1upx;border-left-style: solid;border-left-color:var(--borderColor);}
 
 .border-0{ border-width: 0; }
@@ -248,6 +250,7 @@ body{
 .my { margin-top: 5upx;margin-bottom: 5upx;}
 .my-1 { margin-top: 10upx;margin-bottom: 10upx;}
 .my-2 { margin-top: 20upx;margin-bottom: 20upx;}
+.my-25 { margin-top: 25rpx;margin-bottom: 25rpx;}
 .my-3 { margin-top: 30upx;margin-bottom: 30upx;}
 .my-4 { margin-top: 40upx;margin-bottom: 40upx;}
 .my-5 { margin-top: 50upx;margin-bottom: 50upx;}
@@ -257,6 +260,7 @@ body{
 .mt-auto { margin-top: auto;}
 .mt-1 { margin-top: 10upx;}
 .mt-2 { margin-top: 20upx;}
+.mt-25 { margin-top: 25rpx;}
 .mt-3 { margin-top: 30upx;}
 .mt-35 { margin-top: 35rpx;}
 .mt-4 { margin-top: 40upx;}

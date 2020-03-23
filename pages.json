@@ -59,7 +59,14 @@
 			}
 		}
 
-		, {
+		,
+		{
+		    "path" : "pages/deal/deal",
+		    "style" : {
+				"navigationBarTitleText": "交易流水12(19)"
+			}
+		},
+		{
 			"path": "pages/deal-order/deal-order",
 			"style": {
 				"navigationBarTitleText": "交易流水12"
@@ -97,6 +104,7 @@
 				"navigationBarTitleText": "登录18"
 			}
 		}
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

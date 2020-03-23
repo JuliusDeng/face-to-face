@@ -242,7 +242,8 @@ var _default =
   },
   methods: {
     bindPickerChange: function bindPickerChange(e) {
-      console.log('---' + e.detail.value);
+      console.log('---' + e);
+      console.log('---', e.detail);
       this.index = e.detail.value;
       this.status = e.detail.value;
       this.__init();

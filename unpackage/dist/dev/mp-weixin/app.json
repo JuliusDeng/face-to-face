@@ -11,6 +11,7 @@
     "pages/staff-remove/staff-remove",
     "pages/device/device",
     "pages/device-order/device-order",
+    "pages/deal/deal",
     "pages/deal-order/deal-order",
     "pages/deal-check/deal-check",
     "pages/order-check/order-check",
