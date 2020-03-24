@@ -207,8 +207,8 @@ var _default =
 
   },
   onLoad: function onLoad(options) {
-    console.log(options);
-    var id = options.id;
+    /* console.log(options);
+                                    const id = options.id */
     var value = uni.getStorageSync('merchant');
     this.img = value.logo_url;
     this.name = value.merchant_name;

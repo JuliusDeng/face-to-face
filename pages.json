@@ -110,6 +110,11 @@
             "style" : {
 				"navigationBarTitleText": "商户搜索（21）"
 			}
+        },{
+            "path" : "pages/earn-search-device/earn-search-device",
+            "style" : {
+				"navigationBarTitleText": "设备搜索（22）"
+			}
         }
     ],
 	"globalStyle": {

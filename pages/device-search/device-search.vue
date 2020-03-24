@@ -5,7 +5,7 @@
 			<view class="search-form radius">
 				<text class="cuIcon-search"></text>
 				<input :adjust-position="false" type="text" placeholder="按设备ID搜索" 
-				confirm-type="search" v-model="devid"></input>
+				confirm-type="search" v-model="dev_id"></input>
 			</view>
 			<view class="action" @click="searchbtn">
 				<button class="cu-btn bg-yellow shadow-blur rounded-12" >搜索</button>
@@ -25,7 +25,7 @@
 		</view>
 		<!-- 上拉加载 -->
 		<view class="d-flex a-center j-center text-light-muted font-md py-3">
-			{{lodatext}}
+			{{loadtext}}
 		</view>
 		
 		
@@ -40,18 +40,18 @@
 		data() {
 			return {
 				list: [],
-				lodatext: "上拉加载更多",
+				loadtext: "上拉加载更多",
 				emit: 10,
-				devid: ""
+				dev_id: ""
 			}
 		},
 		onLoad() {
 			this.__init()
 		},
 		onReachBottom() {
-			this.lodatext = "加载中..."
+			this.loadtext = "加载中..."
 			this.emit += 10 
-			console.log(this.emit);
+			console.log("触发上拉加载", this.emit);
 			this.__init()
 		},
 		methods: {
@@ -63,15 +63,14 @@
 					user_id: "100003",
 					token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
 					opt: "device_list",
-					slimit: "0",
-					elimit: `${this.emit}`,
-					device_id: this.devid
+					slimit: 0,
+					elimit: this.emit,
+					device_id: this.dev_id
 				}).then((data) => {
 					console.log(data);
 					this.list = data.arr
-					
 					// 恢复加载状态
-					this.lodatext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
+					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
 				}).catch(() => {
 					console.log("catch error");
 				})

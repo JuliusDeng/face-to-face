@@ -164,6 +164,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -171,10 +175,18 @@ var _default =
       merchantList: [],
       searchID: "",
       searchname: "",
-      merchant: {} };
+      merchant: {},
+      emit: 5,
+      loadtext: "上拉加载更多" };
 
   },
   onLoad: function onLoad() {
+    this.__init();
+  },
+  onReachBottom: function onReachBottom() {
+    this.loadtext = "加载中...";
+    this.emit += 5;
+    console.log("触发上拉加载", this.emit);
     this.__init();
   },
   methods: {
@@ -183,19 +195,24 @@ var _default =
       console.log('item', item);
       uni.setStorageSync('merchant', item);
       uni.navigateTo({
-        url: "/pages/shops-earn/shops-earn?id=".concat(item.merchant_id) });
+        // url: `/pages/shops-earn/shops-earn?id=${item.merchant_id}`,
+        url: "/pages/shops-earn/shops-earn" });
 
     },
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: "100003",
-                  token: "dXQyMDIwMDMyMDE1MzkyODg5NDUxODA1",
+                  token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
                   opt: "merchant_list",
+                  slimit: 0, //列表 起始值
+                  elimit: "".concat(this.emit), //列表  数量
                   key_value: this.searchID || this.searchname }).
                 then(function (data) {
-                  console.log('接口调用了一次');
+                  console.log('接口调用了一次', data);
                   _this.merchantList = data.arr;
-                  uni.setStorageSync('list', data);
+                  // 恢复加载状态
+                  _this.loadtext = _this.merchantList.length < _this.emit ? "没有更多了" : "上拉加载更多";
+                  // uni.setStorageSync('list', data)
                 }).catch(function () {
                   console.log("catch error!!");
                 });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}(),

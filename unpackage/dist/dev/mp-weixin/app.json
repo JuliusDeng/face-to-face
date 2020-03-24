@@ -19,7 +19,8 @@
     "pages/order-detail/order-detail",
     "pages/login/login",
     "pages/device-search/device-search",
-    "pages/earn-search-merchant/earn-search-merchant"
+    "pages/earn-search-merchant/earn-search-merchant",
+    "pages/earn-search-device/earn-search-device"
   ],
   "subPackages": [],
   "window": {
@@ -28,6 +29,5 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap54.json"
+  "usingComponents": {}
 }

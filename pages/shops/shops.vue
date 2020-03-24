@@ -21,9 +21,13 @@
 			<image class="ml-3 bg-blue" :src="item.logo_url" style="width: 120rpx;height: 120rpx;"></image>
 			<view class="d-flex flex-column ml-3 font-24 text-black">
 				<text>{{item.merchant_name}}</text>
-				<text>电话：{{item.merchant_tel==null ? '' : item.merchant_tel}}</text>
-				<text>地址：{{item.merchant_address==null ? '' : item.merchant_address}}</text>
+				<text>电话：{{item.merchant_tel==null ? '空' : item.merchant_tel}}</text>
+				<text>地址：{{item.merchant_address==null ? '空' : item.merchant_address}}</text>
 			</view>
+		</view>
+		<!-- 上拉加载 -->
+		<view class="d-flex a-center j-center text-light-muted font-md py-3">
+			{{loadtext}}
 		</view>
 		
 		
@@ -38,10 +42,18 @@
 				merchantList: [],
 				searchID: "",
 				searchname: "",
-				merchant: {}
+				merchant: {},
+				emit: 5,
+				loadtext: "上拉加载更多",
 			}
 		},
 		onLoad() {
+			this.__init()
+		},
+		onReachBottom() {
+			this.loadtext = "加载中..."
+			this.emit += 5 
+			console.log("触发上拉加载", this.emit);
 			this.__init()
 		},
 		methods: {
@@ -50,19 +62,24 @@
 				console.log('item', item);
 				uni.setStorageSync('merchant', item);
 				uni.navigateTo({
-					url: `/pages/shops-earn/shops-earn?id=${item.merchant_id}`,
+					// url: `/pages/shops-earn/shops-earn?id=${item.merchant_id}`,
+					url: `/pages/shops-earn/shops-earn`,
 				})
 			},
 			async __init() {
 				this.$H.post("/agent/", {
 					user_id: "100003",
-					token: "dXQyMDIwMDMyMDE1MzkyODg5NDUxODA1",
+					token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
 					opt: "merchant_list",
+					slimit: 0,  //列表 起始值
+					elimit: `${this.emit}`,  //列表  数量
 					key_value: (this.searchID || this.searchname)
 				}).then((data) => {
-					console.log('接口调用了一次');
+					console.log('接口调用了一次',data);
 					this.merchantList = data.arr
-					uni.setStorageSync('list', data)
+					// 恢复加载状态
+					this.loadtext = this.merchantList.length < this.emit ? "没有更多了" :  "上拉加载更多"
+					// uni.setStorageSync('list', data)
 				}).catch(() => {
 					console.log("catch error!!");
 				})

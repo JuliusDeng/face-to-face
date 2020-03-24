@@ -5,7 +5,7 @@
 			<view class="search-form radius">
 				<text class="cuIcon-search"></text>
 				<input :adjust-position="false" type="text" placeholder="按设备ID搜索" 
-				confirm-type="search" v-model="devid"></input>
+				confirm-type="search" v-model="dev_id"></input>
 			</view>
 			<view class="action" @click="searchbtn">
 				<button class="cu-btn bg-yellow shadow-blur rounded-12" >搜索</button>
@@ -13,9 +13,12 @@
 		</view>
 		<!-- POS机列表 -->
 		<text class="font-24 text-gray ml-2">共有{{list.length}}台设备</text>
+		<view class="mx-2 mt-2 bg-cyan d-flex a-center j-center" hover-class="bg-red" @click="all" style="height: 80rpx;">
+			选择全部
+		</view>
 		<view class="mx-2 mt-2">
 			<view class="d-flex  bg-white rounded-12 text-black mb-2 shadow-nom" 
-			style="height: 120rpx;" v-for="(item, index) in list" :key="item" @click="this.$navigate('device')">
+			style="height: 120rpx;" v-for="(item, index) in list" :key="item" @click="select(item)">
 				<view class="mr-3 span-18 d-flex flex-column a-center j-center font-24">
 					<view>设备号：{{item.device_sn}}</view>
 					<view>关联商户：{{item.merchant_name}}</view>
@@ -25,7 +28,7 @@
 		</view>
 		<!-- 上拉加载 -->
 		<view class="d-flex a-center j-center text-light-muted font-md py-3">
-			{{lodatext}}
+			{{loadtext}}
 		</view>
 		
 		
@@ -40,24 +43,43 @@
 		data() {
 			return {
 				list: [],
-				lodatext: "上拉加载更多",
+				loadtext: "上拉加载更多",
 				emit: 10,
-				devid: ""
+				dev_id: ""
 			}
 		},
 		onLoad() {
 			this.__init()
 		},
 		onReachBottom() {
-			this.lodatext = "加载中..."
+			this.loadtext = "加载中..."
 			this.emit += 10 
-			console.log(this.emit);
+			console.log("触发上拉加载", this.emit);
 			this.__init()
 		},
 		methods: {
+			all() {
+				try {
+				    uni.setStorageSync('dev_all', '');
+					uni.setStorageSync('dev_allname', '全部');
+				} catch (e) {
+				    // error
+					console.log('catch error!!', e);
+				}
+				uni.navigateBack();
+			},
+			select(item) {
+				try {
+				    uni.setStorageSync('dev_class', item);
+					uni.setStorageSync('dev_name', '单个');
+				} catch (e) {
+				    // error
+					console.log('catch error!!', e);
+				}
+				uni.navigateBack();
+			},
 			searchbtn() {
 				this.__init()
-				uni.navigateBack();
 			},
 			async __init(callback = false) {
 				this.$H.post("/agent/", {
@@ -66,13 +88,13 @@
 					opt: "device_list",
 					slimit: "0",
 					elimit: `${this.emit}`,
-					device_id: this.devid
+					device_id: this.dev_id
 				}).then((data) => {
 					console.log(data);
 					this.list = data.arr
 					
 					// 恢复加载状态
-					this.lodatext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
+					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
 				}).catch(() => {
 					console.log("catch error");
 				})

@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "商户管理6",
-  "usingComponents": {}
+  "usingComponents": {
+    "uni-calendar": "/components/uni-calendar/uni-calendar"
+  }
 }

@@ -7,8 +7,8 @@
 				class="rounded-half bg-red"></image>
 				<view class="ml-3 font-24">
 					<view class="font-32">{{name}}</view>
-					<view>电话：{{tel==null ? '' : tel}}</view>
-					<view>地址：{{address==null ? '' : address}}</view>
+					<view>电话：{{tel==null ? '(暂无数据)' : tel}}</view>
+					<view>地址：{{address==null ? '(暂无数据)' : address}}</view>
 				</view>
 			</view>
 			
@@ -17,7 +17,7 @@
 		<view class="mx-25 bg-white rounded-12 d-flex flex-column a-center shadow-nom"
 		style="width: 700rpx;height: 353rpx;margin-top: -35rpx;">
 			<view class="font-28 mt-35 text-8a">今日交易金额</view>
-			<view class="font-60 text-black" @click="">￥{{money==null ? '' : money}}</view>
+			<view class="font-60 text-black" @click="">￥{{money==null ? '(暂无数据)' : money}}</view>
 			<view class="d-flex w-100 font-26 mt-4">
 				<view class="flex-1 d-flex a-center flex-column border-right">
 					<view class="text-8a">今日订单</view>
@@ -25,7 +25,7 @@
 				</view>
 				<view class="flex-1 d-flex a-center flex-column">
 					<view class="text-8a">昨日金额</view>
-					<view class="text-black">{{moneybf==null ? '' : moneybf}}</view>
+					<view class="text-black">{{moneybf==null ? '(暂无数据)' : moneybf}}</view>
 				</view>
 			</view>
 		</view>
@@ -65,8 +65,8 @@
 			}
 		},
 		onLoad(options) {
-			console.log(options);
-			const id = options.id
+			/* console.log(options);
+			const id = options.id */
 			const value = uni.getStorageSync('merchant');
 			this.img = value.logo_url
 			this.name = value.merchant_name
