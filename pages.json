@@ -17,12 +17,7 @@
 			"style": {
 				"navigationBarTitleText": "收益统计3"
 			}
-		}, {
-			"path": "pages/earn-search/earn-search",
-			"style": {
-				"navigationBarTitleText": "设备搜索4"
-			}
-		}, {
+		},  {
 			"path": "pages/shops-earn/shops-earn",
 			"style": {
 				"navigationBarTitleText": "商户详情5"
@@ -103,8 +98,19 @@
 			"style": {
 				"navigationBarTitleText": "登录18"
 			}
+		}, {
+			"path": "pages/device-search/device-search",
+			"style": {
+				"navigationBarTitleText": "设备列表（20）"
+			}
 		}
         
+        ,{
+            "path" : "pages/earn-search-merchant/earn-search-merchant",
+            "style" : {
+				"navigationBarTitleText": "商户搜索（21）"
+			}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

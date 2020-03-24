@@ -3,7 +3,6 @@
     "pages/index/index",
     "pages/user/user",
     "pages/shops/shops",
-    "pages/earn-search/earn-search",
     "pages/shops-earn/shops-earn",
     "pages/earn/earn",
     "pages/staff/staff",
@@ -18,7 +17,9 @@
     "pages/order-time/order-time",
     "pages/order-refund/order-refund",
     "pages/order-detail/order-detail",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/device-search/device-search",
+    "pages/earn-search-merchant/earn-search-merchant"
   ],
   "subPackages": [],
   "window": {
@@ -27,5 +28,6 @@
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap54.json"
 }

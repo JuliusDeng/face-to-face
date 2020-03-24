@@ -19,8 +19,8 @@
 			<view class="ml-3  d-flex a-center" style="height: 100rpx;">
 				<view class="border d-flex bg-white mr-3 text-gray" style="width: 210rpx;height: 70rpx;" >
 					<view class="flex-1 border-right d-flex a-center j-center font-20">状态</view>
-					<view class="flex-2  d-flex a-center j-center" @click="">
-						<picker class="d-flex" @change="bindPickerChange()" :value="index" :range="array" range-key="name">
+					<view class="flex-2  d-flex a-center j-center">
+						<picker class="d-flex" @change="bindPickerChange" :value="index" :range="array" range-key="name">
 							<view class="text-gray font-20 mr-2">{{array[index].name}}</view>
 						</picker>
 						<image src="../../static/right/bottom.png" style="width: 10rpx;height: 8rpx;"></image>
@@ -29,14 +29,14 @@
 				
 				<view class="border d-flex bg-white mr-3 text-gray" style="width: 210rpx;height: 70rpx;" >
 					<view class="flex-1 border-right d-flex a-center j-center font-20">设备</view>
-					<view class="flex-2  d-flex a-center j-center" @click="this.$navigate('earn-search')">
+					<view class="flex-2  d-flex a-center j-center" @click="this.$navigate('earn-search-device')">
 						<text class="mr-2 font-20">全部</text>
 						<image src="../../static/right/bottom.png" style="width: 10rpx;height: 8rpx;"></image>
 					</view>
 				</view>
 				
 				<view class="border d-flex font-20 bg-white mr-3 text-gray" style="width: 210rpx;height: 70rpx;" >
-					<view class="flex-1 border-right d-flex a-center j-center font-20">商户</view>
+					<view class="flex-1 border-right d-flex a-center j-center font-20" @click="this.$navigate('earn-search-merchant')">商户</view>
 					<view class="flex-2  d-flex a-center j-center" @click="">
 						<text class="mr-2 font-20">全部</text>
 						<image src="../../static/right/bottom.png" style="width: 10rpx;height: 8rpx;"></image>
@@ -67,17 +67,17 @@
 		<!-- 收到 -->
 		<view class="d-flex flex-column a-center j-center" style="height: 253rpx;">
 			<view class="d-flex a-center font-28 text-gray" style="height: 40rpx;">共收到</view>
-			<view class="d-flex a-center font-60 mt-1 text-black" style="height: 80rpx;">￥12000.25</view>
+			<view class="d-flex a-center font-60 mt-1 text-black" style="height: 80rpx;">￥{{total_money}}</view>
 		</view>
 		<!-- 订单均价 -->
 		<view class="d-flex text-black" style="height: 90rpx;">
 			<view class="flex-1 d-flex flex-column a-center border-right">
 				<text class="font-26 text-gray">订单数量</text>
-				<text class="font-26 ">1000</text>
+				<text class="font-26 ">{{amount}}</text>
 			</view>
 			<view class="flex-1 d-flex flex-column a-center">
 				<text class="font-26 text-gray">单笔均价</text>
-				<text class="font-26">￥12.00</text>
+				<text class="font-26">￥{{money}}</text>
 			</view>
 		</view>
 		<!-- 意见反馈 -->
@@ -93,38 +93,56 @@
 		data() {
 			return {
 				index: 0,
-				array: [{name:'全部'},{name: '已支付'}, {name:'申请退款'}, {name:'已退款'}],
-				// array: [],
-				status: ""
+				array: [
+					{name:'全部'},
+					{name: '已支付'}, 
+					{name:'申请退款'}, 
+					{name:'已退款'}
+				],
+				status: "",
+				devid: "",
+				merid: "",
+				total_money: 0,
+				amount: 0,
+				money: 0
 			}
 		},
 		onLoad() {
 			this.__init()
-			this.bindPickerChange()
+			// this.bindPickerChange()
 		},
 		methods: {
 			bindPickerChange(e) {
 				console.log('---' + e)
-				console.log('---', e.detail);
-				this.index = e.detail.value
+				console.log('---', e.detail.value);
+				this.index = e.detail.value // value为序号0 1 2 3 
 				this.status = e.detail.value
+				if(e.detail.value == 3) {
+					this.status = -1
+				}
 				this.__init()
 			},
 			async __init() {
 				this.$H.post("/agent/", {
 					user_id: "100003",
-					token: "dXQyMDIwMDMxNzE1MjYyMjI1OTAzOTQ1",
+					token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
 					opt: "agent_device_statistics",
 					slimit: 0, //始值
-					elimit: 15, //数量
+					elimit: 5, //数量
 					order_status: this.status, //订单状态  空为全部  1为已支付 2为申请退款  -1已退款
-					device_id: "", //设备ID
-					order_sn: "", //订单号
-					merchant_id: "", //商户ID
+					device_id: "", // 设备ID
+					merchant_id: "",   //商户ID
 					start_time: "2019-07-17", //开始日期 如：2019-07-17
 					end_time: "2020-02-17", //结束日期 如：2020-02-17
-				}).then((data) => {
-					console.log(data);
+				}).then((res) => {
+					console.log(res);
+					let out = res.count
+					console.log(out);
+					for(let i=0; i<out.length; i++) {
+						this.total_money += parseFloat(out[i].sum_money)
+						this.amount += parseFloat(out[i].count_num)
+					}
+					this.money = (this.total_money / this.amount).toFixed(2)
 				}).catch(() => {
 					console.log("catch error!!");
 				})

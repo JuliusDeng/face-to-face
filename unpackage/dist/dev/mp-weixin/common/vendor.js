@@ -1673,7 +1673,87 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 145:
+/***/ 15:
+/*!*********************************************************************!*\
+  !*** C:/Users/tt/Desktop/maiwei/face-to-face/common/lib/request.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default = {
+  // 全局配置
+  common: {
+    baseUrl: "https://schoolandyouapi.aboutnew.net",
+    header: {
+      // 'Content-Type':'application/json;charset=UTF-8',
+      'Content-Type': 'application/x-www-form-urlencoded' },
+
+    data: {},
+    method: "POST",
+    dataType: "json" },
+
+  // 请求 返回Promise
+  request: function request() {var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    // 组织参数
+    options.url = this.common.baseUrl + options.url;
+    options.header = options.header || this.common.header;
+    options.data = options.data || this.common.data;
+    options.method = options.method || this.common.method;
+    options.dataType = options.dataType || this.common.dataType;
+    //请求
+    return new Promise(function (res, rej) {
+      // 请求之前 
+      // 请求中
+      uni.request(_objectSpread({},
+      options, {
+
+        success: function success(result) {
+          // console.log('request.js-->', result);
+          // 服务端请求失败
+          if (result.statusCode !== 200) {
+            uni.showToast({
+              title: result.data.msg || '服务端请求失败',
+              icon: 'none' });
+
+            return rej();
+          }
+          // 请求成功
+          var data = result.data.data;
+          res(data);
+        },
+
+        fail: function fail(error) {
+          uni.showToast({
+            title: error.errMsg || '请求失败（如断网）',
+            icon: 'none' });
+
+          return rej();
+        } }));
+
+
+
+    });
+  },
+  // get 请求
+  get: function get(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    options.url = url;
+    options.data = data;
+    options.method = 'GET';
+    return this.request(options);
+  },
+  // post 请求
+  post: function post(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    options.url = url;
+    options.data = data;
+    options.method = 'POST';
+    return this.request(options);
+  } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
+/***/ 153:
 /*!*******************************************************************************!*\
   !*** C:/Users/tt/Desktop/maiwei/face-to-face/components/tki-qrcode/qrcode.js ***!
   \*******************************************************************************/
@@ -2882,86 +2962,6 @@ function normalizeComponent (
 })();var _default =
 
 QRCode;exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-
-/***/ 15:
-/*!*********************************************************************!*\
-  !*** C:/Users/tt/Desktop/maiwei/face-to-face/common/lib/request.js ***!
-  \*********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default = {
-  // 全局配置
-  common: {
-    baseUrl: "https://schoolandyouapi.aboutnew.net",
-    header: {
-      // 'Content-Type':'application/json;charset=UTF-8',
-      'Content-Type': 'application/x-www-form-urlencoded' },
-
-    data: {},
-    method: "POST",
-    dataType: "json" },
-
-  // 请求 返回Promise
-  request: function request() {var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    // 组织参数
-    options.url = this.common.baseUrl + options.url;
-    options.header = options.header || this.common.header;
-    options.data = options.data || this.common.data;
-    options.method = options.method || this.common.method;
-    options.dataType = options.dataType || this.common.dataType;
-    //请求
-    return new Promise(function (res, rej) {
-      // 请求之前 
-      // 请求中
-      uni.request(_objectSpread({},
-      options, {
-
-        success: function success(result) {
-          // console.log('request.js-->', result);
-          // 服务端请求失败
-          if (result.statusCode !== 200) {
-            uni.showToast({
-              title: result.data.msg || '服务端请求失败',
-              icon: 'none' });
-
-            return rej();
-          }
-          // 请求成功
-          var data = result.data.data;
-          res(data);
-        },
-
-        fail: function fail(error) {
-          uni.showToast({
-            title: error.errMsg || '请求失败（如断网）',
-            icon: 'none' });
-
-          return rej();
-        } }));
-
-
-
-    });
-  },
-  // get 请求
-  get: function get(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    options.url = url;
-    options.data = data;
-    options.method = 'GET';
-    return this.request(options);
-  },
-  // post 请求
-  post: function post(url) {var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    options.url = url;
-    options.data = data;
-    options.method = 'POST';
-    return this.request(options);
-  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
@@ -10737,7 +10737,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/user": { "navigationBarTitleText": "个人中心2", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tki-qrcode": "/components/tki-qrcode/tki-qrcode" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tki-qrcode": "/components/tki-qrcode/tki-qrcode" } }, "pages/shops/shops": { "navigationBarTitleText": "收益统计3", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn-search/earn-search": { "navigationBarTitleText": "设备搜索4", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情5", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn/earn": { "navigationBarTitleText": "商户管理6", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal/deal": { "navigationBarTitleText": "交易流水12(19)", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal-check/deal-check": { "navigationBarTitleText": "交易流水(check)13", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-time/order-time": { "navigationBarTitleText": "校正订单(time)15", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录18", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1" }, "pages/user/user": { "navigationBarTitleText": "个人中心2" }, "pages/shops/shops": { "navigationBarTitleText": "收益统计3" }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情5" }, "pages/earn/earn": { "navigationBarTitleText": "商户管理6" }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7" }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8" }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9" }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10" }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11" }, "pages/deal/deal": { "navigationBarTitleText": "交易流水12(19)" }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12" }, "pages/deal-check/deal-check": { "navigationBarTitleText": "交易流水(check)13" }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14" }, "pages/order-time/order-time": { "navigationBarTitleText": "校正订单(time)15" }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16" }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17" }, "pages/login/login": { "navigationBarTitleText": "登录18" }, "pages/device-search/device-search": { "navigationBarTitleText": "设备列表（20）" }, "pages/earn-search-merchant/earn-search-merchant": { "navigationBarTitleText": "商户搜索（21）" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 
