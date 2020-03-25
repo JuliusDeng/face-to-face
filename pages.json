@@ -77,12 +77,7 @@
 			"style": {
 				"navigationBarTitleText": "校正订单14"
 			}
-		}, {
-			"path": "pages/order-time/order-time",
-			"style": {
-				"navigationBarTitleText": "校正订单(time)15"
-			}
-		},
+		}, 
 		{
 			"path": "pages/order-refund/order-refund",
 			"style": {

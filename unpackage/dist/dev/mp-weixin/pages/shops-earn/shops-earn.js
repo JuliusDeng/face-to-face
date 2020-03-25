@@ -210,6 +210,7 @@ var _default =
     /* console.log(options);
                                     const id = options.id */
     var value = uni.getStorageSync('merchant');
+    console.log('value--:', value);
     this.img = value.logo_url;
     this.name = value.merchant_name;
     this.tel = value.merchant_tel;

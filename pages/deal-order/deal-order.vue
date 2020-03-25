@@ -47,17 +47,37 @@
 	export default {
 		data() {
 			return {
-				order: [
-					{tit: "支付类型", cont: "银行卡支付"},
-					{tit: "设备编号", cont: "0215"},
-					{tit: "支付时间", cont: "2019.07.31 12:23:55"},
-					{tit: "支付人", cont: "*马珍珍"},
-					{tit: "消费金额", cont: "￥520"},
-				]
+				order: []
 			}
 		},
 		methods: {
-			
+			async __init() {
+				this.$H.post("/agent/", {
+					user_id: "100003",
+					token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
+					opt: "order_list",
+					merchant_id: "371",   //商户ID
+					day: "201910", //开始日期 如：201910
+					order_status: "", //订单状态  空为全部  1为已支付 2为申请退款  -1已退款
+				}).then((res) => {
+					let out = res.count
+					console.log("res.count", res.count);
+					
+					// 恢复加载状态
+					this.loadtext = this.tabBars[0].list.length < this.emit ? "没有更多了" :  "上拉加载更多"
+					/* this.out_money = 0
+					for(let i=0; i<out.length; i++) {
+						this.out_money += (parseFloat(out[i].sum_money))
+						this.amount += parseFloat(out[i].count_num)
+					}
+					console.log('out_money', this.out_money);
+					this.total_money = this.out_money.toFixed(2)
+					this.money = (this.total_money / this.amount).toFixed(2) */
+				}).catch((e) => {
+					console.log("catch error!!", e);
+				})
+				
+			}
 		}
 	}
 </script>

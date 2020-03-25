@@ -1,6 +1,6 @@
 <template>
 	<view class="mx-25">
-		<!-- 搜索框 -->
+		<!-- 时间编号查询 -->
 		<view class="bg-white d-flex a-center font-30 pl-4 my-4 shadow-nom rounded-12" 
 		style="height: 100rpx;">
 			<text class="text-black">交易时间:</text>
@@ -16,7 +16,7 @@
 		style="background:#F4CB2E;height: 80rpx;">查 询</button>
 		<!-- 时间编号 -->
 		<view class="d-flex j-sb a-center mt-3">
-			<text class="text-55 font-24">时间编号查询</text>
+			<text class="text-55 font-24">订单查询</text>
 			<text class="text-55 font-24">遇到问题</text>
 		</view>
 		<!-- 下面文字 -->

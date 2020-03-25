@@ -92,7 +92,7 @@
 				}).then((data) => {
 					console.log(data);
 					this.list = data.arr
-					
+					console.log('this.list.length', this.list.length);
 					// 恢复加载状态
 					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
 				}).catch(() => {
