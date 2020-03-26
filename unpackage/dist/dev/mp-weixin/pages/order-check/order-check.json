@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "校正订单14",
-  "usingComponents": {}
+  "usingComponents": {
+    "scan": "/components/p-scan/scan"
+  }
 }

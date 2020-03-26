@@ -244,7 +244,7 @@ var _default =
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: "183823",
-                  token: "dXQyMDIwMDMxOTE2MzYzMDQxNjY4MDk2",
+                  token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",
                   opt: "home" }).
                 then(function (res) {
                   console.log(res);

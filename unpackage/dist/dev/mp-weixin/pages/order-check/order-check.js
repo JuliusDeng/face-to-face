@@ -131,88 +131,102 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var scan = function scan() {return __webpack_require__.e(/*! import() | components/p-scan/scan */ "components/p-scan/scan").then(__webpack_require__.bind(null, /*! @/components/p-scan/scan.vue */ 167));};var _default =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {
+  components: {
+    scan: scan },
+
   data: function data() {
     return {
       ways: true,
       ordersn: "",
       paytime: "",
       deviceid: "",
-      msg: "" };
+      msg: "",
+      scan: false };
 
   },
   onLoad: function onLoad() {
     // this.__init()
   },
   methods: {
-    toRefund: function toRefund() {
+    changeScan: function changeScan() {
+      this.scan = !this.scan;
+      this.getScanCode;
+    },
+    //获取扫码控件
+    getScanCode: function getScanCode(val) {
+      console.log(val);
+      this.ordersn = val;
       this.__init();
-      uni.navigateTo({
-        url: "/pages/order-refund/order-refund" });
-
     },
     change: function change() {
       this.ways = !this.ways;
     },
-    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: "100003",
                   token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
@@ -221,12 +235,24 @@ var _default =
                   search_pay_time: this.paytime, //数量
                   search_device_id: this.deviceid }).
                 then(function (res) {
+                  _this.msg = res;
                   try {
                     uni.setStorageSync('remsg', res.arr[0]);
                     // uni.setStorageSync('ordersn', res.arr[0].order_sn);
+                    if (_this.msg) {
+                      console.log('this.msg', _this.msg);
+                      uni.navigateTo({
+                        url: "/pages/order-refund/order-refund" });
+
+                    } else {
+                      uni.showToast({
+                        title: "输入有误，未找到！",
+                        duration: 2500 });
+
+                    }
                   } catch (e) {
                     // error
-                    console.log('error: ', e);
+                    console.log('catch error: ', e);
                   }
                 }).catch(function (e) {
                   console.log("catch error!!", e);

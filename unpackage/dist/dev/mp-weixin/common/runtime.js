@@ -108,7 +108,7 @@
 /******/ 		if(installedCssChunks[chunkId]) promises.push(installedCssChunks[chunkId]);
 /******/ 		else if(installedCssChunks[chunkId] !== 0 && cssChunks[chunkId]) {
 /******/ 			promises.push(installedCssChunks[chunkId] = new Promise(function(resolve, reject) {
-/******/ 				var href = "" + ({"components/tki-qrcode/tki-qrcode":"components/tki-qrcode/tki-qrcode","components/uni-popup/uni-popup":"components/uni-popup/uni-popup","components/uni-calendar/uni-calendar":"components/uni-calendar/uni-calendar","components/uni-transition/uni-transition":"components/uni-transition/uni-transition","components/uni-calendar/uni-calendar-item":"components/uni-calendar/uni-calendar-item"}[chunkId]||chunkId) + ".wxss";
+/******/ 				var href = "" + ({"components/tki-qrcode/tki-qrcode":"components/tki-qrcode/tki-qrcode","components/uni-popup/uni-popup":"components/uni-popup/uni-popup","components/uni-calendar/uni-calendar":"components/uni-calendar/uni-calendar","components/p-scan/scan":"components/p-scan/scan","components/uni-transition/uni-transition":"components/uni-transition/uni-transition","components/uni-calendar/uni-calendar-item":"components/uni-calendar/uni-calendar-item"}[chunkId]||chunkId) + ".wxss";
 /******/ 				var fullhref = __webpack_require__.p + href;
 /******/ 				var existingLinkTags = document.getElementsByTagName("link");
 /******/ 				for(var i = 0; i < existingLinkTags.length; i++) {
