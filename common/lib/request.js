@@ -26,11 +26,19 @@ export default {
 				...options,
 				
 				success: (result) => {
-					// console.log('request.js-->', result);
+					console.log('request.js-result:', result);
+					if(result.data.err_code !== 0) {
+						uni.showToast({
+							title: result.data.err_msg || '请求失败',
+							icon: 'none'
+						})
+						return rej()
+					}
 					// 服务端请求失败
 					if(result.statusCode !== 200) {
+						console.log('result.statusCode !== 200');
 						uni.showToast({
-							title: result.data.msg || '服务端请求失败',
+							title: result.data.err_msg || '服务端请求失败',
 							icon: 'none'
 						})
 						return rej()

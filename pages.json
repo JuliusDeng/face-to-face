@@ -5,6 +5,7 @@
 			"style": {
 				"navigationBarTitleText": "面对面交易(商户服务)1"
 			}
+
 		},
 		{
 			"path": "pages/user/user",
@@ -13,17 +14,17 @@
 			}
 		},
 		{
-			"path": "pages/shops/shops",
+			"path": "pages/earn/earn",
 			"style": {
 				"navigationBarTitleText": "收益统计3"
 			}
-		},  {
+		}, {
 			"path": "pages/shops-earn/shops-earn",
 			"style": {
 				"navigationBarTitleText": "商户详情5"
 			}
 		}, {
-			"path": "pages/earn/earn",
+			"path": "pages/shops/shops",
 			"style": {
 				"navigationBarTitleText": "商户管理6"
 			}
@@ -52,12 +53,10 @@
 			"style": {
 				"navigationBarTitleText": "账单详情11"
 			}
-		}
-
-		,
+		},
 		{
-		    "path" : "pages/deal/deal",
-		    "style" : {
+			"path": "pages/deal/deal",
+			"style": {
 				"navigationBarTitleText": "交易流水12(19)"
 			}
 		},
@@ -68,16 +67,11 @@
 			}
 
 		}, {
-			"path": "pages/deal-check/deal-check",
-			"style": {
-				"navigationBarTitleText": "交易流水(check)13"
-			}
-		}, {
 			"path": "pages/order-check/order-check",
 			"style": {
 				"navigationBarTitleText": "校正订单14"
 			}
-		}, 
+		},
 		{
 			"path": "pages/order-refund/order-refund",
 			"style": {
@@ -93,25 +87,26 @@
 			"style": {
 				"navigationBarTitleText": "登录18"
 			}
+
 		}, {
 			"path": "pages/device-search/device-search",
 			"style": {
 				"navigationBarTitleText": "设备列表（20）"
 			}
 		}
-        
-        ,{
-            "path" : "pages/earn-search-merchant/earn-search-merchant",
-            "style" : {
+
+		, {
+			"path": "pages/earn-search-merchant/earn-search-merchant",
+			"style": {
 				"navigationBarTitleText": "商户搜索（21）"
 			}
-        },{
-            "path" : "pages/earn-search-device/earn-search-device",
-            "style" : {
+		}, {
+			"path": "pages/earn-search-device/earn-search-device",
+			"style": {
 				"navigationBarTitleText": "设备搜索（22）"
 			}
-        }
-    ],
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

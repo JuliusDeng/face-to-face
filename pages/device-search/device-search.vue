@@ -15,7 +15,7 @@
 		<text class="font-24 text-gray ml-2">共有{{list.length}}台设备</text>
 		<view class="mx-2 mt-2">
 			<view class="d-flex  bg-white rounded-12 text-black mb-2 shadow-nom" 
-			style="height: 120rpx;" v-for="(item, index) in list" :key="item" @click="this.$navigate('device')">
+			style="height: 120rpx;" v-for="(item, index) in list" :key="item" @click="select(item)">
 				<view class="mr-3 span-18 d-flex flex-column a-center j-center font-24">
 					<view>设备号：{{item.device_sn}}</view>
 					<view>关联商户：{{item.merchant_name}}</view>
@@ -49,26 +49,45 @@
 			this.__init()
 		},
 		onReachBottom() {
+			if(this.emit > this.list.length) {
+				console.log('不会再上拉了哦');
+				return
+			}
+			console.log('啦啦啦');
 			this.loadtext = "加载中..."
 			this.emit += 10 
 			console.log("触发上拉加载", this.emit);
 			this.__init()
 		},
 		methods: {
+			select(item) {
+				try {
+					console.log('item:', item);
+				    uni.setStorageSync('dev_class', item);
+					uni.setStorageSync('dev_name', '单个');
+					uni.navigateTo({
+						url: '/pages/device/device'
+					})
+				} catch (e) {
+				    // error
+					console.log('catch error!!', e);
+				}
+			},
 			searchbtn() {
 				this.__init()
 			},
 			async __init(callback = false) {
 				this.$H.post("/agent/", {
-					user_id: "100003",
-					token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
 					opt: "device_list",
 					slimit: 0,
 					elimit: this.emit,
 					device_id: this.dev_id
 				}).then((data) => {
-					console.log(data);
 					this.list = data.arr
+					console.log('this.list.length:', this.list.length);
+					console.log('this.emit.length:', this.emit);
 					// 恢复加载状态
 					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
 				}).catch(() => {

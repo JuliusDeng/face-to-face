@@ -18,7 +18,7 @@
 		<text class="ml-3 font-24 text-gray">共有{{merchantList.length}}户商家</text>
 		<view  class="mt-2 mx-25 d-flex a-center border shadow-nom bg-white mb-2" style="height: 180rpx;"
 			v-for="(item, index) in merchantList" :key="index" @click="toshopEarn(item)">
-			<image class="ml-3 bg-blue" :src="item.logo_url" style="width: 120rpx;height: 120rpx;"></image>
+			<image class="ml-3" :src="item.logo_url ? 'item.logo_url' : '../../static/icon/weibiaoti-3.png'" style="width: 120rpx;height: 120rpx;"></image>
 			<view class="d-flex flex-column ml-3 font-24 text-black">
 				<text>{{item.merchant_name}}</text>
 				<text>电话：{{item.merchant_tel==null ? '空' : item.merchant_tel}}</text>
@@ -43,7 +43,7 @@
 				searchID: "",
 				searchname: "",
 				merchant: {},
-				emit: 5,
+				emit: 10,
 				loadtext: "上拉加载更多",
 			}
 		},
@@ -51,35 +51,37 @@
 			this.__init()
 		},
 		onReachBottom() {
+			if(this.emit > this.merchantList.length) {
+				console.log('不会再上拉了哦');
+				return
+			}
+			console.log('啦啦啦');
 			this.loadtext = "加载中..."
-			this.emit += 5 
+			this.emit += 10 
 			console.log("触发上拉加载", this.emit);
 			this.__init()
 		},
 		methods: {
-			
 			toshopEarn(item) {
 				console.log('item', item);
 				uni.setStorageSync('merchant', item);
 				uni.navigateTo({
-					// url: `/pages/shops-earn/shops-earn?id=${item.merchant_id}`,
-					url: `/pages/shops-earn/shops-earn`,
+					url: "/pages/shops-earn/shops-earn",
 				})
 			},
 			async __init() {
 				this.$H.post("/agent/", {
-					user_id: "100003",
-					token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
 					opt: "merchant_list",
 					slimit: 0,  //列表 起始值
-					elimit: `${this.emit}`,  //列表  数量
+					elimit: this.emit,  //列表  数量
 					key_value: (this.searchID || this.searchname)
 				}).then((data) => {
 					console.log('接口调用了一次',data);
 					this.merchantList = data.arr
 					// 恢复加载状态
 					this.loadtext = this.merchantList.length < this.emit ? "没有更多了" :  "上拉加载更多"
-					// uni.setStorageSync('list', data)
 				}).catch(() => {
 					console.log("catch error!!");
 				})

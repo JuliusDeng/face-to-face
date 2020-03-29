@@ -33,12 +33,7 @@
 				<view>{{item.tit}}</view>
 				<view>{{item.cont}}</view>
 			</view>
-			
 		</view>
-		
-		
-		
-		
 		
 	</view>
 </template>

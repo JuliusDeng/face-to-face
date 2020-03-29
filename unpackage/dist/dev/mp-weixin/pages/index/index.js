@@ -220,6 +220,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -234,6 +241,12 @@ var _default =
   },
   onLoad: function onLoad() {
     this.__init();
+    try {
+      uni.setStorageSync('uid', '100003');
+      uni.setStorageSync('utoken', 'dXQyMDIwMDMyNzE0Mzk1Njk1MjMyMzQx');
+    } catch (e) {
+      // error
+    }
   },
   methods: {
     navUser: function navUser(name, tel, agentName) {
@@ -243,6 +256,8 @@ var _default =
     },
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
+                  // user_id: uni.getStorageSync('user_id'),
+                  // token: uni.getStorageSync('token'),
                   user_id: "183823",
                   token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",
                   opt: "home" }).

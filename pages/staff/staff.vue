@@ -43,8 +43,8 @@
 		methods: {
 			async __init() {
 				this.$H.post("/agent/", {
-					user_id: "100003",
-					token: "dXQyMDIwMDMyMDE4NDQ1NTUzNzAyMTgx",
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
 					opt: "user_list"
 				}).then((res) => {
 					console.log(res);

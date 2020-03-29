@@ -3,22 +3,18 @@
 		<!-- 顶部白色部分 -->
 		<view class="bg-white" @click="this.$navigate('device-order')">
 			<view class="mx-35" style="height: 392rpx;width: 680rpx;">
-				
-				<view class="d-flex j-sb p-3 border-bottom">
-					<image src="../../static/1post.png" style="width: 92rpx;height: 94rpx;"></image>
-					<view class="d-flex flex-column a-end text-black">
+				<view class="d-flex j-center p-3 border-bottom">
+					<view class="d-flex flex-column a-center j-center text-black">
 						<view>设备号：123456789</view>
 						<view>关联商户：护理学1楼 重庆味面</view>
 					</view>
 				</view>
-				
 				<view class="px-2 pt-1">
 					<view class=" d-flex j-sb text-black" v-for="(item, index) in title" :key="index">
 						<view>{{item.tit}}</view>
 						<view>{{item.cont}}</view>
 					</view>
 				</view>
-				
 			</view>
 		</view>
 		<!-- 下方订单详情 -->
@@ -54,7 +50,7 @@
 					{tit: "昨日", cont: "收益：￥2534.22 订单：102"},
 					{tit: "30日", cont: "收益：￥2522534.22 订单：122302"},
 					{tit: "全部", cont: "收益：￥2522534.22 订单：122302"},
-				],
+				],             
 				order: [
 					{tit: "支付类型", cont: "银行卡支付"},
 					{tit: "设备编号", cont: "0215"},
@@ -63,6 +59,9 @@
 					{tit: "消费金额", cont: "￥520"},
 				]
 			}
+		},
+		onLoad() {
+			
 		},
 		methods: {
 			

@@ -39,9 +39,6 @@
 					<view>ID：{{userID}}</view>
 					<tki-qrcode class="mt-5" ref="qrcode" :val="userID" size="378" 
 					unit="upx" :icon="icon" :iconSize="iconsize" :onval="onval" :loadMake="loadMake" :usingComponents="true" />
-					
-					<!-- <image src="../../static/icon/qrcode.png" style="width: 378rpx;height: 378rpx;" class="mt-5"></image> -->
-					
 					<view class="mt-5">快速签到，一扫即可</view>
 				</view>
 			</view>
@@ -130,29 +127,28 @@
 			this.tel = options.tel
 			this.agentname = options.agentName
 			
-			this.__shop()
+			this.__init()
 		},
 		methods: {
-			
 			open() {
 				this.$refs.popup.open()
 				this.$refs.qrcode._makeCode()
 			},
-			async __shop() {
+			async __init() {
 				this.$H.post("/user/", {
-					user_id: "100003",
-					token: "dXQyMDIwMDMyMDEwMjE0MTU0NjI2NTg1",
+					user_id: "183823",
+					token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",
 					app: "app"
 				}).then((data) => {
 					console.log(data);
-					this.imgurl = data.headimgurl
+					this.imgurl = data.user_info.headimgurl
 					this.relname = data.user_info.realname
 					this.userID = data.user_info.user_id
 					this.nickname = data.user_info.nickname
 					this.sex = data.user_info.sex
 					this.school = data.user_info.school_id
-				}).catch((data) => {
-					console.log('--catch 错误！！');
+				}).catch((error) => {
+					console.log('--catch 错误:', error);
 				})
 
 			}

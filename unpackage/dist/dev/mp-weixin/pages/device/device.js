@@ -183,10 +183,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -204,6 +200,9 @@ var _default =
       { tit: "支付人", cont: "*马珍珍" },
       { tit: "消费金额", cont: "￥520" }] };
 
+
+  },
+  onLoad: function onLoad() {
 
   },
   methods: {} };exports.default = _default;

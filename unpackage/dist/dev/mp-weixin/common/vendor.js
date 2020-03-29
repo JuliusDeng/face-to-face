@@ -1552,6 +1552,263 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
+/***/ 101:
+/*!************************************************************************!*\
+  !*** C:/Users/tt/Desktop/maiwei/face-to-face/common/lib/permission.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) { /// null = 未请求，1 = 已允许，0 = 拒绝|受限, 2 = 系统未开启
+
+var isIOS;
+
+function album() {
+  var result = 0;
+  var PHPhotoLibrary = plus.ios.import("PHPhotoLibrary");
+  var authStatus = PHPhotoLibrary.authorizationStatus();
+  if (authStatus === 0) {
+    result = null;
+  } else if (authStatus == 3) {
+    result = 1;
+  } else {
+    result = 0;
+  }
+  plus.ios.deleteObject(PHPhotoLibrary);
+  return result;
+}
+
+function camera() {
+  var result = 0;
+  var AVCaptureDevice = plus.ios.import("AVCaptureDevice");
+  var authStatus = AVCaptureDevice.authorizationStatusForMediaType('vide');
+  if (authStatus === 0) {
+    result = null;
+  } else if (authStatus == 3) {
+    result = 1;
+  } else {
+    result = 0;
+  }
+  plus.ios.deleteObject(AVCaptureDevice);
+  return result;
+}
+
+function location() {
+  var result = 0;
+  var cllocationManger = plus.ios.import("CLLocationManager");
+  var enable = cllocationManger.locationServicesEnabled();
+  var status = cllocationManger.authorizationStatus();
+  if (!enable) {
+    result = 2;
+  } else if (status === 0) {
+    result = null;
+  } else if (status === 3 || status === 4) {
+    result = 1;
+  } else {
+    result = 0;
+  }
+  plus.ios.deleteObject(cllocationManger);
+  return result;
+}
+
+function push() {
+  var result = 0;
+  var UIApplication = plus.ios.import("UIApplication");
+  var app = UIApplication.sharedApplication();
+  var enabledTypes = 0;
+  if (app.currentUserNotificationSettings) {
+    var settings = app.currentUserNotificationSettings();
+    enabledTypes = settings.plusGetAttribute("types");
+    if (enabledTypes == 0) {
+      result = 0;
+      console.log("推送权限没有开启");
+    } else {
+      result = 1;
+      console.log("已经开启推送功能!");
+    }
+    plus.ios.deleteObject(settings);
+  } else {
+    enabledTypes = app.enabledRemoteNotificationTypes();
+    if (enabledTypes == 0) {
+      result = 3;
+      console.log("推送权限没有开启!");
+    } else {
+      result = 4;
+      console.log("已经开启推送功能!");
+    }
+  }
+  plus.ios.deleteObject(app);
+  plus.ios.deleteObject(UIApplication);
+  return result;
+}
+
+function contact() {
+  var result = 0;
+  var CNContactStore = plus.ios.import("CNContactStore");
+  var cnAuthStatus = CNContactStore.authorizationStatusForEntityType(0);
+  if (cnAuthStatus === 0) {
+    result = null;
+  } else if (cnAuthStatus == 3) {
+    result = 1;
+  } else {
+    result = 0;
+  }
+  plus.ios.deleteObject(CNContactStore);
+  return result;
+}
+
+function record() {
+  var result = null;
+  var avaudiosession = plus.ios.import("AVAudioSession");
+  var avaudio = avaudiosession.sharedInstance();
+  var status = avaudio.recordPermission();
+  console.log("permissionStatus:" + status);
+  if (status === 1970168948) {
+    result = null;
+  } else if (status === 1735552628) {
+    result = 1;
+  } else {
+    result = 0;
+  }
+  plus.ios.deleteObject(avaudiosession);
+  return result;
+}
+
+function calendar() {
+  var result = null;
+  var EKEventStore = plus.ios.import("EKEventStore");
+  var ekAuthStatus = EKEventStore.authorizationStatusForEntityType(0);
+  if (ekAuthStatus == 3) {
+    result = 1;
+    console.log("日历权限已经开启");
+  } else {
+    console.log("日历权限没有开启");
+  }
+  plus.ios.deleteObject(EKEventStore);
+  return result;
+}
+
+function memo() {
+  var result = null;
+  var EKEventStore = plus.ios.import("EKEventStore");
+  var ekAuthStatus = EKEventStore.authorizationStatusForEntityType(1);
+  if (ekAuthStatus == 3) {
+    result = 1;
+    console.log("备忘录权限已经开启");
+  } else {
+    console.log("备忘录权限没有开启");
+  }
+  plus.ios.deleteObject(EKEventStore);
+  return result;
+}
+
+
+function requestIOS(permissionID) {
+  return new Promise(function (resolve, reject) {
+    switch (permissionID) {
+      case "push":
+        resolve(push());
+        break;
+      case "location":
+        resolve(location());
+        break;
+      case "record":
+        resolve(record());
+        break;
+      case "camera":
+        resolve(camera());
+        break;
+      case "album":
+        resolve(album());
+        break;
+      case "contact":
+        resolve(contact());
+        break;
+      case "calendar":
+        resolve(calendar());
+        break;
+      case "memo":
+        resolve(memo());
+        break;
+      default:
+        resolve(0);
+        break;}
+
+  });
+}
+
+function requestAndroid(permissionID) {
+  return new Promise(function (resolve, reject) {
+    plus.android.requestPermissions(
+    [permissionID],
+    function (resultObj) {
+      var result = 0;
+      for (var i = 0; i < resultObj.granted.length; i++) {
+        var grantedPermission = resultObj.granted[i];
+        console.log('已获取的权限：' + grantedPermission);
+        result = 1;
+      }
+      for (var i = 0; i < resultObj.deniedPresent.length; i++) {
+        var deniedPresentPermission = resultObj.deniedPresent[i];
+        console.log('拒绝本次申请的权限：' + deniedPresentPermission);
+        result = 0;
+      }
+      for (var i = 0; i < resultObj.deniedAlways.length; i++) {
+        var deniedAlwaysPermission = resultObj.deniedAlways[i];
+        console.log('永久拒绝申请的权限：' + deniedAlwaysPermission);
+        result = -1;
+      }
+      resolve(result);
+    },
+    function (error) {
+      console.log('result error: ' + error.message);
+      resolve({
+        code: error.code,
+        message: error.message });
+
+    });
+
+  });
+}
+
+function gotoAppPermissionSetting() {
+  if (permission.isIOS) {
+    var UIApplication = plus.ios.import("UIApplication");
+    var application2 = UIApplication.sharedApplication();
+    var NSURL2 = plus.ios.import("NSURL");
+    var setting2 = NSURL2.URLWithString("app-settings:");
+    application2.openURL(setting2);
+    plus.ios.deleteObject(setting2);
+    plus.ios.deleteObject(NSURL2);
+    plus.ios.deleteObject(application2);
+  } else {
+    var Intent = plus.android.importClass("android.content.Intent");
+    var Settings = plus.android.importClass("android.provider.Settings");
+    var Uri = plus.android.importClass("android.net.Uri");
+    var mainActivity = plus.android.runtimeMainActivity();
+    var intent = new Intent();
+    intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+    var uri = Uri.fromParts("package", mainActivity.getPackageName(), null);
+    intent.setData(uri);
+    mainActivity.startActivity(intent);
+  }
+}
+
+var permission = {
+  get isIOS() {
+    return typeof isIOS === 'boolean' ? isIOS : isIOS = uni.getSystemInfoSync().platform === 'ios';
+  },
+  requestIOS: requestIOS,
+  requestAndroid: requestAndroid,
+  gotoAppSetting: gotoAppPermissionSetting };
+
+
+module.exports = permission;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+
 /***/ 14:
 /*!**********************************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js ***!
@@ -1709,11 +1966,19 @@ function normalizeComponent (
       options, {
 
         success: function success(result) {
-          // console.log('request.js-->', result);
+          console.log('request.js-result:', result);
+          if (result.data.err_code !== 0) {
+            uni.showToast({
+              title: result.data.err_msg || '请求失败',
+              icon: 'none' });
+
+            return rej();
+          }
           // 服务端请求失败
           if (result.statusCode !== 200) {
+            console.log('result.statusCode !== 200');
             uni.showToast({
-              title: result.data.msg || '服务端请求失败',
+              title: result.data.err_msg || '服务端请求失败',
               icon: 'none' });
 
             return rej();
@@ -1753,7 +2018,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 155:
+/***/ 150:
 /*!*******************************************************************************!*\
   !*** C:/Users/tt/Desktop/maiwei/face-to-face/components/tki-qrcode/qrcode.js ***!
   \*******************************************************************************/
@@ -2966,7 +3231,7 @@ QRCode;exports.default = _default;
 
 /***/ }),
 
-/***/ 163:
+/***/ 158:
 /*!*******************************************************************************!*\
   !*** C:/Users/tt/Desktop/maiwei/face-to-face/components/uni-calendar/util.js ***!
   \*******************************************************************************/
@@ -2974,7 +3239,7 @@ QRCode;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 164));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 159));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
 Calendar = /*#__PURE__*/function () {
   function Calendar()
@@ -3304,7 +3569,7 @@ Calendar;exports.default = _default;
 
 /***/ }),
 
-/***/ 164:
+/***/ 159:
 /*!***********************************************************************************!*\
   !*** C:/Users/tt/Desktop/maiwei/face-to-face/components/uni-calendar/calendar.js ***!
   \***********************************************************************************/
@@ -11632,7 +11897,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/user": { "navigationBarTitleText": "个人中心2", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tki-qrcode": "/components/tki-qrcode/tki-qrcode" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tki-qrcode": "/components/tki-qrcode/tki-qrcode" } }, "pages/shops/shops": { "navigationBarTitleText": "收益统计3", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情5", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn/earn": { "navigationBarTitleText": "商户管理6", "usingComponents": { "uni-calendar": "/components/uni-calendar/uni-calendar" }, "usingAutoImportComponents": { "uni-calendar": "/components/uni-calendar/uni-calendar" } }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal/deal": { "navigationBarTitleText": "交易流水12(19)", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal-check/deal-check": { "navigationBarTitleText": "交易流水(check)13", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14", "usingComponents": { "scan": "/components/p-scan/scan" }, "usingAutoImportComponents": {} }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录18", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device-search/device-search": { "navigationBarTitleText": "设备列表（20）", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn-search-merchant/earn-search-merchant": { "navigationBarTitleText": "商户搜索（21）", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn-search-device/earn-search-device": { "navigationBarTitleText": "设备搜索（22）", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/user": { "navigationBarTitleText": "个人中心2", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tki-qrcode": "/components/tki-qrcode/tki-qrcode" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tki-qrcode": "/components/tki-qrcode/tki-qrcode" } }, "pages/shops/shops": { "navigationBarTitleText": "商户管理6", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情5", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3", "usingComponents": { "uni-calendar": "/components/uni-calendar/uni-calendar" }, "usingAutoImportComponents": { "uni-calendar": "/components/uni-calendar/uni-calendar" } }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal/deal": { "navigationBarTitleText": "交易流水12(19)", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录18", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device-search/device-search": { "navigationBarTitleText": "设备列表（20）", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn-search-merchant/earn-search-merchant": { "navigationBarTitleText": "商户搜索（21）", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn-search-device/earn-search-device": { "navigationBarTitleText": "设备搜索（22）", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

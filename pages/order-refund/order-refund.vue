@@ -37,7 +37,7 @@
 		<button class="mx-3 text-white font-30" style="background:#00D499;" 
 		@click="this.$navigate('order-detail')">校正</button>
 		<button class="mx-3 mt-4 text-white font-30" style="background:#FE1A1A;" 
-		@click="refund">退单</button>
+		@click="this.__init">退单</button>
 		
 		<text class="font-22 text-blue d-flex a-center j-center" style="margin-top: 250rpx;">添加备注</text>
 		
@@ -67,7 +67,7 @@
 					// console.log('order:', this.order);
 			    }
 			} catch (e) {
-			    console.log('error: ',e);
+			    console.log('error: ', e);
 			}
 		},
 		methods: {
@@ -79,10 +79,12 @@
 					opt: "order_refund",
 					order_sn: this.ordersn, //始值
 				}).then((res) => {
-					uni.showToast({
-						title: "退单成功"
-					})
-					uni.navigateBack()
+					if(res) {
+						uni.showToast({
+							title: "退单成功"
+						})
+						uni.navigateBack()
+					}
 				}).catch((e) => {
 					console.log("catch error!!", e);
 				})

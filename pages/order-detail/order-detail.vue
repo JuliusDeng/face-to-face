@@ -24,20 +24,7 @@
 					<text>设备故障</text> <text class="ml-1 text-blue">修改</text>
 				</view>
 			</view>
-			
-			
 		</view>
-		
-		<!-- <view class="d-flex j-sb font-22 text-black" style="height: 160rpx;">
-			<view class="">
-				备注
-			</view>
-			<view class="">
-				<text>设备故障</text> <text class="text-blue">修改</text>
-			</view>
-		</view> -->
-		
-		
 		
 	</view>
 </template>

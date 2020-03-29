@@ -16,6 +16,7 @@
 		<view class="mx-2 mt-2 bg-cyan d-flex a-center j-center" hover-class="bg-red" @click="all" style="height: 80rpx;">
 			选择全部
 		</view>
+		<!--  选列表的某个 -->
 		<view class="mx-2 mt-2">
 			<view class="d-flex  bg-white rounded-12 text-black mb-2 shadow-nom" 
 			style="height: 120rpx;" v-for="(item, index) in list" :key="item" @click="select(item)">
@@ -52,6 +53,10 @@
 			this.__init()
 		},
 		onReachBottom() {
+			if(this.emit > this.list.length) {
+				console.log('不会再上拉了哦');
+				return
+			}
 			this.loadtext = "加载中..."
 			this.emit += 10 
 			console.log("触发上拉加载", this.emit);
@@ -71,7 +76,7 @@
 			select(item) {
 				try {
 				    uni.setStorageSync('dev_class', item);
-					uni.setStorageSync('dev_name', '单个');
+					// uni.setStorageSync('dev_name', '单个');
 				} catch (e) {
 				    // error
 					console.log('catch error!!', e);
@@ -83,14 +88,13 @@
 			},
 			async __init(callback = false) {
 				this.$H.post("/agent/", {
-					user_id: "100003",
-					token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
 					opt: "device_list",
-					slimit: "0",
-					elimit: `${this.emit}`,
+					slimit: 0,
+					elimit: this.emit,
 					device_id: this.dev_id
 				}).then((data) => {
-					console.log(data);
 					this.list = data.arr
 					console.log('this.list.length', this.list.length);
 					// 恢复加载状态

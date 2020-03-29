@@ -66,7 +66,14 @@
 			<view class="bg-white shadow-nom rounded-12 d-flex j-sb a-center mb-2" style="height: 98rpx;" @click="$navigate('order-check')">
 				<view class="d-flex a-center text-black font-32 ml-2">
 					<image src="../../static/icon/weibiaoti-12.png" style="width: 39rpx;height: 40rpx;"></image>
-					<view class="ml-2">校正订单</view>
+					<view class="ml-2">退单</view>
+				</view>
+				<image class="mr-4" src="../../static/right/rignt.png" style="width: 11rpx;height: 20rpx;"></image>
+			</view>
+			<view class="bg-white shadow-nom rounded-12 d-flex j-sb a-center mb-2" style="height: 98rpx;" @click="$navigate('login')">
+				<view class="d-flex a-center text-black font-32 ml-2">
+					<image src="../../static/icon/weibiaoti-12.png" style="width: 39rpx;height: 40rpx;"></image>
+					<view class="ml-2">去登录</view>
 				</view>
 				<image class="mr-4" src="../../static/right/rignt.png" style="width: 11rpx;height: 20rpx;"></image>
 			</view>
@@ -91,6 +98,12 @@
 		},
 		onLoad() {
 			this.__init()
+			try {
+			    uni.setStorageSync('uid', '100003');
+				uni.setStorageSync('utoken', 'dXQyMDIwMDMyNzE0Mzk1Njk1MjMyMzQx');
+			} catch (e) {
+			    // error
+			}
 		},
 		methods: {
 			navUser(name, tel, agentName) {
@@ -100,9 +113,11 @@
 			},
 			async __init() {
 				this.$H.post("/agent/", {
+					// user_id: uni.getStorageSync('user_id'),
+					// token: uni.getStorageSync('token'),
 					user_id: "183823",
 					token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",
-					opt: "home"
+					opt: "home",
 				}).then((res) => {
 					console.log(res);
 					uni.setStorageSync('list', res)

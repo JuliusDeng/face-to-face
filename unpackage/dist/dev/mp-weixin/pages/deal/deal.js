@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -191,13 +191,35 @@ var _default =
 
       loadtext: "上拉加载更多",
       emit: 10,
-      init_group: "" };
+      init_group: "day",
+      startTime: "",
+      endTime: "",
+      out: "" };
 
   },
   onLoad: function onLoad() {
+    try {
+      this.startTime = uni.getStorageSync('start_time');
+      this.endTime = uni.getStorageSync('end_time');
+      if (!this.startTime || !this.endTime) {
+        uni.showToast({
+          title: "请先去'收益统计'确定时间",
+          icon: "none",
+          duration: 3000 });
+
+      }
+    } catch (e) {
+      console.log("catch:", e);
+    }
+    console.log("开始结束：", this.startTime, this.endTime);
     this.__init();
   },
   onReachBottom: function onReachBottom() {
+    if (this.emit > this.out.length) {
+      console.log('不会再上拉了哦');
+      return;
+    }
+    console.log('啦啦啦');
     this.loadtext = "加载中...";
     this.emit += 10;
     console.log("触发上拉加载", this.emit);
@@ -208,43 +230,35 @@ var _default =
     changeTab: function changeTab(item, index) {
       this.tabIndex = index;
       this.init_group = item.group;
+      this.emit = 10;
       this.__init();
     },
     // 获取后台数据
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
-                  user_id: "100003",
-                  token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
+                  user_id: uni.getStorageSync('uid'),
+                  token: uni.getStorageSync('utoken'),
                   opt: "agent_device_statistics",
-                  slimit: "0", //始值
-                  elimit: "".concat(this.emit), //数量
+                  slimit: 0, //始值
+                  elimit: this.emit, //数量
                   order_status: 1, //订单状态  空为全部  1为已支付 2为申请退款  -1已退款
                   device_id: "", // 设备ID
                   merchant_id: "", //商户ID
-                  start_time: "2019-07-17", //开始日期 如：2019-07-17
-                  end_time: "2020-02-17", //结束日期 如：2020-02-17
+                  start_time: this.startTime, //开始日期 如：2019-07-17
+                  end_time: this.endTime, //结束日期 如：2020-02-17
                   group: this.init_group }).
                 then(function (res) {
-                  var out = res.count;
-                  _this.tabBars[0].list = out;
-                  _this.tabBars[1].list = out;
-                  _this.tabBars[2].list = out;
-                  console.log("this.tabBars[0].list.length", res.count.length);
-                  console.log("this.emit", _this.emit);
-
+                  _this.out = res.count;
+                  _this.tabBars[0].list = res.count;
+                  _this.tabBars[1].list = res.count;
+                  _this.tabBars[2].list = res.count;
                   // 恢复加载状态
-                  _this.loadtext = _this.tabBars[0].list.length < _this.emit ? "没有更多了" : "上拉加载更多";
-                  /* this.out_money = 0
-                                                                                                   for(let i=0; i<out.length; i++) {
-                                                                                                   	this.out_money += (parseFloat(out[i].sum_money))
-                                                                                                   	this.amount += parseFloat(out[i].count_num)
-                                                                                                   }
-                                                                                                   console.log('out_money', this.out_money);
-                                                                                                   this.total_money = this.out_money.toFixed(2)
-                                                                                                   this.money = (this.total_money / this.amount).toFixed(2) */
+                  console.log('比较长度：', _this.out.length, _this.emit);
+                  _this.loadtext = _this.out.length < _this.emit ? "没有更多了" : "上拉加载更多";
                 }).catch(function (e) {
                   console.log("catch error!!", e);
                 });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

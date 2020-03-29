@@ -97,6 +97,7 @@
 		},
 		data() {
 			return {
+				// 下面是日历部分
 				showCalendar: false,
 				info: {
 					startDate: '2019-06-01',
@@ -105,8 +106,7 @@
 					insert: false,
 					selected: []
 				},
-				
-				
+				// 上面是日历部分
 				index: 0,
 				array: [
 					{name:'全部'},
@@ -129,15 +129,16 @@
 		},
 		onShow() {
 			try {
-				// earn-search-device 部分
+				// earn-search-device 选择全部设备
 				const all = uni.getStorageSync('dev_allname')
 				if(all) {
 					this.dev_name ="全部"
 					this.dev_id = uni.getStorageSync('dev_all')
 					this.__init()
-					uni.removeStorageSync('dev_allname');
-					uni.removeStorageSync('dev_all');
+					/* uni.removeStorageSync('dev_allname');
+					uni.removeStorageSync('dev_all'); */
 				}
+				// 选择某个设备
 			    const value = uni.getStorageSync('dev_class');
 			    if (value) {
 					console.log(value);
@@ -145,28 +146,28 @@
 					this.dev_id = value.device_id
 					console.log('this.dev_id', this.dev_id);
 					this.__init()
-					uni.removeStorageSync('dev_class');
-					uni.removeStorageSync('dev_name');
+					/* uni.removeStorageSync('dev_class');
+					uni.removeStorageSync('dev_name'); */
 			    }
-				// earn-search-merchant 部分
+				// earn-search-merchant 选择全部商户
 				const all_mer = uni.getStorageSync('dev_allname_mer')
 				if(all_mer) {
 					this.mer_name ="全部"
 					this.mer_id = uni.getStorageSync('dev_all_mer')
 					this.__init()
-					uni.removeStorageSync('dev_allname_mer');
-					uni.removeStorageSync('dev_all_mer');
+					/* uni.removeStorageSync('dev_allname_mer');
+					uni.removeStorageSync('dev_all_mer'); */
 				}
+				// 选择某个商户
 				const value_mer = uni.getStorageSync('dev_class_mer');
 				if (value_mer) {
-					console.log('value_mer', value_mer);
-					// this.mer_name = "ID:`${value_mer.merchant_id}`";
+					console.log('value_mer：', value_mer);
 					this.mer_name = value_mer.merchant_id;
 					this.mer_id = value_mer.merchant_id
-					console.log('this.mer_id', this.mer_id);
+					console.log('this.mer_id：', this.mer_id);
 					this.__init()
-					uni.removeStorageSync('dev_class_mer');
-					uni.removeStorageSync('dev_name_mer');
+					/* uni.removeStorageSync('dev_class_mer');
+					uni.removeStorageSync('dev_name_mer'); */
 				}
 			} catch (e) {
 			    console.log('catch error!!', e);
@@ -196,8 +197,8 @@
 				this.__init()
 			},
 			bindPickerChange(e) {
-				console.log('---' + e)
-				console.log('---', e.detail.value);
+				console.log('e:' + e)
+				console.log('e.detail.value:', e.detail.value);
 				this.index = e.detail.value // value为序号0 1 2 3 
 				this.status = e.detail.value
 				if(e.detail.value == 3) {
@@ -207,18 +208,24 @@
 			},
 			async __init() {
 				this.$H.post("/agent/", {
-					user_id: "100003",
-					token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
 					opt: "agent_device_statistics",
-					/* slimit: 0, //始值
-					elimit: 5, //数量 */
 					order_status: this.status, //订单状态  空为全部  1为已支付 2为申请退款  -1已退款
 					device_id: this.dev_id, // 设备ID
 					merchant_id: this.mer_id,   //商户ID
 					start_time: this.time_start, //开始日期 如：2019-07-17
 					end_time: this.time_end, //结束日期 如：2020-02-17
+					group: "day"
 				}).then((res) => {
 					console.log('123445656',this.time_start, this.time_end);
+					try {
+					   uni.setStorageSync('start_time', this.time_start)
+					   uni.setStorageSync('end_time', this.time_end)
+					} catch (e) {
+						console.log('catch error:', e);
+					}
+					
 					let out = res.count
 					// console.log(out);
 					this.out_money = 0
@@ -229,8 +236,8 @@
 					console.log('out_money', this.out_money);
 					this.total_money = this.out_money.toFixed(2)
 					this.money = (this.total_money / this.amount).toFixed(2)
-				}).catch(() => {
-					console.log("catch error!!");
+				}).catch((e) => {
+					console.log("catch error:", e);
 				})
 				
 			}

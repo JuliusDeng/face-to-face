@@ -53,6 +53,10 @@
 			this.__init()
 		},
 		onReachBottom() {
+			if(this.emit > this.merchantList.length) {
+				console.log('不会再上拉了哦');
+				return
+			}
 			this.loadtext = "加载中..."
 			this.emit += 10 
 			console.log("触发上拉加载", this.emit);
@@ -79,18 +83,10 @@
 				}
 				uni.navigateBack();
 			},
-			toshopEarn(item) {
-				console.log('item', item);
-				uni.setStorageSync('merchant_item', item);
-				uni.navigateTo({
-					// url: `/pages/shops-earn/shops-earn?id=${item.merchant_id}`,
-					url: `/pages/shops-earn/shops-earn`,
-				})
-			},
 			async __init() {
 				this.$H.post("/agent/", {
-					user_id: "100003",
-					token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
 					opt: "merchant_list",
 					slimit: 0,  //列表 起始值
 					elimit: this.emit,  //列表  数量

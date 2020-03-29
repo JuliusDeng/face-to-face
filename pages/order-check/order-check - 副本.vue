@@ -1,6 +1,6 @@
 <template>
 	<view class="mx-25">
-		<template >
+		<template v-if="!scan">
 			<template v-if="ways">
 				<!-- 订单查询 -->
 				<view class="bg-white d-flex j-sb a-center my-4 shadow-nom rounded-12" style="height: 100rpx;">
@@ -9,7 +9,7 @@
 						<input class="text-ba ml-5 pl-2" v-model="ordersn" type="text" placeholder="请输入终端编号" />
 					</view>
 					<image class="mr-2" src="../../static/icon/weibiaoti.png" style="width: 50rpx;height: 50rpx;"
-					@click="scan"></image>
+					@click="changeScan"></image>
 				</view>
 				<!-- 查询按钮 -->
 				<button class="text-black font-30 rounded-12" @click="__init" 
@@ -51,13 +51,21 @@
 			</view>
 		</template>
 		
+		<template v-else>
+			<scan @getCode="getScanCode"/>
+		</template>
+		
+		
 	</view>
 </template>
 
 <script>
-	import permision from "@/common/lib/permission.js"
+	import scan from '@/components/p-scan/scan.vue'
 
 	export default {
+		components: {
+			scan
+		},
 		data() {
 			return {
 				ways: true,
@@ -65,66 +73,23 @@
 				paytime: "",
 				deviceid: "",
 				msg: "",
+				scan: false
 			}
 		},
+		onLoad() {
+			// this.__init()
+		},
 		methods: {
-			// 扫码top
-			async scan() {
-				// #ifdef APP-PLUS
-				let status = await this.checkPermission();
-				if (status !== 1) {
-				    return;
-				}
-				// #endif
-				uni.scanCode({
-					success: (res) => {
-						// this.ordersn = val
-						this.ordersn = res.result
-						console.log('this.ordersn:', this.ordersn);
-					},
-					fail: (err) => {
-						// #ifdef MP
-						uni.getSetting({
-							success: (res) => {
-								let authStatus = res.authSetting['scope.camera'];
-								if (!authStatus) {
-									uni.showModal({
-										title: '授权失败',
-										content: 'Hello uni-app需要使用您的相机，请在设置界面打开相关权限',
-										success: (res) => {
-											if (res.confirm) {
-												uni.openSetting()
-											}
-										}
-									})
-								}
-							}
-						})
-						// #endif
-					}
-				});
+			changeScan() {
+				this.scan = !this.scan
+				this.getScanCode
 			},
-			// #ifdef APP-PLUS
-			async checkPermission(code) {  // 检查权限（许可）
-				let status = permision.isIOS ? await permision.requestIOS('camera') :
-					await permision.requestAndroid('android.permission.CAMERA');
-			
-				if (status === null || status === 1) {
-					status = 1;
-				} else {
-					uni.showModal({
-						content: "需要相机权限",
-						confirmText: "设置",
-						success: function(res) {
-							if (res.confirm) {
-								permision.gotoAppSetting();
-							}
-						}
-					})
-				}
-				return status;
+			 //获取扫码控件
+			getScanCode(val){
+				console.log(val)
+				this.ordersn = val
+				this.__init()
 			},
-			// #endif
 			change() {
 				this.ways = !this.ways
 			},

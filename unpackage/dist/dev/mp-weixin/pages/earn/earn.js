@@ -97,7 +97,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
   "uni-calendar": () =>
-    Promise.all(/*! import() | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then(__webpack_require__.bind(null, /*! @/components/uni-calendar/uni-calendar.vue */ 158))
+    Promise.all(/*! import() | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then(__webpack_require__.bind(null, /*! @/components/uni-calendar/uni-calendar.vue */ 153))
 }
 var render = function() {
   var _vm = this
@@ -136,7 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var uniCalendar = function uniCalendar() {return Promise.all(/*! import() | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then(__webpack_require__.bind(null, /*! @/components/uni-calendar/uni-calendar.vue */ 158));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 22));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var uniCalendar = function uniCalendar() {return Promise.all(/*! import() | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then(__webpack_require__.bind(null, /*! @/components/uni-calendar/uni-calendar.vue */ 153));};var _default =
 
 
 
@@ -235,6 +235,7 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
+      // 下面是日历部分
       showCalendar: false,
       info: {
         startDate: '2019-06-01',
@@ -243,8 +244,7 @@ __webpack_require__.r(__webpack_exports__);
         insert: false,
         selected: [] },
 
-
-
+      // 上面是日历部分
       index: 0,
       array: [
       { name: '全部' },
@@ -267,15 +267,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   onShow: function onShow() {
     try {
-      // earn-search-device 部分
+      // earn-search-device 选择全部设备
       var all = uni.getStorageSync('dev_allname');
       if (all) {
         this.dev_name = "全部";
         this.dev_id = uni.getStorageSync('dev_all');
         this.__init();
-        uni.removeStorageSync('dev_allname');
-        uni.removeStorageSync('dev_all');
+        /* uni.removeStorageSync('dev_allname');
+                       uni.removeStorageSync('dev_all'); */
       }
+      // 选择某个设备
       var value = uni.getStorageSync('dev_class');
       if (value) {
         console.log(value);
@@ -283,28 +284,28 @@ __webpack_require__.r(__webpack_exports__);
         this.dev_id = value.device_id;
         console.log('this.dev_id', this.dev_id);
         this.__init();
-        uni.removeStorageSync('dev_class');
-        uni.removeStorageSync('dev_name');
+        /* uni.removeStorageSync('dev_class');
+                       uni.removeStorageSync('dev_name'); */
       }
-      // earn-search-merchant 部分
+      // earn-search-merchant 选择全部商户
       var all_mer = uni.getStorageSync('dev_allname_mer');
       if (all_mer) {
         this.mer_name = "全部";
         this.mer_id = uni.getStorageSync('dev_all_mer');
         this.__init();
-        uni.removeStorageSync('dev_allname_mer');
-        uni.removeStorageSync('dev_all_mer');
+        /* uni.removeStorageSync('dev_allname_mer');
+                       uni.removeStorageSync('dev_all_mer'); */
       }
+      // 选择某个商户
       var value_mer = uni.getStorageSync('dev_class_mer');
       if (value_mer) {
-        console.log('value_mer', value_mer);
-        // this.mer_name = "ID:`${value_mer.merchant_id}`";
+        console.log('value_mer：', value_mer);
         this.mer_name = value_mer.merchant_id;
         this.mer_id = value_mer.merchant_id;
-        console.log('this.mer_id', this.mer_id);
+        console.log('this.mer_id：', this.mer_id);
         this.__init();
-        uni.removeStorageSync('dev_class_mer');
-        uni.removeStorageSync('dev_name_mer');
+        /* uni.removeStorageSync('dev_class_mer');
+                       uni.removeStorageSync('dev_name_mer'); */
       }
     } catch (e) {
       console.log('catch error!!', e);
@@ -334,8 +335,8 @@ __webpack_require__.r(__webpack_exports__);
       this.__init();
     },
     bindPickerChange: function bindPickerChange(e) {
-      console.log('---' + e);
-      console.log('---', e.detail.value);
+      console.log('e:' + e);
+      console.log('e.detail.value:', e.detail.value);
       this.index = e.detail.value; // value为序号0 1 2 3 
       this.status = e.detail.value;
       if (e.detail.value == 3) {
@@ -345,18 +346,24 @@ __webpack_require__.r(__webpack_exports__);
     },
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
-                  user_id: "100003",
-                  token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
+                  user_id: uni.getStorageSync('uid'),
+                  token: uni.getStorageSync('utoken'),
                   opt: "agent_device_statistics",
-                  /* slimit: 0, //始值
-                                                  elimit: 5, //数量 */
                   order_status: this.status, //订单状态  空为全部  1为已支付 2为申请退款  -1已退款
                   device_id: this.dev_id, // 设备ID
                   merchant_id: this.mer_id, //商户ID
                   start_time: this.time_start, //开始日期 如：2019-07-17
-                  end_time: this.time_end //结束日期 如：2020-02-17
-                }).then(function (res) {
+                  end_time: this.time_end, //结束日期 如：2020-02-17
+                  group: "day" }).
+                then(function (res) {
                   console.log('123445656', _this.time_start, _this.time_end);
+                  try {
+                    uni.setStorageSync('start_time', _this.time_start);
+                    uni.setStorageSync('end_time', _this.time_end);
+                  } catch (e) {
+                    console.log('catch error:', e);
+                  }
+
                   var out = res.count;
                   // console.log(out);
                   _this.out_money = 0;
@@ -367,8 +374,8 @@ __webpack_require__.r(__webpack_exports__);
                   console.log('out_money', _this.out_money);
                   _this.total_money = _this.out_money.toFixed(2);
                   _this.money = (_this.total_money / _this.amount).toFixed(2);
-                }).catch(function () {
-                  console.log("catch error!!");
+                }).catch(function (e) {
+                  console.log("catch error:", e);
                 });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
