@@ -189,11 +189,14 @@
 			confirm_one(e) {
 				console.log('confirm open_one 返回:', e)
 				this.time_start = e.fulldate
+				console.log('this.开始时间:', this.time_start);
+				uni.setStorageSync('startTime', this.time_start);
 				this.__init()
 			},
 			confirm_two(e) {
 				console.log('confirm open_two 返回:', e)
 				this.time_end = e.fulldate
+				console.log('结束时间:', this.time_end);
 				this.__init()
 			},
 			bindPickerChange(e) {

@@ -62,11 +62,9 @@
 		methods: {
 			select(item) {
 				try {
-					console.log('item:', item);
-				    uni.setStorageSync('dev_class', item);
-					uni.setStorageSync('dev_name', '单个');
+				    // uni.setStorageSync('todevice', item); // 可以通过下面跳转页面传值
 					uni.navigateTo({
-						url: '/pages/device/device'
+						url: `/pages/device/device?dev_sn=${item.device_sn}&mer_name=${item.merchant_name}`
 					})
 				} catch (e) {
 				    // error
@@ -86,7 +84,7 @@
 					device_id: this.dev_id
 				}).then((data) => {
 					this.list = data.arr
-					console.log('this.list.length:', this.list.length);
+					console.log('fas:', this.list.length);
 					console.log('this.emit.length:', this.emit);
 					// 恢复加载状态
 					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"

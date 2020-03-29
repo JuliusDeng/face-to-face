@@ -86,7 +86,7 @@
 			searchbtn() {
 				this.__init()
 			},
-			async __init(callback = false) {
+			async __init() {
 				this.$H.post("/agent/", {
 					user_id: uni.getStorageSync('uid'),
 					token: uni.getStorageSync('utoken'),

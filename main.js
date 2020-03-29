@@ -5,6 +5,9 @@ import App from './App'
 // 引入request.js
 import $H from "@/common/lib/request.js"
 Vue.prototype.$H = $H
+// 引入时间time.js
+import $Time from "@/common/lib/time.js"
+Vue.prototype.$Time = $Time
 
 
 // 引入全局导航navigate
