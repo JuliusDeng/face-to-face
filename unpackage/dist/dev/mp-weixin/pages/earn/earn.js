@@ -235,16 +235,7 @@ __webpack_require__.r(__webpack_exports__);
 
   data: function data() {
     return {
-      // 下面是日历部分
-      showCalendar: false,
-      info: {
-        startDate: '2019-06-01',
-        endDate: '2020-06-01',
-        range: true,
-        insert: false,
-        selected: [] },
-
-      // 上面是日历部分
+      // 支付状态
       index: 0,
       array: [
       { name: '全部' },
@@ -253,16 +244,26 @@ __webpack_require__.r(__webpack_exports__);
       { name: '已退款' }],
 
       status: "",
+      // 设备 商户
       dev_name: "全部",
       mer_name: "全部",
       dev_id: "",
       mer_id: "",
+      // 日历 时间
+      showCalendar: false,
+      info: {
+        startDate: '2019-06-01',
+        endDate: '2020-06-01',
+        range: true,
+        insert: false,
+        selected: [] },
+
+      start_time: "2019-07-17",
+      end_time: "2020-02-17",
       out_money: 0,
       total_money: 0,
       amount: 0,
-      money: 0,
-      time_start: "2019-07-17",
-      time_end: "2020-02-17" };
+      money: 0 };
 
   },
   onShow: function onShow() {
@@ -313,9 +314,26 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   onLoad: function onLoad() {
+    this.status = uni.getStorageSync('status');
+    this.index = uni.getStorageSync('index');
     this.__init();
   },
   methods: {
+    // 支付状态选择
+    bindPickerChange: function bindPickerChange(e) {
+      this.index = e.detail.value; // value为序号0 1 2 3 
+      this.status = e.detail.value;
+      if (e.detail.value == 0) {
+        this.status = '';
+      }
+      if (e.detail.value == 3) {
+        this.status = -1;
+      }
+      console.log('支付状态:', this.status);
+      uni.setStorageSync('index', this.index);
+      uni.setStorageSync('status', this.status);
+      this.__init();
+    },
     open_one: function open_one() {
       console.log('open_one');
       this.$refs.calendar_one.open();
@@ -337,16 +355,6 @@ __webpack_require__.r(__webpack_exports__);
       console.log('结束时间:', this.time_end);
       this.__init();
     },
-    bindPickerChange: function bindPickerChange(e) {
-      console.log('e:' + e);
-      console.log('e.detail.value:', e.detail.value);
-      this.index = e.detail.value; // value为序号0 1 2 3 
-      this.status = e.detail.value;
-      if (e.detail.value == 3) {
-        this.status = -1;
-      }
-      this.__init();
-    },
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: uni.getStorageSync('uid'),
@@ -359,7 +367,8 @@ __webpack_require__.r(__webpack_exports__);
                   end_time: this.time_end, //结束日期 如：2020-02-17
                   group: "day" }).
                 then(function (res) {
-                  console.log('123445656', _this.time_start, _this.time_end);
+                  console.log('状态:', _this.status);
+                  console.log('前后时间：', _this.time_start, _this.time_end);
                   try {
                     uni.setStorageSync('start_time', _this.time_start);
                     uni.setStorageSync('end_time', _this.time_end);

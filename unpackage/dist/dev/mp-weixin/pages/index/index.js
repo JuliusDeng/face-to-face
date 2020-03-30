@@ -244,7 +244,7 @@ var _default =
     this.__init();
     try {
       uni.setStorageSync('uid', '100003');
-      uni.setStorageSync('utoken', 'dXQyMDIwMDMyNzE0Mzk1Njk1MjMyMzQx');
+      uni.setStorageSync('utoken', 'dXQyMDIwMDMzMDE1MTIyODc2NDYzOTA1');
     } catch (e) {
       // error
     }

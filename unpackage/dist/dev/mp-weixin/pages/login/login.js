@@ -98,6 +98,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event) {
+      !_vm.safety.state ? _vm.getCode() : ""
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -160,34 +165,77 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 var _default =
 {
   data: function data() {
     return {
       phone: "",
-      ver_code: "",
-      opt_type: "" };
+      captcha: "",
+      rules: { // 正则验证
+        phone: [{
+          rule: /^[1][3-9]\d{9}$/,
+          msg: "请输入正确的11位手机号" }],
+
+        captcha: [{
+          rule: /^\d{4}$/,
+          msg: "请输入您的验证码" }] },
+
+
+      safety: {
+        time: 10,
+        state: false,
+        interval: '' } };
+
 
   },
 
   methods: {
+    // 点击发送验证码
+    getCode: function getCode() {var _this = this;
+      if (this.rules.phone[0].rule.test(this.phone)) {
+        uni.showToast({
+          title: "正在发送验证码",
+          icon: "loading",
+          success: function success() {
+            // 成功后显示倒计时60s后可在点击
+            _this.safety.state = true;
+            // 倒计时
+            _this.safety.interval = setInterval(function () {
+              if (_this.safety.time-- <= 0) {
+                _this.safety.time = 10;
+                _this.safety.state = false;
+                clearInterval(_this.safety.interval);
+              }
+            }, 1000);
+            uni.showToast({
+              title: "发送成功",
+              icon: "success" });
 
-    getCode: function getCode(li) {
-      this.opt_type = li;
-      this.$H.post("/agent/", {
-        mobile: this.phone,
-        opt: li }).
-      then(function (res) {
+            _this.$H.post("/agent/", {
+              mobile: _this.phone,
+              opt: verify_code }).
+            then(function (res) {
 
-      }).catch(function (e) {
-        console.log("catch error!!", e);
-      });
+            }).catch(function (e) {
+              console.log("catch error!!", e);
+            });
+          } });
+
+      } else {
+        uni.showToast({
+          title: "手机号不正确",
+          icon: "none" });
+
+      }
     },
-    login: function login(li) {
+    // 登录
+    login: function login() {
       this.$H.post("/agent/", {
         mobile: this.phone,
-        opt: li,
-        verify_code: this.ver_code }).
+        opt: verify_login,
+        verify_code: this.captcha }).
       then(function (res) {
         if (res) {
           try {

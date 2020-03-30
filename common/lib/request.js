@@ -26,7 +26,7 @@ export default {
 				...options,
 				
 				success: (result) => {
-					console.log('request.js-result:', result);
+					// console.log('request.js-result:', result);
 					if(result.data.err_code !== 0) {
 						uni.showToast({
 							title: result.data.err_msg || '请求失败',

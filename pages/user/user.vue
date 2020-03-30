@@ -27,24 +27,21 @@
 			</view>
 		</view>
 		<!-- 弹出二维码 -->
-		<!-- <button @click="open">打开弹窗</button> -->
 		<uni-popup ref="popup" type="top">
 			<view class=" mx-75 d-flex a-center j-center flex-column" style="width: 600rpx;height: 857rpx;">
 				<!-- 头像 -->
-				<image src="/static/icon/weibiaoti-2.png" style="width: 138rpx;height: 138rpx;" class="rounded-half border border-white"></image>
-				<!-- 白色] -->
+				<image :src="imgurl" style="width: 138rpx;height: 138rpx;" class="rounded-half border border-white"></image>
+				<!-- 白色 -->
 				<view class="bg-white d-flex flex-column a-center text-black font-30 rounded-24 " 
 				style="width: 600rpx;height: 755rpx;margin-top: -50rpx;">
 					<view class="mt-5 pt-2">{{relname}}</view>
 					<view>ID：{{userID}}</view>
-					<tki-qrcode class="mt-5" ref="qrcode" :val="userID" size="378" 
-					unit="upx" :icon="icon" :iconSize="iconsize" :onval="onval" :loadMake="loadMake" :usingComponents="true" />
+					<tki-qrcode class="mt-5" ref="qrcode" :val="userID" :size="size" 
+					unit="upx" :onval="onval" :loadMake="loadMake" :usingComponents="true" />
 					<view class="mt-5">快速签到，一扫即可</view>
 				</view>
 			</view>
 		</uni-popup>
-		
-		
 		
 		<!-- 列表项 -->
 		<view class="w-700 mx-25 mt-3">
@@ -89,10 +86,8 @@
 				<text>{{tel}}</text>
 			</view>
 			<!-- 公司 -->
-			<text class="font-20 text-55 d-flex j-center mt-45">公司：{{company}}</text>
+			<text class="font-24 text-55 d-flex j-center mt-45">公司：{{company}}</text>
 		</view>
-
-
 
 	</view>
 </template>
@@ -117,12 +112,14 @@
 				school: "",
 				tel: "",
 				company: "",
+				
+				size: 378,
 				onval: false, // val值变化时自动重新生成二维码
 				loadMake: true, // 组件加载完成后自动生成二维码
 			}
 		},
 		onLoad(options) {
-			console.log(options);
+			// console.log(options);
 			this.company = options.name
 			this.tel = options.tel
 			this.agentname = options.agentName
@@ -132,7 +129,7 @@
 		methods: {
 			open() {
 				this.$refs.popup.open()
-				this.$refs.qrcode._makeCode()
+				// this.$refs.qrcode._makeCode()
 			},
 			async __init() {
 				this.$H.post("/user/", {
@@ -140,7 +137,7 @@
 					token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",
 					app: "app"
 				}).then((data) => {
-					console.log(data);
+					// console.log(data);
 					this.imgurl = data.user_info.headimgurl
 					this.relname = data.user_info.realname
 					this.userID = data.user_info.user_id

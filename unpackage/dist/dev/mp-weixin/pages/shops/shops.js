@@ -168,6 +168,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -181,17 +188,20 @@ var _default =
 
   },
   onLoad: function onLoad() {
-    this.__init();
+    console.log(this.merchantList);
+    if (!this.merchantList[0]) {
+      this.__init();
+    }
+    this.merchantList = uni.getStorageSync('merchantList_key');
+
   },
   onReachBottom: function onReachBottom() {
     if (this.emit > this.merchantList.length) {
       console.log('不会再上拉了哦');
       return;
     }
-    console.log('啦啦啦');
     this.loadtext = "加载中...";
     this.emit += 10;
-    console.log("触发上拉加载", this.emit);
     this.__init();
   },
   methods: {
@@ -211,8 +221,9 @@ var _default =
                   elimit: this.emit, //列表  数量
                   key_value: this.searchID || this.searchname }).
                 then(function (data) {
-                  console.log('接口调用了一次', data);
-                  _this.merchantList = data.arr;
+                  console.log('接口调用了一次', data.arr);
+                  uni.setStorageSync('merchantList_key', data.arr);
+                  _this.merchantList = uni.getStorageSync('merchantList_key');
                   // 恢复加载状态
                   _this.loadtext = _this.merchantList.length < _this.emit ? "没有更多了" : "上拉加载更多";
                 }).catch(function () {

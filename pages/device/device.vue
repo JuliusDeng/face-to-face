@@ -35,8 +35,8 @@
 			<!-- 下方订单详情 -->
 			<block v-for="(order, idx1) in list" :key="idx1">
 				<view class="mt-3 mb-4 rounded-12 text-black bg-white d-flex flex-column px-3 shadow-nom"
-				style="height: 345rpx;">
-					<view class="py-1  border-bottom d-flex a-center j-sb mb-1" @click="this.$navigate('device-order')">
+				style="height: 345rpx;" @click="toDeviceOrder(order)">
+					<view class="py-1  border-bottom d-flex a-center j-sb mb-1">
 						<view class="font-24 text-black">订单号：{{order.order_sn}}</view>
 						<view class="font-30 font-weight text-orange" v-if="order.order_status == 0">未支付</view>
 						<view class="font-30 font-weight text-green" v-else-if="order.order_status == 1">已支付</view>
@@ -109,12 +109,13 @@
 			this.loadtext = "加载中..."
 			this.emit += 10 
 			console.log("触发上拉加载", this.emit);
-			this.__init()
+			// this.__init()
 			this.__device()
 		},
 		onLoad(option) {
 			this.dev_sn = option.dev_sn
 			this.mer_name = option.mer_name
+			uni.setStorageSync('deviceOrder_mer_name', this.mer_name); // 可以通过下面跳转页面传值
 			// 获取开始时间
 			try {
 				this.startTime = uni.getStorageSync('startTime')
@@ -135,6 +136,12 @@
 			
 		},
 		methods: {
+			toDeviceOrder(item) {
+				uni.setStorageSync('DeviceOrder', item);
+				uni.navigateTo({
+					url: "/pages/device-order/device-order"
+				})
+			},
 			// 获取商户ID
 			async __init() {
 				this.$H.post("/agent/", {
@@ -147,6 +154,30 @@
 					console.log('商户ID:', this.mer_id);
 					// 交易流水
 					this.__device()
+				}).catch((e) => {
+					console.log("catch error:", e);
+				})
+			},
+			// 收益统计
+			async __earn() {
+				this.$H.post("/agent/", {
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
+					opt: "agent_device_statistics",
+					order_status: 1,
+					device_id: "00004102MC8H156",
+					order_status: "1",
+					start_time: '2019-07-17',
+					end_time: this.endTime,
+					slimit: 0,
+					elimit: this.emit,
+				}).then((res) => {
+					// console.log(this.startTime, this.endTime);
+					this.list = res.arr
+					// console.log("返回list数组", this.list);
+					console.log("list数组长度：", this.list.length,'emit长度：',this.emit);
+					// 恢复加载状态
+					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
 				}).catch((e) => {
 					console.log("catch error:", e);
 				})
@@ -164,12 +195,11 @@
 					start_time: '2019-07-17',
 					end_time: this.endTime,
 					slimit: 0,
-					elimit: 10,
+					elimit: this.emit,
 				}).then((res) => {
-					console.log(this.startTime, this.endTime);
-					console.log('返回数组：', res);
+					// console.log(this.startTime, this.endTime);
 					this.list = res.arr
-					console.log("返回list数组", this.list);
+					// console.log("返回list数组", this.list);
 					console.log("list数组长度：", this.list.length,'emit长度：',this.emit);
 					// 恢复加载状态
 					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"

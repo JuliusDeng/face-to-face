@@ -131,7 +131,38 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -160,18 +191,16 @@ var _default =
 {
   data: function data() {
     return {
-      order: [
-      { tit: "订单号", cont: "20195200520520520520" },
-      { tit: "当前状态", cont: "交易完成" },
-      { tit: "支付类型", cont: "银行卡支付" },
-      { tit: "设备编号", cont: "4889854665MHC5546" },
-      { tit: "支付时间", cont: "2019.07.31 12:23:55" },
-      { tit: "商户名称", cont: "风味食堂" },
-      { tit: "收银员", cont: "风味食堂-章鱼哥" }] };
-
+      order: {},
+      mer_name: '' };
 
   },
+  onLoad: function onLoad() {
+    this.order = uni.getStorageSync('DeviceOrder');
+    this.mer_name = uni.getStorageSync('deviceOrder_mer_name');
+  },
   methods: {} };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

@@ -26,7 +26,8 @@
 		}, {
 			"path": "pages/shops/shops",
 			"style": {
-				"navigationBarTitleText": "商户管理6"
+				"navigationBarTitleText": "商户管理6",
+				"onReachBottomDistance": 60
 			}
 		}, {
 			"path": "pages/staff/staff",

@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "商户管理6",
+  "onReachBottomDistance": 60,
   "usingComponents": {}
 }

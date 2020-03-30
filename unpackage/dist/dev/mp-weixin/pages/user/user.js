@@ -251,11 +251,6 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 
 
-
-
-
-
-
 {
   components: {
     uniPopup: uniPopup,
@@ -272,12 +267,14 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
       school: "",
       tel: "",
       company: "",
+
+      size: 378,
       onval: false, // val值变化时自动重新生成二维码
       loadMake: true // 组件加载完成后自动生成二维码
     };
   },
   onLoad: function onLoad(options) {
-    console.log(options);
+    // console.log(options);
     this.company = options.name;
     this.tel = options.tel;
     this.agentname = options.agentName;
@@ -287,7 +284,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
   methods: {
     open: function open() {
       this.$refs.popup.open();
-      this.$refs.qrcode._makeCode();
+      // this.$refs.qrcode._makeCode()
     },
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/user/", {
@@ -295,7 +292,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
                   token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",
                   app: "app" }).
                 then(function (data) {
-                  console.log(data);
+                  // console.log(data);
                   _this.imgurl = data.user_info.headimgurl;
                   _this.relname = data.user_info.realname;
                   _this.userID = data.user_info.user_id;
