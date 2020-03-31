@@ -229,13 +229,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 {
   components: {
     uniCalendar: uniCalendar },
 
   data: function data() {
     return {
-      // 支付状态
+      // 状态
       index: 0,
       array: [
       { name: '全部' },
@@ -244,12 +245,12 @@ __webpack_require__.r(__webpack_exports__);
       { name: '已退款' }],
 
       status: "",
-      // 设备 商户
+      // 设备和商户
       dev_name: "全部",
       mer_name: "全部",
       dev_id: "",
       mer_id: "",
-      // 日历 时间
+      // 日历时间
       showCalendar: false,
       info: {
         startDate: '2019-06-01',
@@ -260,66 +261,76 @@ __webpack_require__.r(__webpack_exports__);
 
       start_time: "2019-07-17",
       end_time: "2020-02-17",
-      out_money: 0,
+      all_money: 0,
       total_money: 0,
       amount: 0,
-      money: 0 };
+      averagy_money: 0 };
 
   },
   onShow: function onShow() {
     try {
-      // earn-search-device 选择全部设备
-      var all = uni.getStorageSync('dev_allname');
-      if (all) {
-        this.dev_name = "全部";
-        this.dev_id = uni.getStorageSync('dev_all');
-        this.__init();
-        /* uni.removeStorageSync('dev_allname');
-                       uni.removeStorageSync('dev_all'); */
-      }
-      // 选择某个设备
-      var value = uni.getStorageSync('dev_class');
+      var value = uni.getStorageSync('earn');
+      console.log('onShow取出缓存：', value);
       if (value) {
-        console.log(value);
-        this.dev_name = value.device_id;
-        this.dev_id = value.device_id;
-        console.log('this.dev_id', this.dev_id);
-        this.__init();
-        /* uni.removeStorageSync('dev_class');
-                       uni.removeStorageSync('dev_name'); */
-      }
-      // earn-search-merchant 选择全部商户
-      var all_mer = uni.getStorageSync('dev_allname_mer');
-      if (all_mer) {
-        this.mer_name = "全部";
-        this.mer_id = uni.getStorageSync('dev_all_mer');
-        this.__init();
-        /* uni.removeStorageSync('dev_allname_mer');
-                       uni.removeStorageSync('dev_all_mer'); */
-      }
-      // 选择某个商户
-      var value_mer = uni.getStorageSync('dev_class_mer');
-      if (value_mer) {
-        console.log('value_mer：', value_mer);
-        this.mer_name = value_mer.merchant_id;
-        this.mer_id = value_mer.merchant_id;
-        console.log('this.mer_id：', this.mer_id);
-        this.__init();
-        /* uni.removeStorageSync('dev_class_mer');
-                       uni.removeStorageSync('dev_name_mer'); */
+        // 取设备
+        if (value.dev_id) {
+          this.dev_id = value.dev_id;
+          this.dev_name = value.dev_id;
+        } else {
+          this.dev_id = '';
+          this.dev_name = '全部';
+        }
+        // 取商户
+        if (value.mer_id) {
+          this.mer_id = value.mer_id;
+          this.mer_name = value.mer_id;
+        } else {
+          this.mer_id = '';
+          this.mer_name = '全部';
+        }
+      } else {
+        // console.log('value没有值：');
       }
     } catch (e) {
-      console.log('catch error!!', e);
+      // error
     }
-
-  },
-  onLoad: function onLoad() {
-    this.status = uni.getStorageSync('status');
-    this.index = uni.getStorageSync('index');
     this.__init();
   },
   methods: {
-    // 支付状态选择
+    // 日期选择
+    open_one: function open_one() {
+      console.log('open_one', this.$refs.calendar_one.open());
+      this.$refs.calendar_one.open();
+    },
+    open_two: function open_two() {
+      console.log('open_two', this.$refs.calendar_one.open());
+      this.$refs.calendar_two.open();
+    },
+    confirm_one: function confirm_one(e) {
+      this.start_time = e.fulldate;
+      this.setlocation();
+      this.__init();
+    },
+    confirm_two: function confirm_two(e) {
+      this.end_time = e.fulldate;
+      this.setlocation();
+      this.__init();
+    },
+    // 跳转商户页
+    toMerchant: function toMerchant() {
+      this.setlocation();
+      uni.navigateTo({
+        url: '/pages/earn-search-merchant/earn-search-merchant' });
+
+    },
+    // 跳转设备页
+    toDevice: function toDevice() {
+      this.setlocation();
+      uni.navigateTo({
+        url: '/pages/earn-search-device/earn-search-device' });
+
+    },
+    // 状态选择
     bindPickerChange: function bindPickerChange(e) {
       this.index = e.detail.value; // value为序号0 1 2 3 
       this.status = e.detail.value;
@@ -329,32 +340,25 @@ __webpack_require__.r(__webpack_exports__);
       if (e.detail.value == 3) {
         this.status = -1;
       }
-      console.log('支付状态:', this.status);
-      uni.setStorageSync('index', this.index);
-      uni.setStorageSync('status', this.status);
+      this.setlocation();
       this.__init();
+      // console.log('支付状态:', this.status);
     },
-    open_one: function open_one() {
-      console.log('open_one');
-      this.$refs.calendar_one.open();
+    // 设置缓存
+    setlocation: function setlocation() {
+      var data = {
+        index: this.index,
+        status: this.status,
+        dev_name: this.dev_name,
+        dev_id: this.dev_id,
+        mer_name: this.mer_name,
+        mer_id: this.mer_id,
+        start_time: this.start_time,
+        end_time: this.end_time };
+
+      uni.setStorageSync('earn', data);
     },
-    open_two: function open_two() {
-      console.log('open_two');
-      this.$refs.calendar_two.open();
-    },
-    confirm_one: function confirm_one(e) {
-      console.log('confirm open_one 返回:', e);
-      this.time_start = e.fulldate;
-      console.log('this.开始时间:', this.time_start);
-      uni.setStorageSync('startTime', this.time_start);
-      this.__init();
-    },
-    confirm_two: function confirm_two(e) {
-      console.log('confirm open_two 返回:', e);
-      this.time_end = e.fulldate;
-      console.log('结束时间:', this.time_end);
-      this.__init();
-    },
+    // 后台数据
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: uni.getStorageSync('uid'),
@@ -363,29 +367,24 @@ __webpack_require__.r(__webpack_exports__);
                   order_status: this.status, //订单状态  空为全部  1为已支付 2为申请退款  -1已退款
                   device_id: this.dev_id, // 设备ID
                   merchant_id: this.mer_id, //商户ID
-                  start_time: this.time_start, //开始日期 如：2019-07-17
-                  end_time: this.time_end, //结束日期 如：2020-02-17
+                  start_time: this.start_time, //开始日期 如：2019-07-17
+                  end_time: this.end_time, //结束日期 如：2020-02-17
                   group: "day" }).
                 then(function (res) {
-                  console.log('状态:', _this.status);
-                  console.log('前后时间：', _this.time_start, _this.time_end);
-                  try {
-                    uni.setStorageSync('start_time', _this.time_start);
-                    uni.setStorageSync('end_time', _this.time_end);
-                  } catch (e) {
-                    console.log('catch error:', e);
+                  console.log('res嗷嗷：', res);
+                  // this.setlocation()
+                  console.log('打印改变后的值：', '->' + _this.status, '->' + _this.dev_name, '->' + _this.mer_name);
+                  _this.all_money = 0;
+                  _this.amount = 0;
+                  for (var i = 0; i < res.count.length; i++) {
+                    console.log('for里面：', _this.all_money + '+' + res.count[i].sum_money);
+                    _this.all_money += parseFloat(res.count[i].sum_money);
+                    _this.amount += parseFloat(res.count[i].count_num);
                   }
-
-                  var out = res.count;
-                  // console.log(out);
-                  _this.out_money = 0;
-                  for (var i = 0; i < out.length; i++) {
-                    _this.out_money += parseFloat(out[i].sum_money);
-                    _this.amount += parseFloat(out[i].count_num);
-                  }
-                  console.log('out_money', _this.out_money);
-                  _this.total_money = _this.out_money.toFixed(2);
-                  _this.money = (_this.total_money / _this.amount).toFixed(2);
+                  console.log('总金额：', _this.all_money, '笔数：', _this.amount);
+                  _this.total_money = _this.all_money.toFixed(2);
+                  _this.averagy_money = (_this.all_money / _this.amount).toFixed(2);
+                  console.log('嗷嗷', _this.averagy_money);
                 }).catch(function (e) {
                   console.log("catch error:", e);
                 });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;

@@ -189,11 +189,7 @@ var _default =
   },
   onLoad: function onLoad() {
     console.log(this.merchantList);
-    if (!this.merchantList[0]) {
-      this.__init();
-    }
-    this.merchantList = uni.getStorageSync('merchantList_key');
-
+    this.__init();
   },
   onReachBottom: function onReachBottom() {
     if (this.emit > this.merchantList.length) {
@@ -221,9 +217,7 @@ var _default =
                   elimit: this.emit, //列表  数量
                   key_value: this.searchID || this.searchname }).
                 then(function (data) {
-                  console.log('接口调用了一次', data.arr);
-                  uni.setStorageSync('merchantList_key', data.arr);
-                  _this.merchantList = uni.getStorageSync('merchantList_key');
+                  _this.merchantList = data.arr;
                   // 恢复加载状态
                   _this.loadtext = _this.merchantList.length < _this.emit ? "没有更多了" : "上拉加载更多";
                 }).catch(function () {

@@ -16,15 +16,7 @@
 						<view>收益：￥2534.22 订单：102</view>
 					</view>
 					<view class=" d-flex j-sb text-black">
-						<view>昨日</view>
-						<view>收益：￥2534.22 订单：102</view>
-					</view>
-					<view class=" d-flex j-sb text-black">
-						<view>30</view>
-						<view>收益：￥2534.22 订单：102</view>
-					</view>
-					<view class=" d-flex j-sb text-black">
-						<view>全部</view>
+						<view>本月</view>
 						<view>收益：￥2534.22 订单：102</view>
 					</view>
 				</view>
@@ -92,6 +84,11 @@
 				],
 				dev_sn: "",
 				mer_name: "",
+				day_money: "",
+				day_amount: "",
+				month_money: "",
+				month_amount: "",
+				
 				mer_id: "",
 				startTime: "",
 				endTime: "",
@@ -136,29 +133,7 @@
 			
 		},
 		methods: {
-			toDeviceOrder(item) {
-				uni.setStorageSync('DeviceOrder', item);
-				uni.navigateTo({
-					url: "/pages/device-order/device-order"
-				})
-			},
-			// 获取商户ID
-			async __init() {
-				this.$H.post("/agent/", {
-					user_id: uni.getStorageSync('uid'),
-					token: uni.getStorageSync('utoken'),
-					opt: "merchant_list",
-					key_value: this.mer_name,
-				}).then((data) => {
-					this.mer_id = data.arr[0].merchant_id
-					console.log('商户ID:', this.mer_id);
-					// 交易流水
-					this.__device()
-				}).catch((e) => {
-					console.log("catch error:", e);
-				})
-			},
-			// 收益统计
+			// 今日 收益统计
 			async __earn() {
 				this.$H.post("/agent/", {
 					user_id: uni.getStorageSync('uid'),
@@ -178,6 +153,29 @@
 					console.log("list数组长度：", this.list.length,'emit长度：',this.emit);
 					// 恢复加载状态
 					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
+				}).catch((e) => {
+					console.log("catch error:", e);
+				})
+			},
+			// 去详情页
+			toDeviceOrder(item) {
+				uni.setStorageSync('DeviceOrder', item);
+				uni.navigateTo({
+					url: "/pages/device-order/device-order"
+				})
+			},
+			// 请求商户ID
+			async __init() {
+				this.$H.post("/agent/", {
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
+					opt: "merchant_list",
+					key_value: this.mer_name,
+				}).then((data) => {
+					this.mer_id = data.arr[0].merchant_id
+					console.log('商户ID:', this.mer_id);
+					// 交易流水
+					this.__device()
 				}).catch((e) => {
 					console.log("catch error:", e);
 				})

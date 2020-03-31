@@ -197,23 +197,17 @@ var _default =
   },
   methods: {
     all: function all() {
-      try {
-        uni.setStorageSync('dev_all_mer', '');
-        uni.setStorageSync('dev_allname_mer', '全部');
-      } catch (e) {
-        // error
-        console.log('catch error!!', e);
-      }
+      var data = uni.getStorageSync('earn');
+      data.mer_id = '';
+      data.mer_name = '';
+      uni.setStorageSync('earn', data);
       uni.navigateBack();
     },
     select: function select(item) {
-      try {
-        uni.setStorageSync('dev_class_mer', item);
-        // uni.setStorageSync('dev_name_mer', '单个');
-      } catch (e) {
-        // error
-        console.log('catch error!!', e);
-      }
+      var data = uni.getStorageSync('earn');
+      data.mer_id = item.merchant_id;
+      data.mer_name = item.merchant_id;
+      uni.setStorageSync('earn', data);
       uni.navigateBack();
     },
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:

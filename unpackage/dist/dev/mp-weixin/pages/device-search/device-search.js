@@ -179,14 +179,15 @@ var _default =
 
   },
   onLoad: function onLoad() {
+    console.log('this.list:', this.list.length);
     this.__init();
+    console.log('this.list:', this.list.length);
   },
   onReachBottom: function onReachBottom() {
     if (this.emit > this.list.length) {
       console.log('不会再上拉了哦');
       return;
     }
-    console.log('啦啦啦');
     this.loadtext = "加载中...";
     this.emit += 10;
     console.log("触发上拉加载", this.emit);

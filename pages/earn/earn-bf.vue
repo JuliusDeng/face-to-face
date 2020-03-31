@@ -7,7 +7,7 @@
 		</view>
 		<!-- 两行状态 -->
 		<view class="d-flex flex-column bg-main">
-			<!-- 上面 状态-->
+			<!-- 上面 -->
 			<view class="ml-3  d-flex a-center" style="height: 100rpx;">
 				<view class="border d-flex bg-white mr-3 text-gray" style="width: 210rpx;height: 70rpx;" >
 					<view class="flex-1 border-right d-flex a-center j-center font-20">状态</view>
@@ -18,36 +18,32 @@
 						<image src="../../static/right/bottom.png" style="width: 10rpx;height: 8rpx;"></image>
 					</view>
 				</view>
-				<!-- 设备 -->
+				
 				<view class="border d-flex bg-white mr-3 text-gray" style="width: 210rpx;height: 70rpx;" >
 					<view class="flex-1 border-right d-flex a-center j-center font-20">设备</view>
-					<view class="flex-2  d-flex a-center j-center" @click="toDevice">
-						<text class="font-20 mer_sel d-flex j-center a-center" style="width: 120rpx;" v-if="dev_name=='全部'">
-							{{dev_name}}
-						</text>
-						<text class="font-14 mer_sel d-flex j-center a-center" style="width: 120rpx;" v-else>
-							{{dev_name}}
-						</text>
+					<view class="flex-2  d-flex a-center j-center" @click="$navigate('earn-search-device')">
+						<text class="font-20 mer_sel d-flex j-center a-center" style="width: 120rpx;">{{dev_name}}</text>
 						<!-- <view class="d-flex j-center a-center"><image src="../../static/right/bottom.png" style="width: 10rpx;height: 8rpx;"></image></view> -->
 						<image src="../../static/right/bottom.png" style="width: 10rpx;height: 8rpx;"></image>
 					</view>
 				</view>
-				<!-- 商户 -->
+				
 				<view class="border d-flex font-20 bg-white mr-3 text-gray" style="width: 210rpx;height: 70rpx;" >
 					<view class="flex-1 border-right d-flex a-center j-center font-20">商户</view>
-					<view class="flex-2  d-flex a-center j-center"  @click="toMerchant">
+					<view class="flex-2  d-flex a-center j-center"  @click="$navigate('earn-search-merchant')">
 						<text class="mr-2 font-20">{{mer_name}}</text>
 						<image src="../../static/right/bottom.png" style="width: 10rpx;height: 8rpx;"></image>
 					</view>
 				</view>
+				
 			</view>
-			<!-- 下面 选日期-->
+			<!-- 日历组件 -->
 			<view class="mx-3 border-top d-flex a-center" style="height: 111rpx;">
 				<view class="border d-flex a-center bg-white text-gray" style="width: 280rpx;height: 70rpx;" @click="open_one()">
 					<view class="d-flex a-center j-center border-right" style="width: 70rpx;height: 70rpx;">
 						<image src="../../static/icon/calendar.png" style="width: 42rpx;height: 42rpx;"></image>
 					</view>
-					<view class="d-flex a-center j-center font-20" style="width: 210rpx;">{{start_time}}</view>
+					<view class="d-flex a-center j-center font-20" style="width: 210rpx;">{{time_start}}</view>
 				</view>
 				<!-- 横线 -->
 				<view class="d-flex a-center j-center" style="width: 130rpx;height: 70rpx;">
@@ -57,7 +53,7 @@
 					<view class="d-flex a-center j-center border-right" style="width: 70rpx;height: 70rpx;">
 						<image src="../../static/icon/calendar.png" style="width: 42rpx;height: 42rpx;"></image>
 					</view>
-					<view class="d-flex a-center j-center font-20" style="width: 210rpx;">{{end_time}}</view>
+					<view class="d-flex a-center j-center font-20" style="width: 210rpx;">{{time_end}}</view>
 				</view>
 			</view>
 		</view>
@@ -74,8 +70,7 @@
 			</view>
 			<view class="flex-1 d-flex flex-column a-center">
 				<text class="font-26 text-gray">单笔均价</text>
-				<!-- <text class="font-26">￥{{averagy_money== 'NaN' ? '爱你哦' : averagy_money}}</text> -->
-				<text class="font-26">￥{{averagy_money}}</text>
+				<text class="font-26">￥{{money}}</text>
 			</view>
 		</view>
 		<!-- 意见反馈 -->
@@ -83,6 +78,7 @@
 		
 		<uni-calendar ref="calendar_one" :insert="info.insert" lunar="true" :startDate="info.startDate"
 		:endDate="info.endDate" range="false" @confirm="confirm_one" />
+		
 		<uni-calendar ref="calendar_two" :insert="info.insert" lunar="true" :startDate="info.startDate"
 		:endDate="info.endDate" range="false" @confirm="confirm_two" />
 
@@ -98,7 +94,7 @@
 		},
 		data() {
 			return {
-				// 状态
+				// 支付状态
 				index: 0,
 				array: [
 					{name:'全部'},
@@ -107,12 +103,12 @@
 					{name:'已退款'}
 				],
 				status: "",
-				// 设备和商户
+				// 设备 商户
 				dev_name: "全部",
 				mer_name: "全部",
 				dev_id: "",
 				mer_id: "",
-				// 日历时间
+				// 日历 时间
 				showCalendar: false,
 				info: {
 					startDate: '2019-06-01',
@@ -123,76 +119,66 @@
 				},
 				start_time: "2019-07-17",
 				end_time: "2020-02-17",
-				all_money: 0,
+				out_money: 0,
 				total_money: 0,
 				amount: 0,
-				averagy_money: 0,
+				money: 0,
 			}
 		},
 		onShow() {
 			try {
-			    const value = uni.getStorageSync('earn');
-				console.log('onShow取出缓存：', value)
+				// earn-search-device 选择全部设备
+				const all = uni.getStorageSync('dev_allname')
+				if(all) {
+					this.dev_name ="全部"
+					this.dev_id = uni.getStorageSync('dev_all')
+					this.__init()
+					/* uni.removeStorageSync('dev_allname');
+					uni.removeStorageSync('dev_all'); */
+				}
+				// 选择某个设备
+			    const value = uni.getStorageSync('dev_class');
 			    if (value) {
-					// 取设备
-					if (value.dev_id) {
-						this.dev_id = value.dev_id
-						this.dev_name = value.dev_id
-					} else {
-						this.dev_id = ''
-						this.dev_name = '全部'
-					}
-					// 取商户
-					if (value.mer_id) {
-						this.mer_id = value.mer_id
-						this.mer_name = value.mer_id
-					} else {
-						this.mer_id = ''
-						this.mer_name = '全部'
-					}
-			    } else {
-					// console.log('value没有值：');
+					console.log(value);
+					this.dev_name = value.device_id;
+					this.dev_id = value.device_id
+					console.log('this.dev_id', this.dev_id);
+					this.__init()
+					/* uni.removeStorageSync('dev_class');
+					uni.removeStorageSync('dev_name'); */
+			    }
+				// earn-search-merchant 选择全部商户
+				const all_mer = uni.getStorageSync('dev_allname_mer')
+				if(all_mer) {
+					this.mer_name ="全部"
+					this.mer_id = uni.getStorageSync('dev_all_mer')
+					this.__init()
+					/* uni.removeStorageSync('dev_allname_mer');
+					uni.removeStorageSync('dev_all_mer'); */
+				}
+				// 选择某个商户
+				const value_mer = uni.getStorageSync('dev_class_mer');
+				if (value_mer) {
+					console.log('value_mer：', value_mer);
+					this.mer_name = value_mer.merchant_id;
+					this.mer_id = value_mer.merchant_id
+					console.log('this.mer_id：', this.mer_id);
+					this.__init()
+					/* uni.removeStorageSync('dev_class_mer');
+					uni.removeStorageSync('dev_name_mer'); */
 				}
 			} catch (e) {
-			    // error
+			    console.log('catch error!!', e);
 			}
+			
+		},
+		onLoad() {
+			this.status = uni.getStorageSync('status')
+			this.index = uni.getStorageSync('index')
 			this.__init()
 		},
 		methods: {
-			// 日期选择
-			open_one() {
-				console.log('open_one',this.$refs.calendar_one.open());
-				this.$refs.calendar_one.open()
-			},
-			open_two() {
-				console.log('open_two',this.$refs.calendar_one.open());
-				this.$refs.calendar_two.open()
-			},
-			confirm_one(e) {
-				this.start_time = e.fulldate
-				this.setlocation()
-				this.__init()
-			},
-			confirm_two(e) {
-				this.end_time = e.fulldate
-				this.setlocation()
-				this.__init()
-			},
-			// 跳转商户页
-			toMerchant() {
-				this.setlocation()
-				uni.navigateTo({
-				    url: '/pages/earn-search-merchant/earn-search-merchant'
-				});
-			},
-			// 跳转设备页
-			toDevice() {
-				this.setlocation()
-				uni.navigateTo({
-				    url: '/pages/earn-search-device/earn-search-device'
-				});
-			},
-			// 状态选择
+			// 支付状态选择
 			bindPickerChange(e) {
 				this.index = e.detail.value // value为序号0 1 2 3 
 				this.status = e.detail.value
@@ -202,25 +188,32 @@
 				if(e.detail.value == 3) {
 					this.status = -1
 				}
-				this.setlocation()
+				console.log('支付状态:', this.status);
+				uni.setStorageSync('index', this.index)
+				uni.setStorageSync('status', this.status)
 				this.__init()
-				// console.log('支付状态:', this.status);
 			},
-			// 设置缓存
-			setlocation () {
-				const data = {
-					index: this.index,
-					status: this.status,
-					dev_name: this.dev_name,
-					dev_id: this.dev_id,
-					mer_name: this.mer_name,
-					mer_id: this.mer_id,
-					start_time: this.start_time,
-					end_time: this.end_time
-				}
-				uni.setStorageSync('earn', data)
+			open_one() {
+				console.log('open_one');
+				this.$refs.calendar_one.open()
 			},
-			// 后台数据
+			open_two() {
+				console.log('open_two');
+				this.$refs.calendar_two.open()
+			},
+			confirm_one(e) {
+				console.log('confirm open_one 返回:', e)
+				this.time_start = e.fulldate
+				console.log('this.开始时间:', this.time_start);
+				uni.setStorageSync('startTime', this.time_start);
+				this.__init()
+			},
+			confirm_two(e) {
+				console.log('confirm open_two 返回:', e)
+				this.time_end = e.fulldate
+				console.log('结束时间:', this.time_end);
+				this.__init()
+			},
 			async __init() {
 				this.$H.post("/agent/", {
 					user_id: uni.getStorageSync('uid'),
@@ -229,24 +222,29 @@
 					order_status: this.status, //订单状态  空为全部  1为已支付 2为申请退款  -1已退款
 					device_id: this.dev_id, // 设备ID
 					merchant_id: this.mer_id,   //商户ID
-					start_time: this.start_time, //开始日期 如：2019-07-17
-					end_time: this.end_time, //结束日期 如：2020-02-17
+					start_time: this.time_start, //开始日期 如：2019-07-17
+					end_time: this.time_end, //结束日期 如：2020-02-17
 					group: "day"
 				}).then((res) => {
-					console.log('res嗷嗷：',res);
-					// this.setlocation()
-					console.log('打印改变后的值：', '->'+this.status,'->'+this.dev_name,'->'+this.mer_name);
-					this.all_money = 0
-					this.amount = 0
-					for(var i=0; i<res.count.length; i++) {
-						console.log('for里面：', this.all_money + '+' + res.count[i].sum_money);
-						this.all_money += (parseFloat(res.count[i].sum_money))
-						this.amount += parseFloat(res.count[i].count_num)
+					console.log('状态:', this.status);
+					console.log('前后时间：',this.time_start, this.time_end);
+					try {
+					   uni.setStorageSync('start_time', this.time_start)
+					   uni.setStorageSync('end_time', this.time_end)
+					} catch (e) {
+						console.log('catch error:', e);
 					}
-					console.log('总金额：', this.all_money,'笔数：',this.amount);
-					this.total_money = this.all_money.toFixed(2)
-					this.averagy_money = (this.all_money / this.amount).toFixed(2)
-					console.log('嗷嗷',this.averagy_money);
+					
+					let out = res.count
+					// console.log(out);
+					this.out_money = 0
+					for(let i=0; i<out.length; i++) {
+						this.out_money += (parseFloat(out[i].sum_money))
+						this.amount += parseFloat(out[i].count_num)
+					}
+					console.log('out_money', this.out_money);
+					this.total_money = this.out_money.toFixed(2)
+					this.money = (this.total_money / this.amount).toFixed(2)
 				}).catch((e) => {
 					console.log("catch error:", e);
 				})

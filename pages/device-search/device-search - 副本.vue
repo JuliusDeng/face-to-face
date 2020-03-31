@@ -12,6 +12,10 @@
 			</view>
 		</view>
 		<!-- POS机列表 -->
+		<!-- 加载数据前的动画 -->
+		<view class="h-vh100 w-100vw bg-white" v-show="!list[0]">
+			<image src="https://image.weilanwl.com/gif/loading-white.gif" mode="aspectFit" class=" " style="height:240upx"></image>
+		</view>
 		<text class="font-24 text-gray ml-2">共有{{list.length}}台设备</text>
 		<view class="mx-2 mt-2">
 			<view class="d-flex  bg-white rounded-12 text-black mb-2 shadow-nom" 
@@ -46,9 +50,13 @@
 			}
 		},
 		onLoad() {
-			console.log('this.list:', this.list.length);
-			this.__init()
-			console.log('this.list:', this.list.length);
+			if(!this.list[0]) {
+				console.log('初始执行onload');
+				this.__init()
+			}
+			this.list = uni.getStorageSync('dev-search-list')
+			// this.emit = uni.getStorageSync('emit')
+			console.log('onload数组：', this.list);
 		},
 		onReachBottom() {
 			if(this.emit > this.list.length) {
@@ -57,6 +65,7 @@
 			}
 			this.loadtext = "加载中..."
 			this.emit += 10 
+			// uni.setStorageSync('emit', this.emit);
 			console.log("触发上拉加载", this.emit);
 			this.__init()
 		},
@@ -84,9 +93,10 @@
 					elimit: this.emit,
 					device_id: this.dev_id
 				}).then((data) => {
-					this.list = data.arr
-					console.log('fas:', this.list.length);
-					console.log('this.emit.length:', this.emit);
+					uni.setStorageSync('dev-search-list', data.arr);
+					this.list = uni.getStorageSync('dev-search-list')
+					console.log('list:', this.list);
+					console.log('this.emit.length:', this.list.length, this.emit);
 					// 恢复加载状态
 					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
 				}).catch(() => {
@@ -100,4 +110,5 @@
 </script>
 
 <style>
+
 </style>

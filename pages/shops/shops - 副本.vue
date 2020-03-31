@@ -15,23 +15,28 @@
 			</view>
 		</view>
 		<!-- 列表 -->
-		<text class="ml-3 font-24 text-gray">共有{{merchantList.length}}户商家</text>
-		<view class="mx-2 mt-2 bg-cyan d-flex a-center j-center" hover-class="bg-red" @click="all" style="height: 80rpx;">
-			选择全部
+			<!-- 加载数据前的动画 -->
+		<view class="h-vh100 w-100vw bg-white" v-show="!merchantList[0]">
+			<image src="https://image.weilanwl.com/gif/loading-white.gif" mode="aspectFit" class=" " style="height:240upx"></image>
 		</view>
-		<view  class="mt-2 mx-25 d-flex a-center border shadow-nom bg-white mb-2" style="height: 180rpx;"
-			v-for="(item, index) in merchantList" :key="index" @click="select(item)">
-			<image class="ml-3 bg-blue" :src="item.logo_url" style="width: 120rpx;height: 120rpx;"></image>
-			<view class="d-flex flex-column ml-3 font-24 text-black">
-				<text>{{item.merchant_name}}</text>
-				<text>电话：{{item.merchant_tel==null ? '空' : item.merchant_tel}}</text>
-				<text>地址：{{item.merchant_address==null ? '空' : item.merchant_address}}</text>
+			<!-- 拿到数据展示 -->
+		<view v-show="merchantList[0]">
+			<text class="ml-3 font-24 text-gray">共有{{merchantList.length}}户商家</text>
+			<view  class="mt-2 mx-25 d-flex a-center border shadow-nom bg-white mb-2" style="height: 180rpx;"
+				v-for="(item, index) in merchantList" :key="index" @click="toshopEarn(item)">
+				<image class="ml-3" :src="item.logo_url ? 'item.logo_url' : '../../static/icon/weibiaoti-3.png'" style="width: 120rpx;height: 120rpx;"></image>
+				<view class="d-flex flex-column ml-3 font-24 text-black">
+					<text>{{item.merchant_name}}</text>
+					<text>电话：{{item.merchant_tel==null ? '空' : item.merchant_tel}}</text>
+					<text>地址：{{item.merchant_address==null ? '空' : item.merchant_address}}</text>
+				</view>
+			</view>
+			<!-- 上拉加载 -->
+			<view class="d-flex a-center j-center text-light-muted font-md py-3">
+				{{loadtext}}
 			</view>
 		</view>
-		<!-- 上拉加载 -->
-		<view class="d-flex a-center j-center text-light-muted font-md py-3">
-			{{loadtext}}
-		</view>
+		
 		
 		
 	</view>
@@ -50,7 +55,12 @@
 			}
 		},
 		onLoad() {
-			this.__init()
+			console.log(this.merchantList);
+			if(!this.merchantList[0]) {
+				this.__init()
+			}
+			this.merchantList = uni.getStorageSync('merchantList_key');
+			
 		},
 		onReachBottom() {
 			if(this.emit > this.merchantList.length) {
@@ -59,23 +69,15 @@
 			}
 			this.loadtext = "加载中..."
 			this.emit += 10 
-			console.log("触发上拉加载", this.emit);
 			this.__init()
 		},
 		methods: {
-			all() {
-				const data = uni.getStorageSync('earn')
-				data.mer_id = ''
-				data.mer_name = ''
-				uni.setStorageSync('earn', data)
-				uni.navigateBack();
-			},
-			select(item) {
-				const data = uni.getStorageSync('earn')
-				data.mer_id = item.merchant_id
-				data.mer_name = item.merchant_id
-				uni.setStorageSync('earn', data)
-				uni.navigateBack();
+			toshopEarn(item) {
+				console.log('item', item);
+				uni.setStorageSync('merchant', item);
+				uni.navigateTo({
+					url: "/pages/shops-earn/shops-earn",
+				})
 			},
 			async __init() {
 				this.$H.post("/agent/", {
@@ -86,11 +88,11 @@
 					elimit: this.emit,  //列表  数量
 					key_value: (this.searchID || this.searchname)
 				}).then((data) => {
-					console.log('接口调用了一次',data);
-					this.merchantList = data.arr
+					console.log('接口调用了一次',data.arr);
+					uni.setStorageSync('merchantList_key', data.arr);
+					this.merchantList = uni.getStorageSync('merchantList_key');
 					// 恢复加载状态
 					this.loadtext = this.merchantList.length < this.emit ? "没有更多了" :  "上拉加载更多"
-					uni.setStorageSync('list', data)
 				}).catch(() => {
 					console.log("catch error!!");
 				})

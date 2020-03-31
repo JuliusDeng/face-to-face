@@ -13,7 +13,7 @@
 		</view>
 		<!-- POS机列表 -->
 		<text class="font-24 text-gray ml-2">共有{{list.length}}台设备</text>
-		<view class="mx-2 mt-2 bg-cyan d-flex a-center j-center" hover-class="bg-red" @click="all" style="height: 80rpx;">
+		<view class="mx-2 mt-2 bg-cyan d-flex a-center j-center" hover-class="bg-red" @click="all('false')" style="height: 80rpx;">
 			选择全部
 		</view>
 		<!--  选列表的某个 -->
@@ -63,25 +63,22 @@
 			this.__init()
 		},
 		methods: {
-			all() {
-				try {
-				    uni.setStorageSync('dev_all', '');
-					uni.setStorageSync('dev_allname', '全部');
-				} catch (e) {
-				    // error
-					console.log('catch error!!', e);
-				}
+			all(it) {
+				const data = uni.getStorageSync('earn')
+				data.dev_id = ''
+				data.dev_name = ''
+				uni.setStorageSync('earn', data)
 				uni.navigateBack();
 			},
 			select(item) {
-				try {
-				    uni.setStorageSync('dev_class', item);
-					// uni.setStorageSync('dev_name', '单个');
-				} catch (e) {
-				    // error
-					console.log('catch error!!', e);
-				}
-				uni.navigateBack();
+				const data = uni.getStorageSync('earn')
+				data.dev_id = item.device_id
+				data.dev_name = item.device_id
+				console.log('设备信息：',item, data);
+				uni.setStorageSync('earn', data)
+				setTimeout(() => {
+					uni.navigateBack();
+				},200)
 			},
 			searchbtn() {
 				this.__init()

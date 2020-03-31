@@ -196,25 +196,22 @@ var _default =
     this.__init();
   },
   methods: {
-    all: function all() {
-      try {
-        uni.setStorageSync('dev_all', '');
-        uni.setStorageSync('dev_allname', '全部');
-      } catch (e) {
-        // error
-        console.log('catch error!!', e);
-      }
+    all: function all(it) {
+      var data = uni.getStorageSync('earn');
+      data.dev_id = '';
+      data.dev_name = '';
+      uni.setStorageSync('earn', data);
       uni.navigateBack();
     },
     select: function select(item) {
-      try {
-        uni.setStorageSync('dev_class', item);
-        // uni.setStorageSync('dev_name', '单个');
-      } catch (e) {
-        // error
-        console.log('catch error!!', e);
-      }
-      uni.navigateBack();
+      var data = uni.getStorageSync('earn');
+      data.dev_id = item.device_id;
+      data.dev_name = item.device_id;
+      console.log('设备信息：', item, data);
+      uni.setStorageSync('earn', data);
+      setTimeout(function () {
+        uni.navigateBack();
+      }, 200);
     },
     searchbtn: function searchbtn() {
       this.__init();
