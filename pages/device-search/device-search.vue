@@ -65,7 +65,7 @@
 				try {
 				    // uni.setStorageSync('todevice', item); // 可以通过下面跳转页面传值
 					uni.navigateTo({
-						url: `/pages/device/device?dev_sn=${item.device_sn}&mer_name=${item.merchant_name}`
+						url: `/pages/device/device?dev_id=${item.device_id}&mer_name=${item.merchant_name}`
 					})
 				} catch (e) {
 				    // error

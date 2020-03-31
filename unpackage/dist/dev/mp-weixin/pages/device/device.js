@@ -98,11 +98,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  if (!_vm._isMounted) {
-    _vm.e0 = function($event) {
-      return this.$navigate("device-order")
-    }
-  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -136,15 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
-//
-//
-//
-//
-//
-//
-//
-//
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -215,27 +202,19 @@ var _default =
 {
   data: function data() {
     return {
-      title: [
-      { tit: "今日", cont: "收益：￥2534.22 订单：102" },
-      { tit: "昨日", cont: "收益：￥2534.22 订单：102" },
-      { tit: "30日", cont: "收益：￥2522534.22 订单：122302" },
-      { tit: "全部", cont: "收益：￥2522534.22 订单：122302" }],
-
-      order: [
-      { tit: "支付类型", cont: "银行卡支付" },
-      { tit: "设备编号", cont: "0215" },
-      { tit: "支付时间", cont: "2019.07.31 12:23:55" },
-      { tit: "支付人", cont: "*马珍珍" },
-      { tit: "消费金额", cont: "￥520" }],
-
-      dev_sn: "",
+      dev_id: "",
       mer_name: "",
+      day_money: "",
+      day_amount: "",
+      month_money: "",
+      month_amount: "",
+      start_time: "",
+      end_time: "",
+
       mer_id: "",
-      startTime: "",
-      endTime: "",
-      loadtext: "上拉加载更多",
       emit: 10,
-      list: [] };
+      list: [], // 存放交易流水
+      loadtext: "上拉加载更多" };
 
   },
   onReachBottom: function onReachBottom() {
@@ -248,102 +227,118 @@ var _default =
     this.emit += 10;
     console.log("触发上拉加载", this.emit);
     // this.__init()
-    this.__device();
+    this.__deal();
   },
   onLoad: function onLoad(option) {
-    this.dev_sn = option.dev_sn;
+    this.dev_id = option.dev_id;
     this.mer_name = option.mer_name;
-    uni.setStorageSync('deviceOrder_mer_name', this.mer_name); // 可以通过下面跳转页面传值
-    // 获取开始时间
-    try {
-      this.startTime = uni.getStorageSync('startTime');
-      if (!this.startTime) {
-        uni.showToast({
-          title: "请先去'收益统计'确定时间",
-          icon: "none",
-          duration: 3000 });
+    // 从收益统计页 获取时间
+    var value = uni.getStorageSync('earn');
+    console.log('value', value);
+    if (!value.start_time) {
+      uni.showToast({
+        title: "请先去'收益统计'确定时间",
+        icon: "none",
+        duration: 3000 });
 
-      }
-    } catch (e) {
-      console.log("catch:", e);
     }
-    this.endTime = this.$Time.getTime();
-    console.log("开始时间：", this.startTime, '结束时间：', this.endTime);
-    // 获取商户ID
+    this.start_time = value.start_time;
+    this.end_time = this.$Time.getTime();
+    console.log("开始时间：", this.start_time, '结束时间：', this.end_time);
+    this.__today();
+    this.__month();
+    // 请求商户ID
     this.__init();
+
+
 
   },
   methods: {
-    toDeviceOrder: function toDeviceOrder(item) {
-      uni.setStorageSync('DeviceOrder', item);
-      uni.navigateTo({
-        url: "/pages/device-order/device-order" });
+    // 本月 收益统计
+    __month: function () {var _month = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                this.$H.post("/agent/", {
+                  user_id: uni.getStorageSync('uid'),
+                  token: uni.getStorageSync('utoken'),
+                  opt: "agent_device_statistics",
+                  order_status: "1",
+                  device_id: this.dev_id,
+                  start_time: this.start_time,
+                  end_time: this.end_time,
+                  slimit: 0,
+                  elimit: 5,
+                  group: 'month' }).
+                then(function (res) {
+                  _this.month_money = res.count[0].sum_money;
+                  _this.month_amount = res.count[0].count_num;
+                }).catch(function (e) {
+                  console.log("catch error:", e);
+                });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __month() {return _month.apply(this, arguments);}return __month;}(),
 
-    },
-    // 获取商户ID
-    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    // 今天 收益统计
+    __today: function () {var _today = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this2 = this;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                this.$H.post("/agent/", {
+                  user_id: uni.getStorageSync('uid'),
+                  token: uni.getStorageSync('utoken'),
+                  opt: "agent_device_statistics",
+                  order_status: 1,
+                  device_id: this.dev_id,
+                  start_time: this.start_time,
+                  end_time: this.end_time,
+                  slimit: 0,
+                  elimit: 5,
+                  group: 'day' }).
+                then(function (res) {
+                  _this2.day_money = res.count[0].sum_money;
+                  _this2.day_amount = res.count[0].count_num;
+                }).catch(function (e) {
+                  console.log("catch error:", e);
+                });case 1:case "end":return _context2.stop();}}}, _callee2, this);}));function __today() {return _today.apply(this, arguments);}return __today;}(),
+
+    // 请求商户ID
+    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var _this3 = this;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: uni.getStorageSync('uid'),
                   token: uni.getStorageSync('utoken'),
                   opt: "merchant_list",
                   key_value: this.mer_name }).
                 then(function (data) {
-                  _this.mer_id = data.arr[0].merchant_id;
-                  console.log('商户ID:', _this.mer_id);
+                  _this3.mer_id = data.arr[0].merchant_id;
+                  console.log('商户ID:', _this3.mer_id);
                   // 交易流水
-                  _this.__device();
+                  _this3.__deal();
                 }).catch(function (e) {
                   console.log("catch error:", e);
-                });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}(),
-
-    // 收益统计
-    __earn: function () {var _earn = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this$$H$post,_this2 = this;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-                this.$H.post("/agent/", (_this$$H$post = {
-                  user_id: uni.getStorageSync('uid'),
-                  token: uni.getStorageSync('utoken'),
-                  opt: "agent_device_statistics",
-                  order_status: 1,
-                  device_id: "00004102MC8H156" }, _defineProperty(_this$$H$post, "order_status",
-                "1"), _defineProperty(_this$$H$post, "start_time",
-                '2019-07-17'), _defineProperty(_this$$H$post, "end_time",
-                this.endTime), _defineProperty(_this$$H$post, "slimit",
-                0), _defineProperty(_this$$H$post, "elimit",
-                this.emit), _this$$H$post)).
-                then(function (res) {
-                  // console.log(this.startTime, this.endTime);
-                  _this2.list = res.arr;
-                  // console.log("返回list数组", this.list);
-                  console.log("list数组长度：", _this2.list.length, 'emit长度：', _this2.emit);
-                  // 恢复加载状态
-                  _this2.loadtext = _this2.list.length < _this2.emit ? "没有更多了" : "上拉加载更多";
-                }).catch(function (e) {
-                  console.log("catch error:", e);
-                });case 1:case "end":return _context2.stop();}}}, _callee2, this);}));function __earn() {return _earn.apply(this, arguments);}return __earn;}(),
+                });case 1:case "end":return _context3.stop();}}}, _callee3, this);}));function __init() {return _init.apply(this, arguments);}return __init;}(),
 
     // 交易流水
-    __device: function () {var _device = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var _this3 = this;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+    __deal: function () {var _deal = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var _this4 = this;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: uni.getStorageSync('uid'),
                   token: uni.getStorageSync('utoken'),
                   opt: "order_list",
-                  key_value: this.mer_name,
-                  // merchant_id: this.mer_id,
-                  merchant_id: 375,
+                  merchant_id: this.mer_id,
+                  // merchant_id: 375,
                   order_status: "1",
-                  start_time: '2019-07-17',
-                  end_time: this.endTime,
+                  start_time: this.start_time,
+                  end_time: this.end_time,
                   slimit: 0,
                   elimit: this.emit }).
                 then(function (res) {
-                  // console.log(this.startTime, this.endTime);
-                  _this3.list = res.arr;
-                  // console.log("返回list数组", this.list);
-                  console.log("list数组长度：", _this3.list.length, 'emit长度：', _this3.emit);
+                  _this4.list = res.arr;
+                  console.log("list数组长度：", _this4.list.length, 'emit长度：', _this4.emit);
                   // 恢复加载状态
-                  _this3.loadtext = _this3.list.length < _this3.emit ? "没有更多了" : "上拉加载更多";
+                  _this4.loadtext = _this4.list.length < _this4.emit ? "没有更多了" : "上拉加载更多";
                 }).catch(function (e) {
                   console.log("catch error:", e);
-                });case 1:case "end":return _context3.stop();}}}, _callee3, this);}));function __device() {return _device.apply(this, arguments);}return __device;}() } };exports.default = _default;
+                });case 1:case "end":return _context4.stop();}}}, _callee4, this);}));function __deal() {return _deal.apply(this, arguments);}return __deal;}(),
+
+    // 去详情页
+    toDeviceOrder: function toDeviceOrder(item) {
+      uni.setStorageSync('DeviceOrder', item);
+      uni.navigateTo({
+        url: "/pages/device-order/device-order?mer_name=".concat(this.mer_name) });
+
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })

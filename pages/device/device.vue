@@ -1,11 +1,11 @@
 <template>
 	<view>
 		<!-- 顶部白色部分 -->
-		<view class="bg-white" @click="this.$navigate('device-order')">
-			<view class="mx-35" style="height: 392rpx;width: 680rpx;">
+		<view class="bg-white">
+			<view class="mx-35" style="height: 270rpx;width: 680rpx;">
 				<view class="d-flex j-center p-3 border-bottom">
 					<view class="d-flex flex-column a-center j-center text-black">
-						<view>设备号：{{dev_sn}}</view>
+						<view>设备号：{{dev_id}}</view>
 						<view>关联商户：{{mer_name}}</view>
 					</view>
 				</view>
@@ -13,11 +13,11 @@
 				<view class="px-2 pt-1">
 					<view class=" d-flex j-sb text-black" >
 						<view>今日</view>
-						<view>收益：￥2534.22 订单：102</view>
+						<view>收益：￥{{day_money}} 订单：{{day_amount}}</view>
 					</view>
 					<view class=" d-flex j-sb text-black">
 						<view>本月</view>
-						<view>收益：￥2534.22 订单：102</view>
+						<view>收益：￥{{month_money}} 订单：{{month_amount}}</view>
 					</view>
 				</view>
 			</view>
@@ -69,32 +69,19 @@
 	export default {
 		data() {
 			return {
-				title: [
-					{tit: "今日", cont: "收益：￥2534.22 订单：102"},
-					{tit: "昨日", cont: "收益：￥2534.22 订单：102"},
-					{tit: "30日", cont: "收益：￥2522534.22 订单：122302"},
-					{tit: "全部", cont: "收益：￥2522534.22 订单：122302"},
-				],             
-				order: [
-					{tit: "支付类型", cont: "银行卡支付"},
-					{tit: "设备编号", cont: "0215"},
-					{tit: "支付时间", cont: "2019.07.31 12:23:55"},
-					{tit: "支付人", cont: "*马珍珍"},
-					{tit: "消费金额", cont: "￥520"},
-				],
-				dev_sn: "",
+				dev_id: "",
 				mer_name: "",
 				day_money: "",
 				day_amount: "",
 				month_money: "",
 				month_amount: "",
+				start_time: "",
+				end_time: "",
 				
 				mer_id: "",
-				startTime: "",
-				endTime: "",
-				loadtext: "上拉加载更多",
 				emit: 10,
-				list: []
+				list: [],  // 存放交易流水
+				loadtext: "上拉加载更多",
 			}
 		},
 		onReachBottom() {
@@ -107,61 +94,71 @@
 			this.emit += 10 
 			console.log("触发上拉加载", this.emit);
 			// this.__init()
-			this.__device()
+			this.__deal()
 		},
 		onLoad(option) {
-			this.dev_sn = option.dev_sn
+			this.dev_id = option.dev_id
 			this.mer_name = option.mer_name
-			uni.setStorageSync('deviceOrder_mer_name', this.mer_name); // 可以通过下面跳转页面传值
-			// 获取开始时间
-			try {
-				this.startTime = uni.getStorageSync('startTime')
-				if( !this.startTime ) {
-					uni.showToast({
-						title: "请先去'收益统计'确定时间",
-						icon: "none",
-						duration: 3000
-					})
-				}
-			} catch (e) {
-			    console.log("catch:", e);
+			// 从收益统计页 获取时间
+			const value = uni.getStorageSync('earn');
+			console.log('value', value);
+			if(!value.start_time) {
+				uni.showToast({
+					title: "请先去'收益统计'确定时间",
+					icon: "none",
+					duration: 3000
+				})
 			}
-			this.endTime = this.$Time.getTime()
-			console.log("开始时间：", this.startTime, '结束时间：',this.endTime);
-			// 获取商户ID
+			this.start_time = value.start_time
+			this.end_time = this.$Time.getTime()
+			console.log("开始时间：", this.start_time, '结束时间：',this.end_time);
+			this.__today()
+			this.__month()
+			// 请求商户ID
 			this.__init()
+			
+			
 			
 		},
 		methods: {
-			// 今日 收益统计
-			async __earn() {
+			// 本月 收益统计
+			async __month() {
+				this.$H.post("/agent/", {
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
+					opt: "agent_device_statistics",
+					order_status: "1",
+					device_id: this.dev_id,
+					start_time: this.start_time,
+					end_time: this.end_time,
+					slimit: 0,
+					elimit: 5,
+					group: 'month'
+				}).then((res) => {
+					this.month_money = res.count[0].sum_money
+					this.month_amount = res.count[0].count_num
+				}).catch((e) => {
+					console.log("catch error:", e);
+				})
+			},
+			// 今天 收益统计
+			async __today() {
 				this.$H.post("/agent/", {
 					user_id: uni.getStorageSync('uid'),
 					token: uni.getStorageSync('utoken'),
 					opt: "agent_device_statistics",
 					order_status: 1,
-					device_id: "00004102MC8H156",
-					order_status: "1",
-					start_time: '2019-07-17',
-					end_time: this.endTime,
+					device_id: this.dev_id,
+					start_time: this.start_time,
+					end_time: this.end_time,
 					slimit: 0,
-					elimit: this.emit,
+					elimit: 5,
+					group: 'day'
 				}).then((res) => {
-					// console.log(this.startTime, this.endTime);
-					this.list = res.arr
-					// console.log("返回list数组", this.list);
-					console.log("list数组长度：", this.list.length,'emit长度：',this.emit);
-					// 恢复加载状态
-					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
+					this.day_money = res.count[0].sum_money
+					this.day_amount = res.count[0].count_num
 				}).catch((e) => {
 					console.log("catch error:", e);
-				})
-			},
-			// 去详情页
-			toDeviceOrder(item) {
-				uni.setStorageSync('DeviceOrder', item);
-				uni.navigateTo({
-					url: "/pages/device-order/device-order"
 				})
 			},
 			// 请求商户ID
@@ -175,36 +172,40 @@
 					this.mer_id = data.arr[0].merchant_id
 					console.log('商户ID:', this.mer_id);
 					// 交易流水
-					this.__device()
+					this.__deal()
 				}).catch((e) => {
 					console.log("catch error:", e);
 				})
 			},
 			// 交易流水
-			async __device() {
+			async __deal() {
 				this.$H.post("/agent/", {
 					user_id: uni.getStorageSync('uid'),
 					token: uni.getStorageSync('utoken'),
 					opt: "order_list",
-					key_value: this.mer_name,
-					// merchant_id: this.mer_id,
-					merchant_id: 375,
+					merchant_id: this.mer_id,
+					// merchant_id: 375,
 					order_status: "1",
-					start_time: '2019-07-17',
-					end_time: this.endTime,
+					start_time: this.start_time,
+					end_time: this.end_time,
 					slimit: 0,
 					elimit: this.emit,
 				}).then((res) => {
-					// console.log(this.startTime, this.endTime);
 					this.list = res.arr
-					// console.log("返回list数组", this.list);
 					console.log("list数组长度：", this.list.length,'emit长度：',this.emit);
 					// 恢复加载状态
 					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
 				}).catch((e) => {
 					console.log("catch error:", e);
 				})
-			}
+			},
+			// 去详情页
+			toDeviceOrder(item) {
+				uni.setStorageSync('DeviceOrder', item);
+				uni.navigateTo({
+					url: `/pages/device-order/device-order?mer_name=${this.mer_name}`
+				})
+			},
 		}
 	}
 </script>

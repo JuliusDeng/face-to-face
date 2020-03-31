@@ -198,7 +198,7 @@ var _default =
       try {
         // uni.setStorageSync('todevice', item); // 可以通过下面跳转页面传值
         uni.navigateTo({
-          url: "/pages/device/device?dev_sn=".concat(item.device_sn, "&mer_name=").concat(item.merchant_name) });
+          url: "/pages/device/device?dev_id=".concat(item.device_id, "&mer_name=").concat(item.merchant_name) });
 
       } catch (e) {
         // error

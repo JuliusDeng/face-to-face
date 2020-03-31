@@ -4959,21 +4959,13 @@ var render = function() {
     [
       _c(
         "v-uni-view",
-        {
-          staticClass: _vm._$g(1, "sc"),
-          attrs: { _i: 1 },
-          on: {
-            click: function($event) {
-              return _vm.$handleViewEvent($event)
-            }
-          }
-        },
+        { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } },
         [
           _c(
             "v-uni-view",
             {
               staticClass: _vm._$g(2, "sc"),
-              staticStyle: { height: "392rpx", width: "680rpx" },
+              staticStyle: { height: "270rpx", width: "680rpx" },
               attrs: { _i: 2 }
             },
             [
@@ -5007,7 +4999,12 @@ var render = function() {
                     [
                       _c("v-uni-view", { attrs: { _i: 9 } }, [_vm._v("今日")]),
                       _c("v-uni-view", { attrs: { _i: 10 } }, [
-                        _vm._v("收益：￥2534.22 订单：102")
+                        _vm._v(
+                          "收益：￥" +
+                            _vm._$g(10, "t0-0") +
+                            " 订单：" +
+                            _vm._$g(10, "t0-1")
+                        )
                       ])
                     ],
                     1
@@ -5018,7 +5015,12 @@ var render = function() {
                     [
                       _c("v-uni-view", { attrs: { _i: 12 } }, [_vm._v("本月")]),
                       _c("v-uni-view", { attrs: { _i: 13 } }, [
-                        _vm._v("收益：￥2534.22 订单：102")
+                        _vm._v(
+                          "收益：￥" +
+                            _vm._$g(13, "t0-0") +
+                            " 订单：" +
+                            _vm._$g(13, "t0-1")
+                        )
                       ])
                     ],
                     1

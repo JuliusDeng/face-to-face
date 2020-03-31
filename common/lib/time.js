@@ -6,7 +6,7 @@ export default {
 		// 获取当前月份
 		var nowMonth = date.getMonth() + 1;
 		// 获取当前是几号-->此处在我们项目中特殊：查看今天的信息须是终止时间设为今天时间+1
-		var strDate = date.getDate() + 1;
+		var strDate = date.getDate();
 		// 添加分隔符“-”
 		var seperator = "-";
 		// 对月份进行处理，1-9月在前面添加一个“0”

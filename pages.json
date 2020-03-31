@@ -92,7 +92,8 @@
 		}, {
 			"path": "pages/device-search/device-search",
 			"style": {
-				"navigationBarTitleText": "设备列表（20）"
+				"navigationBarTitleText": "设备列表（20）",
+				"onReachBottomDistance": 90
 			}
 		}
 

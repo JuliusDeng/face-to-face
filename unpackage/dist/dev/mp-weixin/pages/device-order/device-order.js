@@ -195,11 +195,10 @@ var _default =
       mer_name: '' };
 
   },
-  onLoad: function onLoad() {
+  onLoad: function onLoad(option) {
     this.order = uni.getStorageSync('DeviceOrder');
-    this.mer_name = uni.getStorageSync('deviceOrder_mer_name');
-  },
-  methods: {} };exports.default = _default;
+    this.mer_name = option.mer_name;
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
