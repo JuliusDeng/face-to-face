@@ -25,7 +25,7 @@
 		<!-- 交易流水 -->
 		<view class="mx-25">
 			<!-- 下方订单详情 -->
-			<block v-for="(order, idx1) in list" :key="idx1">
+			<block v-for="(order, idx) in list" :key="idx">
 				<view class="mt-3 mb-4 rounded-12 text-black bg-white d-flex flex-column px-3 shadow-nom"
 				style="height: 345rpx;" @click="toDeviceOrder(order)">
 					<view class="py-1  border-bottom d-flex a-center j-sb mb-1">
@@ -104,7 +104,7 @@
 			console.log('value', value);
 			if(!value.start_time) {
 				uni.showToast({
-					title: "请先去'收益统计'确定时间",
+					title: "请先去'收益统计'确定起始时间",
 					icon: "none",
 					duration: 3000
 				})

@@ -37,7 +37,7 @@
 		<button class="mx-3 text-white font-30" style="background:#00D499;" 
 		@click="this.$navigate('order-detail')">校正</button>
 		<button class="mx-3 mt-4 text-white font-30" style="background:#FE1A1A;" 
-		@click="this.__init">退单</button>
+		@click="this.refund">退单</button>
 		
 		<text class="font-22 text-blue d-flex a-center j-center" style="margin-top: 250rpx;">添加备注</text>
 		
@@ -52,16 +52,12 @@
 			return {
 				order: {},
 				ordersn: "",
-				value: ""
 			}
 		},
 		onLoad() {
 			try {
-			    this.value = uni.getStorageSync('remsg');
-				// const ordersn = uni.getStorageSync('ordersn');
-				/* console.log('value:', value);
-				console.log('ordersn:', ordersn); */
-			    if (this.value) {
+			    const value = uni.getStorageSync('remsg');
+			    if (value) {
 			        this.order = this.value
 					this.ordersn = this.value.order_sn
 					// console.log('order:', this.order);
@@ -71,11 +67,11 @@
 			}
 		},
 		methods: {
-			async __init() {
+			async refund() {
 				// 调用退单接口
 				this.$H.post("/agent/", {
-					user_id: "100003",
-					token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
 					opt: "order_refund",
 					order_sn: this.ordersn, //始值
 				}).then((res) => {
@@ -89,9 +85,8 @@
 					console.log("catch error!!", e);
 				})
 			},
-			refund() {
-				// this.ordersn = this.value.order_sn
-				this.__init()
+			toDetail() {
+				
 			}
 		}
 	}

@@ -130,8 +130,8 @@
 			},
 			async __init() {
 				this.$H.post("/agent/", {
-					user_id: "100003",
-					token: "dXQyMDIwMDMyNjE2MjczNjY4NDExNzkx",
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
 					opt: "device_statistics",
 					order_sn: this.ordersn, //始值
 					search_pay_time: this.paytime, //数量

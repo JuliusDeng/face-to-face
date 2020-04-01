@@ -108,7 +108,25 @@
 				"navigationBarTitleText": "设备搜索（22）"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/shops-device/shops-device",
+            "style" : {
+				"navigationBarTitleText": "商户下设备列表（23）"
+			}
+        },{
+            "path" : "pages/shops-deal/shops-deal",
+            "style" : {
+				"navigationBarTitleText": "商户下日月收益（24）"
+			}
+        }
+       
+        ,{
+            "path" : "pages/shops-translog/shops-translog",
+            "style" : {
+				"navigationBarTitleText": "商户下交易流水（25）"
+			}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

@@ -18,7 +18,10 @@
     "pages/login/login",
     "pages/device-search/device-search",
     "pages/earn-search-merchant/earn-search-merchant",
-    "pages/earn-search-device/earn-search-device"
+    "pages/earn-search-device/earn-search-device",
+    "pages/shops-device/shops-device",
+    "pages/shops-deal/shops-deal",
+    "pages/shops-translog/shops-translog"
   ],
   "subPackages": [],
   "window": {

@@ -11,7 +11,7 @@
 			<!-- <block v-for="(item2, index2) in money" :key="index2"> -->
 				<view class="px-25" v-for="(item, index) in tab.list" :key="index">
 					<view class="font-24 text-ba py-25">{{item.add_time}}</view>
-					<view class="d-flex bg-white rounded-12 text-black" style="height: 170rpx;">
+					<view class="d-flex bg-white rounded-12 text-black" style="height: 170rpx;" @click="shopsTranslog(item.add_time)">
 						<view class="flex-1 d-flex flex-column j-sb my-25 ml-4">
 							<view class="font-24">合计：</view>
 							<view class="font-24">收款笔数：</view>
@@ -63,10 +63,12 @@
 				end_time: "",
 				out: "",
 				money: [],
-				
+				mer_id: ""
 			}
 		},
 		onLoad() {
+			const res_mer = uni.getStorageSync('merchant');
+			this.mer_id =res_mer.merchant_id
 			// 从收益统计页 获取时间
 			const value = uni.getStorageSync('earn');
 			console.log('value', value);
@@ -94,6 +96,11 @@
 			this.__init()
 		},
 		methods: {
+			shopsTranslog(time) {
+				uni.navigateTo({
+					url: `/pages/shops-translog/shops-translog?time=${time}`
+				});
+			},
 			// 切换选项卡
 			changeTab(item, index) {
 				this.tabIndex = index
@@ -111,7 +118,7 @@
 					elimit: this.emit, //数量
 					order_status: 1, //订单状态  空为全部  1为已支付 2为申请退款  -1已退款
 					device_id: "", // 设备ID
-					merchant_id: "",   //商户ID
+					merchant_id: this.mer_id,   //商户ID
 					start_time: this.start_time, //开始日期 如：2019-07-17
 					end_time: this.end_time, //结束日期 如：2020-02-17
 					group: this.init_group

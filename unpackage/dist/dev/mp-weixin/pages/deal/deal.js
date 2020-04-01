@@ -167,6 +167,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 var _default =
 {
   data: function data() {
@@ -192,26 +194,27 @@ var _default =
       loadtext: "上拉加载更多",
       emit: 10,
       init_group: "day",
-      startTime: "",
-      endTime: "",
-      out: "" };
+      start_time: "",
+      end_time: "",
+      out: "",
+      money: [] };
+
 
   },
   onLoad: function onLoad() {
-    try {
-      this.startTime = uni.getStorageSync('start_time');
-      this.endTime = uni.getStorageSync('end_time');
-      if (!this.startTime || !this.endTime) {
-        uni.showToast({
-          title: "请先去'收益统计'确定时间",
-          icon: "none",
-          duration: 3000 });
+    // 从收益统计页 获取时间
+    var value = uni.getStorageSync('earn');
+    console.log('value', value);
+    if (!value.start_time) {
+      uni.showToast({
+        title: "请先去'收益统计'确定起始时间",
+        icon: "none",
+        duration: 3000 });
 
-      }
-    } catch (e) {
-      console.log("catch:", e);
     }
-    console.log("开始结束：", this.startTime, this.endTime);
+    this.start_time = value.start_time;
+    this.end_time = this.$Time.getTime();
+    console.log("开始结束：", this.start_time, this.end_time);
     this.__init();
   },
   onReachBottom: function onReachBottom() {
@@ -244,14 +247,25 @@ var _default =
                   order_status: 1, //订单状态  空为全部  1为已支付 2为申请退款  -1已退款
                   device_id: "", // 设备ID
                   merchant_id: "", //商户ID
-                  start_time: this.startTime, //开始日期 如：2019-07-17
-                  end_time: this.endTime, //结束日期 如：2020-02-17
+                  start_time: this.start_time, //开始日期 如：2019-07-17
+                  end_time: this.end_time, //结束日期 如：2020-02-17
                   group: this.init_group }).
                 then(function (res) {
-                  _this.out = res.count;
-                  _this.tabBars[0].list = res.count;
-                  _this.tabBars[1].list = res.count;
-                  _this.tabBars[2].list = res.count;
+                  if (_this.init_group == 'day') {
+                    _this.tabBars[0].list = res.count;
+                    _this.money = res.count.map(function (item) {
+                      return parseFloat(item.sum_money).toFixed(2);
+                    });
+                    console.log('aa:', _this.money);
+
+
+                  }
+                  if (_this.init_group == 'week') {
+                    _this.tabBars[1].list = res.count;
+                  }
+                  if (_this.init_group == 'month') {
+                    _this.tabBars[2].list = res.count;
+                  }
                   // 恢复加载状态
                   console.log('比较长度：', _this.out.length, _this.emit);
                   _this.loadtext = _this.out.length < _this.emit ? "没有更多了" : "上拉加载更多";

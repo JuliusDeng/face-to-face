@@ -1,0 +1,7 @@
+
+.tabactive{
+	border-bottom: 5rpx solid #F4CB2E;
+	color: #F4CB2E;
+	margin-bottom: -5rpx;
+}
+

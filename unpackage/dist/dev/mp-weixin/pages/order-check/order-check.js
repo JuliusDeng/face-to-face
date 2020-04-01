@@ -156,8 +156,8 @@ var _permission = _interopRequireDefault(__webpack_require__(/*! @/common/lib/pe
     },
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this2 = this;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
                 this.$H.post("/agent/", {
-                  user_id: "100003",
-                  token: "dXQyMDIwMDMyNjE2MjczNjY4NDExNzkx",
+                  user_id: uni.getStorageSync('uid'),
+                  token: uni.getStorageSync('utoken'),
                   opt: "device_statistics",
                   order_sn: this.ordersn, //始值
                   search_pay_time: this.paytime, //数量

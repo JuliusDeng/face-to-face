@@ -754,7 +754,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -2018,7 +2018,42 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 151:
+/***/ 16:
+/*!******************************************************************!*\
+  !*** C:/Users/tt/Desktop/maiwei/face-to-face/common/lib/time.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
+  getTime: function getTime() {
+    // 查看今天的信息须是终止时间设为今天时间+1
+    // 获取当前日期
+    var date = new Date();
+    // 获取当前月份
+    var nowMonth = date.getMonth() + 1;
+    // 获取当前是几号-->此处在我们项目中特殊：查看今天的信息须是终止时间设为今天时间+1
+    var strDate = date.getDate();
+    // 添加分隔符“-”
+    var seperator = "-";
+    // 对月份进行处理，1-9月在前面添加一个“0”
+    if (nowMonth >= 1 && nowMonth <= 9) {
+      nowMonth = "0" + nowMonth;
+    }
+    // 对号数进行处理，1-9号在前面添加一个“0”
+    if (strDate >= 0 && strDate <= 9) {
+      strDate = "0" + strDate;
+    }
+
+    // 最后拼接字符串，得到一个格式为(yyyy-MM-dd)的日期
+    var nowDate = date.getFullYear() + seperator + nowMonth + seperator + strDate;
+    return nowDate;
+  } };exports.default = _default;
+
+/***/ }),
+
+/***/ 171:
 /*!*******************************************************************************!*\
   !*** C:/Users/tt/Desktop/maiwei/face-to-face/components/tki-qrcode/qrcode.js ***!
   \*******************************************************************************/
@@ -3231,7 +3266,7 @@ QRCode;exports.default = _default;
 
 /***/ }),
 
-/***/ 159:
+/***/ 179:
 /*!*******************************************************************************!*\
   !*** C:/Users/tt/Desktop/maiwei/face-to-face/components/uni-calendar/util.js ***!
   \*******************************************************************************/
@@ -3239,7 +3274,7 @@ QRCode;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 160));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 180));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
 Calendar = /*#__PURE__*/function () {
   function Calendar()
@@ -3569,42 +3604,7 @@ Calendar;exports.default = _default;
 
 /***/ }),
 
-/***/ 16:
-/*!******************************************************************!*\
-  !*** C:/Users/tt/Desktop/maiwei/face-to-face/common/lib/time.js ***!
-  \******************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  getTime: function getTime() {
-    // 查看今天的信息须是终止时间设为今天时间+1
-    // 获取当前日期
-    var date = new Date();
-    // 获取当前月份
-    var nowMonth = date.getMonth() + 1;
-    // 获取当前是几号-->此处在我们项目中特殊：查看今天的信息须是终止时间设为今天时间+1
-    var strDate = date.getDate();
-    // 添加分隔符“-”
-    var seperator = "-";
-    // 对月份进行处理，1-9月在前面添加一个“0”
-    if (nowMonth >= 1 && nowMonth <= 9) {
-      nowMonth = "0" + nowMonth;
-    }
-    // 对号数进行处理，1-9号在前面添加一个“0”
-    if (strDate >= 0 && strDate <= 9) {
-      strDate = "0" + strDate;
-    }
-
-    // 最后拼接字符串，得到一个格式为(yyyy-MM-dd)的日期
-    var nowDate = date.getFullYear() + seperator + nowMonth + seperator + strDate;
-    return nowDate;
-  } };exports.default = _default;
-
-/***/ }),
-
-/***/ 160:
+/***/ 180:
 /*!***********************************************************************************!*\
   !*** C:/Users/tt/Desktop/maiwei/face-to-face/components/uni-calendar/calendar.js ***!
   \***********************************************************************************/
@@ -9693,7 +9693,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -9714,14 +9714,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -9797,7 +9797,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -11932,7 +11932,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/user": { "navigationBarTitleText": "个人中心2", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tki-qrcode": "/components/tki-qrcode/tki-qrcode" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tki-qrcode": "/components/tki-qrcode/tki-qrcode" } }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3", "usingComponents": { "uni-calendar": "/components/uni-calendar/uni-calendar" }, "usingAutoImportComponents": { "uni-calendar": "/components/uni-calendar/uni-calendar" } }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情5", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/shops/shops": { "navigationBarTitleText": "商户管理6", "onReachBottomDistance": 60, "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal/deal": { "navigationBarTitleText": "交易流水12(19)", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录18", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device-search/device-search": { "navigationBarTitleText": "设备列表（20）", "onReachBottomDistance": 90, "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn-search-merchant/earn-search-merchant": { "navigationBarTitleText": "商户搜索（21）", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn-search-device/earn-search-device": { "navigationBarTitleText": "设备搜索（22）", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1" }, "pages/user/user": { "navigationBarTitleText": "个人中心2" }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3" }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情5" }, "pages/shops/shops": { "navigationBarTitleText": "商户管理6", "onReachBottomDistance": 60 }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7" }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8" }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9" }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10" }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11" }, "pages/deal/deal": { "navigationBarTitleText": "交易流水12(19)" }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12" }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14" }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16" }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17" }, "pages/login/login": { "navigationBarTitleText": "登录18" }, "pages/device-search/device-search": { "navigationBarTitleText": "设备列表（20）", "onReachBottomDistance": 90 }, "pages/earn-search-merchant/earn-search-merchant": { "navigationBarTitleText": "商户搜索（21）" }, "pages/earn-search-device/earn-search-device": { "navigationBarTitleText": "设备搜索（22）" }, "pages/shops-device/shops-device": { "navigationBarTitleText": "商户下设备列表（23）" }, "pages/shops-deal/shops-deal": { "navigationBarTitleText": "商户下日月收益（24）" }, "pages/shops-translog/shops-translog": { "navigationBarTitleText": "商户下交易流水（25）" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

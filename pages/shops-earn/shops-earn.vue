@@ -31,15 +31,15 @@
 		</view>
 		<!-- 列表项 -->
 		<view class="position-absolute w-700 mx-25 mt-2">
-			<view class="bg-white shadow-nom rounded-12 d-flex j-sb a-center mb-2" style="height: 98rpx;">
-				<view class="d-flex a-center text-black font-32 ml-2" @click="this.$navigate('earn-search')">
+			<view class="bg-white shadow-nom rounded-12 d-flex j-sb a-center mb-2" style="height: 98rpx;" @click="toShopdevice">
+				<view class="d-flex a-center text-black font-32 ml-2">
 					<image src="../../static/icon/weibiaoti-3.png" style="width: 39rpx;height: 40rpx;"></image>
 					<view class="ml-2">设备列表</view>
 				</view>
 				<image class="mr-4" src="../../static/right/rignt.png" style="width: 11rpx;height: 20rpx;"></image>
 			</view>
-			<view class="bg-white shadow-nom rounded-12 d-flex j-sb a-center mb-2" style="height: 98rpx;">
-				<view class="d-flex a-center text-black font-32 ml-2" @click="this.$navigate('deal-order')">
+			<view class="bg-white shadow-nom rounded-12 d-flex j-sb a-center mb-2" style="height: 98rpx;" @click="$navigate('shops-deal')">
+				<view class="d-flex a-center text-black font-32 ml-2">
 					<image src="../../static/icon/weibiaoti-1.png" style="width: 39rpx;height: 40rpx;"></image>
 					<view class="ml-2">面对面交易流水</view>
 				</view>
@@ -64,9 +64,7 @@
 				moneybf: ""
 			}
 		},
-		onLoad(options) {
-			/* console.log(options);
-			const id = options.id */
+		onLoad() {
 			const value = uni.getStorageSync('merchant');
 			console.log('value--:', value);
 			this.img = value.logo_url
@@ -78,6 +76,11 @@
 			this.moneybf = value.yesterday.total_amount
 		},
 		methods: {
+			toShopdevice() {
+				uni.navigateTo({
+				    url: '/pages/shops-device/shops-device'
+				});
+			}
 			
 		}
 	}

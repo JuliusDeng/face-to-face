@@ -237,7 +237,7 @@ var _default =
     console.log('value', value);
     if (!value.start_time) {
       uni.showToast({
-        title: "请先去'收益统计'确定时间",
+        title: "请先去'收益统计'确定起始时间",
         icon: "none",
         duration: 3000 });
 

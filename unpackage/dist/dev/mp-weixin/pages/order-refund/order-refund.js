@@ -107,7 +107,7 @@ var render = function() {
       return this.$navigate("order-detail")
     }
 
-    _vm.e2 = this.__init
+    _vm.e2 = this.refund
   }
 }
 var recyclableRender = false
@@ -195,17 +195,13 @@ var _default =
   data: function data() {
     return {
       order: {},
-      ordersn: "",
-      value: "" };
+      ordersn: "" };
 
   },
   onLoad: function onLoad() {
     try {
-      this.value = uni.getStorageSync('remsg');
-      // const ordersn = uni.getStorageSync('ordersn');
-      /* console.log('value:', value);
-      console.log('ordersn:', ordersn); */
-      if (this.value) {
+      var value = uni.getStorageSync('remsg');
+      if (value) {
         this.order = this.value;
         this.ordersn = this.value.order_sn;
         // console.log('order:', this.order);
@@ -215,11 +211,11 @@ var _default =
     }
   },
   methods: {
-    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+    refund: function () {var _refund = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 // 调用退单接口
                 this.$H.post("/agent/", {
-                  user_id: "100003",
-                  token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
+                  user_id: uni.getStorageSync('uid'),
+                  token: uni.getStorageSync('utoken'),
                   opt: "order_refund",
                   order_sn: this.ordersn //始值
                 }).then(function (res) {
@@ -231,11 +227,10 @@ var _default =
                   }
                 }).catch(function (e) {
                   console.log("catch error!!", e);
-                });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}(),
+                });case 1:case "end":return _context.stop();}}}, _callee, this);}));function refund() {return _refund.apply(this, arguments);}return refund;}(),
 
-    refund: function refund() {
-      // this.ordersn = this.value.order_sn
-      this.__init();
+    toDetail: function toDetail() {
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

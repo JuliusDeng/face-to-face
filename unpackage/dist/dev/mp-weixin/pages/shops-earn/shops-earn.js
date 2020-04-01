@@ -98,15 +98,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  if (!_vm._isMounted) {
-    _vm.e0 = function($event) {
-      return this.$navigate("earn-search")
-    }
-
-    _vm.e1 = function($event) {
-      return this.$navigate("deal-order")
-    }
-  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -206,9 +197,7 @@ var _default =
       moneybf: "" };
 
   },
-  onLoad: function onLoad(options) {
-    /* console.log(options);
-                                    const id = options.id */
+  onLoad: function onLoad() {
     var value = uni.getStorageSync('merchant');
     console.log('value--:', value);
     this.img = value.logo_url;
@@ -219,7 +208,12 @@ var _default =
     this.order = value.today.total_people;
     this.moneybf = value.yesterday.total_amount;
   },
-  methods: {} };exports.default = _default;
+  methods: {
+    toShopdevice: function toShopdevice() {
+      uni.navigateTo({
+        url: '/pages/shops-device/shops-device' });
+
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
