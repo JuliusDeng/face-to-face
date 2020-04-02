@@ -4,9 +4,9 @@
 		<view class="bg-yellow position-relative" style="height: 200rpx;">
 			<view class="position-absolute d-flex" style="top: 30rpx;height: 138rpx;">
 				<!-- 头像 -->
-				<image :src="imgurl" style="width: 138rpx;height: 138rpx;" class="rounded-half ml-5 bg-blue"></image>
+				<image :src="imgurl" style="width: 138rpx;height: 138rpx;" class="rounded-half ml-5"></image>
 				<!-- 信息 -->
-				<view class="ml-4 d-flex flex-column border" style="width: 430rpx;height: 138rpx;">
+				<view class="ml-4 d-flex flex-column" style="width: 430rpx;height: 138rpx;">
 					<view class="d-flex a-center" style="height: 47rpx;">
 						<view class="font-36 font-w400" style="width: 210rpx;">{{relname}}</view>
 						<view class="d-flex j-center a-center font-30 font-w400 rounded-12" style="width: 128rpx;height: 40rpx;background:#F9E46C;">服务商</view>
@@ -112,7 +112,7 @@
 				school: "",
 				tel: "",
 				company: "",
-				
+				// 生二维码
 				size: 378,
 				onval: false, // val值变化时自动重新生成二维码
 				loadMake: true, // 组件加载完成后自动生成二维码
@@ -136,14 +136,17 @@
 					user_id: "183823",
 					token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",
 					app: "app"
-				}).then((data) => {
+				}).then((res) => {
 					// console.log(data);
-					this.imgurl = data.user_info.headimgurl
-					this.relname = data.user_info.realname
-					this.userID = data.user_info.user_id
-					this.nickname = data.user_info.nickname
-					this.sex = data.user_info.sex
-					this.school = data.user_info.school_id
+					uni.setStorageSync('userInfo', res)
+					var userInfo = uni.getStorageSync('userInfo')
+					console.log(userInfo);
+					this.imgurl = userInfo.user_info.headimgurl
+					this.relname = userInfo.user_info.realname
+					this.userID = userInfo.user_info.user_id
+					this.nickname = userInfo.user_info.nickname
+					this.sex = userInfo.user_info.sex
+					this.school = userInfo.user_info.school_id
 				}).catch((error) => {
 					console.log('--catch 错误:', error);
 				})

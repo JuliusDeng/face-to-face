@@ -120,15 +120,13 @@
 					opt: "home",
 				}).then((res) => {
 					console.log(res);
-					uni.setStorageSync('list', res)
-					// let data = data
+					uni.setStorageSync('list', res)    // ??
 					this.agentName = res.user_info.agent_info.agent_name
 					this.todayAmount = res.today.total_amount
 					this.todayPeople = res.today.total_people
 					this.yesAmount = res.yesterday.total_amount
 					this.companyNname = res.user_info.agent_info.company_info.company_name
 					this.companyTel = res.user_info.agent_info.company_info.company_tel
-					
 				}).catch((error) => {
 					console.log(error);
 				})

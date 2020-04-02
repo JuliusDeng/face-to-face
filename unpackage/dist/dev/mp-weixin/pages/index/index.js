@@ -262,15 +262,13 @@ var _default =
                   opt: "home" }).
                 then(function (res) {
                   console.log(res);
-                  uni.setStorageSync('list', res);
-                  // let data = data
+                  uni.setStorageSync('list', res); // ??
                   _this.agentName = res.user_info.agent_info.agent_name;
                   _this.todayAmount = res.today.total_amount;
                   _this.todayPeople = res.today.total_people;
                   _this.yesAmount = res.yesterday.total_amount;
                   _this.companyNname = res.user_info.agent_info.company_info.company_name;
                   _this.companyTel = res.user_info.agent_info.company_info.company_tel;
-
                 }).catch(function (error) {
                   console.log(error);
                 });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;
