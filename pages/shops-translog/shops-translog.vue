@@ -48,26 +48,26 @@
 				mer_id: "",
 				list: "",
 				start_time: "",
-				end_time: ""
+				end_time: "",
+				emit: ""
 			}
 		},
 		onLoad(option) {
 			console.log('option嗷嗷：', option);
 			this.start_time = option.time
+			// 转化出后一天的日期
+			var aftime = new Date(this.start_time)
+			var bftime = aftime.getTime() + 86400000
+			var outtime = new Date(bftime)
+			var Y = outtime.getFullYear() + '-';
+			var M = (outtime.getMonth()+1 < 10 ? '0'+(outtime.getMonth()+1) : outtime.getMonth()+1) + '-';
+			var D = outtime.getDate() + ' ';
+			this.end_time = ( Y + M + D )
+			console.log(this.end_time);
+			
+			// 获取设备ID
 			const res_mer = uni.getStorageSync('merchant');
 			this.mer_id =res_mer.merchant_id
-			// 从收益统计页 获取时间
-			const value = uni.getStorageSync('earn');
-			console.log('value', value);
-			if(!value.start_time) {
-				uni.showToast({
-					title: "请先去'收益统计'确定起始时间",
-					icon: "none",
-					duration: 3000
-				})
-			}
-			this.start_time = value.start_time
-			this.end_time = this.$Time.getTime()
 			this.__deal()
 		},
 		methods: {
@@ -77,7 +77,7 @@
 					token: uni.getStorageSync('utoken'),
 					opt: "order_list",
 					merchant_id: this.mer_id,
-					order_status: "1",
+					order_status: "",
 					start_time: this.start_time,
 					end_time: this.end_time,
 					slimit: 0,

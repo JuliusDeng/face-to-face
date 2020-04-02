@@ -133,9 +133,9 @@
 					user_id: uni.getStorageSync('uid'),
 					token: uni.getStorageSync('utoken'),
 					opt: "device_statistics",
-					order_sn: this.ordersn, //始值
-					search_pay_time: this.paytime, //数量
-					search_device_id: this.deviceid
+					order_sn: this.ordersn, // 订单号
+					search_pay_time: this.paytime, // 时间
+					search_device_id: this.deviceid // 设备号
 				}).then((res) => {
 					this.msg = res
 					try {

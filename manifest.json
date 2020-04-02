@@ -1,7 +1,7 @@
 {
-    "name" : "服务商APP",
+    "name" : "校园服务商",
     "appid" : "__UNI__D3955E6",
-    "description" : "这里是描述信息",
+    "description" : "应用的描述信息，这个神奇的APP啊",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
@@ -12,7 +12,7 @@
         "compilerVersion" : 3,
         "splashscreen" : {
             "alwaysShowBeforeRender" : true,
-            "waiting" : true,
+            "waiting" : false,
             "autoclose" : true,
             "delay" : 0
         },
@@ -48,9 +48,15 @@
                 ]
             },
             /* ios打包配置 */
-            "ios" : {},
+            "ios" : {
+                "privacyDescription" : {
+                    "NSCameraUsageDescription" : "boy 会打开你的相机哦"
+                }
+            },
             /* SDK配置 */
-            "sdkConfigs" : {},
+            "sdkConfigs" : {
+                "ad" : {}
+            },
             "icons" : {
                 "android" : {
                     "hdpi" : "unpackage/res/icons/72x72.png",
@@ -86,9 +92,17 @@
             "splashscreen" : {
                 "ios" : {
                     "iphone" : {
-                        "retina55" : "C:/Users/tt/Desktop/12422208.png",
-                        "retina47" : "C:/Users/tt/Desktop/750.png"
+                        "retina55" : "C:/Users/tt/Desktop/maiwei/ios/04.png",
+                        "retina47" : "C:/Users/tt/Desktop/maiwei/ios/05.png",
+                        "portrait-896h@3x" : "C:/Users/tt/Desktop/maiwei/ios/01.png",
+                        "portrait-896h@2x" : "C:/Users/tt/Desktop/maiwei/ios/02.png",
+                        "iphonex" : "C:/Users/tt/Desktop/maiwei/ios/03.png"
                     }
+                },
+                "android" : {
+                    "hdpi" : "C:/Users/tt/Desktop/maiwei/android/00.png",
+                    "xhdpi" : "C:/Users/tt/Desktop/maiwei/android/01.png",
+                    "xxhdpi" : "C:/Users/tt/Desktop/maiwei/android/03.png"
                 }
             }
         }

@@ -159,10 +159,10 @@ var _permission = _interopRequireDefault(__webpack_require__(/*! @/common/lib/pe
                   user_id: uni.getStorageSync('uid'),
                   token: uni.getStorageSync('utoken'),
                   opt: "device_statistics",
-                  order_sn: this.ordersn, //始值
-                  search_pay_time: this.paytime, //数量
-                  search_device_id: this.deviceid }).
-                then(function (res) {
+                  order_sn: this.ordersn, // 订单号
+                  search_pay_time: this.paytime, // 时间
+                  search_device_id: this.deviceid // 设备号
+                }).then(function (res) {
                   _this2.msg = res;
                   try {
                     uni.setStorageSync('remsg', res.arr[0]);
