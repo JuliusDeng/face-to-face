@@ -51,8 +51,6 @@ var component = Object(_D_tools_HBuilderX_plugins_uniapp_cli_node_modules_dcloud
   renderjs
 )
 
-/* hot reload */
-if (false) { var api; }
 component.options.__file = "C:/Users/tt/Desktop/maiwei/face-to-face/pages/login/login.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
@@ -171,22 +169,33 @@ var _default =
 {
   data: function data() {
     return {
-      phone: "",
-      captcha: "",
-      rules: { // 正则验证
-        phone: [{
+      focusClass: {
+        username: false,
+        password: false },
+
+      username: "",
+      password: "",
+      // 正则验证
+      rules: {
+        username: [
+        {
           rule: /^[1][3-9]\d{9}$/,
           msg: "请输入正确的11位手机号" }],
 
-        captcha: [{
+
+        password: [
+        {
           rule: /^\d{4}$/,
           msg: "请输入您的验证码" }] },
 
 
+
       safety: {
-        time: 10,
+        time: 60,
         state: false,
         interval: '' } };
+
+
 
 
   },
@@ -194,65 +203,100 @@ var _default =
   methods: {
     // 点击发送验证码
     getCode: function getCode() {var _this = this;
-      if (this.rules.phone[0].rule.test(this.phone)) {
+      if (this.rules.username[0].rule.test(this.username)) {
         uni.showToast({
-          title: "正在发送验证码",
-          icon: "loading",
+          title: "发送成功",
+          icon: "success",
           success: function success() {
             // 成功后显示倒计时60s后可在点击
             _this.safety.state = true;
             // 倒计时
             _this.safety.interval = setInterval(function () {
               if (_this.safety.time-- <= 0) {
-                _this.safety.time = 10;
+                _this.safety.time = 60;
                 _this.safety.state = false;
                 clearInterval(_this.safety.interval);
               }
             }, 1000);
-            uni.showToast({
-              title: "发送成功",
-              icon: "success" });
-
-            _this.$H.post("/agent/", {
-              mobile: _this.phone,
-              opt: verify_code }).
+            _this.$H.post('/agent/', {
+              mobile: _this.username,
+              opt: 'verify_code' }).
             then(function (res) {
 
-            }).catch(function (e) {
-              console.log("catch error!!", e);
+            }).catch(function (err) {
+              console.log('!!catch err:', err);
             });
+
           } });
 
       } else {
         uni.showToast({
-          title: "手机号不正确",
+          title: "请输入正确的手机号",
           icon: "none" });
 
       }
     },
-    // 登录
-    login: function login() {
+    // 点击登录
+    focus: function focus(key) {
+      this.focusClass[key] = true;
+    },
+    blur: function blur(key) {
+      this.focusClass[key] = false;
+    },
+    // 表单验证
+    validate: function validate(key) {var _this2 = this;
+      var check = true;
+      this.rules[key].forEach(function (v) {
+        // 验证失败
+        if (!v.rule.test(_this2[key])) {
+          console.log('key不通：', v);
+          uni.showToast({
+            title: v.msg,
+            icon: 'none' });
+
+          check = false;
+          return false;
+        } else {
+          console.log('key通过：', v);
+        }
+      });
+      return check;
+    },
+    // 登录 提交表单
+    submit: function submit() {
+      if (!this.validate('username')) return;
+      if (!this.validate('password')) return;
+
+      uni.showLoading({
+        title: '登录中...',
+        mask: true });
+
+      // 对接后台 实现登录
       this.$H.post("/agent/", {
-        mobile: this.phone,
-        opt: verify_login,
-        verify_code: this.captcha }).
+        mobile: this.username,
+        opt: 'verify_login',
+        verify_code: this.password }).
       then(function (res) {
         if (res) {
+          uni.hideLoading();
           try {
-            uni.setStorageSync('user_id', res.user_id);
-            uni.setStorageSync('token', res.token);
+            // uni.setStorageSync('uid', '100003');
+            // uni.setStorageSync('utoken', 'dXQyMDIwMDMzMDE1MTIyODc2NDYzOTA1');
+            uni.setStorageSync('uid', res.user_id);
+            uni.setStorageSync('utoken', res.openid);
             uni.navigateTo({
               url: "/pages/index/index" });
 
           } catch (e) {
-            console.log('error catch:', e);
+            console.log(e);
           }
         }
-        console.log('res:', res);
-      }).catch(function (e) {
-        console.log("catch error!!", e);
+      }).catch(function (err) {
+        console.log(err);
       });
-      this.__init();
+
+
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

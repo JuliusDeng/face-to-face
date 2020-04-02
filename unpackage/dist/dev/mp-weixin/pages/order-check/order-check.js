@@ -127,7 +127,7 @@ var _permission = _interopRequireDefault(__webpack_require__(/*! @/common/lib/pe
                       } });
 
 
-                  } });case 1:case "end":return _context.stop();}}}, _callee, this);}));function scan() {return _scan.apply(this, arguments);}return scan;}(),
+                  } });case 1:case "end":return _context.stop();}}}, _callee);}));function scan() {return _scan.apply(this, arguments);}return scan;}(),
 
 
 
@@ -240,8 +240,6 @@ var component = Object(_D_tools_HBuilderX_plugins_uniapp_cli_node_modules_dcloud
   renderjs
 )
 
-/* hot reload */
-if (false) { var api; }
 component.options.__file = "C:/Users/tt/Desktop/maiwei/face-to-face/pages/order-check/order-check.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
