@@ -101,11 +101,7 @@ var render = function() {
       return this.$navigate("device-order")
     }
 
-    _vm.e1 = function($event) {
-      return this.$navigate("order-detail")
-    }
-
-    _vm.e2 = this.refund
+    _vm.e1 = this.refund
   }
 }
 var recyclableRender = false

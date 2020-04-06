@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "设备搜索（22）",
+  "onReachBottomDistance": 500,
   "usingComponents": {}
 }

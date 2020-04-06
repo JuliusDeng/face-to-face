@@ -62,7 +62,7 @@
 				mer_name: ''
 			}
 		},
-		onLoad(option) {
+		onLoad() {
 			this.order = uni.getStorageSync('DeviceOrder');
 			this.mer_name = option.mer_name
 		}	

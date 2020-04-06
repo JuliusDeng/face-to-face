@@ -94,8 +94,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components = {
-  "uni-calendar": () =>
-    Promise.all(/*! import() | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then(__webpack_require__.bind(null, /*! @/components/uni-calendar/uni-calendar.vue */ 174))
+  "uni-calendar": function() {
+    return Promise.all(/*! import() | components/uni-calendar/uni-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-calendar/uni-calendar")]).then(__webpack_require__.bind(null, /*! @/components/uni-calendar/uni-calendar.vue */ 174))
+  }
 }
 var render = function() {
   var _vm = this
@@ -369,11 +370,17 @@ __webpack_require__.r(__webpack_exports__);
                   end_time: this.end_time, //结束日期 如：2020-02-17
                   group: "day" }).
                 then(function (res) {
-                  console.log('res嗷嗷：', res);
-                  // this.setlocation()
+                  uni.hideLoading();
                   console.log('打印改变后的值：', '->' + _this.status, '->' + _this.dev_name, '->' + _this.mer_name);
                   _this.all_money = 0;
                   _this.amount = 0;
+                  if (res.count.length < 1) {
+                    uni.showToast({
+                      title: "暂无数据",
+                      icon: "none",
+                      duration: 2500 });
+
+                  }
                   for (var i = 0; i < res.count.length; i++) {
                     console.log('for里面：', _this.all_money + '+' + res.count[i].sum_money);
                     _this.all_money += parseFloat(res.count[i].sum_money);

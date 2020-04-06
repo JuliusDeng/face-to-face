@@ -1,5 +1,5 @@
 {
   "navigationBarTitleText": "设备列表（20）",
-  "onReachBottomDistance": 90,
+  "onReachBottomDistance": 500,
   "usingComponents": {}
 }

@@ -247,7 +247,7 @@ var CONTEXT_API_RE = /^create|Manager$/;
 
 var ASYNC_API = ['createBLEConnection'];
 
-var CALLBACK_API_RE = /^on/;
+var CALLBACK_API_RE = /^on|^off/;
 
 function isContextApi(name) {
   return CONTEXT_API_RE.test(name);
@@ -2030,24 +2030,31 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 16:
-/*!******************************************************************!*\
-  !*** C:/Users/tt/Desktop/maiwei/face-to-face/common/lib/time.js ***!
-  \******************************************************************/
+/*!*********************************************************************!*\
+  !*** C:/Users/tt/Desktop/maiwei/face-to-face/common/lib/timeout.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = {
-  getTime: function getTime() {
-    // 查看今天的信息须是终止时间设为今天时间+1
+
+  year: function year() {
+    // 获取当前年初2020-01-01
+    var date = new Date();
+    var year = date.getFullYear() + '-01-01';
+    return year;
+  },
+  today: function today() {//得到一个格式为(yyyy-MM-dd)的日期
     // 获取当前日期
     var date = new Date();
     // 获取当前月份
     var nowMonth = date.getMonth() + 1;
-    // 获取当前是几号-->此处在我们项目中特殊：查看今天的信息须是终止时间设为今天时间+1
+    // 获取当前是几号
     var strDate = date.getDate();
     // 添加分隔符“-”
     var seperator = "-";
+
     // 对月份进行处理，1-9月在前面添加一个“0”
     if (nowMonth >= 1 && nowMonth <= 9) {
       nowMonth = "0" + nowMonth;
@@ -2060,6 +2067,37 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
     // 最后拼接字符串，得到一个格式为(yyyy-MM-dd)的日期
     var nowDate = date.getFullYear() + seperator + nowMonth + seperator + strDate;
     return nowDate;
+  },
+  tomorrow: function tomorrow() {
+    var time = new Date(this.today());
+    var time2 = time.getTime(); // 得到今天的时间戳
+    // console.log(time2);
+    var time3 = time2 - 86400000; // 得到明天的时间戳
+    // 将明天的时间戳转成时间
+    var date = new Date(time3);
+    // 年
+    var Y = date.getFullYear() + '-';
+    // 月
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    // 日
+    var D = date.getDate();
+    var time4 = Y + M + D;
+    return time4;
+  },
+  yesterday: function yesterday() {
+    var time = new Date(this.today());
+    var time2 = time.getTime(); // 得到今天的时间戳
+    var time3 = time2 + 86400000; // 得到明天的时间戳
+    // 将明天的时间戳转成时间
+    var date = new Date(time3);
+    // 年
+    var Y = date.getFullYear() + '-';
+    // 月
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    // 日
+    var D = date.getDate();
+    var time4 = Y + M + D;
+    return time4;
   } };exports.default = _default;
 
 /***/ }),
@@ -11931,7 +11969,7 @@ main();
 /*! exports provided: _from, _id, _inBundle, _integrity, _location, _phantomChildren, _requested, _requiredBy, _resolved, _shasum, _spec, _where, author, bugs, bundleDependencies, deprecated, description, devDependencies, files, gitHead, homepage, license, main, name, repository, scripts, version, default */
 /***/ (function(module) {
 
-module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26820200330001","_inBundle":false,"_integrity":"sha512-Qzo5LcBl+abS7DvpyTXBYW2VVYHVcHBewduQecjn/gbzAn9e90aOVn02/2VZ82wV6TBiDXbGyloXojOY3InzWA==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26820200330001.tgz","_shasum":"880c5c5a4920bb35e9cf691eeb7427a7bf67ffd7","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"57ef7f7b5b6164a74ec425ff12f9fe0a1147841a","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26820200330001"};
+module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26920200402001","_inBundle":false,"_integrity":"sha512-Mdhd/IRuUMHWPj3TtWrBb0kghRBA0YiO2L2THMFvhCTfQDSoSq1vwOdAx5n/8fIORAvG0uVQoYl73xeVFZML5A==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26920200402001.tgz","_shasum":"5f66f5dc252ac00c6064857dee8251ee51aa2391","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"bfdbb7b3000599679ef8cb29a969e6bd447b00c7","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26920200402001"};
 
 /***/ }),
 
@@ -11943,7 +11981,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1" }, "pages/user/user": { "navigationBarTitleText": "个人中心2" }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3" }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情5" }, "pages/shops/shops": { "navigationBarTitleText": "商户管理6", "onReachBottomDistance": 60 }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7" }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8" }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9" }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10" }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11" }, "pages/deal/deal": { "navigationBarTitleText": "交易流水12(19)" }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12" }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14" }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16" }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17" }, "pages/login/login": { "navigationBarTitleText": "登录18" }, "pages/device-search/device-search": { "navigationBarTitleText": "设备列表（20）", "onReachBottomDistance": 90 }, "pages/earn-search-merchant/earn-search-merchant": { "navigationBarTitleText": "商户搜索（21）" }, "pages/earn-search-device/earn-search-device": { "navigationBarTitleText": "设备搜索（22）" }, "pages/shops-device/shops-device": { "navigationBarTitleText": "商户下设备列表（23）" }, "pages/shops-deal/shops-deal": { "navigationBarTitleText": "商户下日月收益（24）" }, "pages/shops-translog/shops-translog": { "navigationBarTitleText": "商户下交易流水（25）" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1" }, "pages/user/user": { "navigationBarTitleText": "个人中心2" }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3" }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情5" }, "pages/shops/shops": { "navigationBarTitleText": "商户管理6", "onReachBottomDistance": 60 }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7" }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8" }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9" }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10", "onReachBottomDistance": 500 }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11" }, "pages/deal/deal": { "navigationBarTitleText": "交易流水12(19)" }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12" }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14" }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16" }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17" }, "pages/login/login": { "navigationBarTitleText": "登录18" }, "pages/device-search/device-search": { "navigationBarTitleText": "设备列表（20）", "onReachBottomDistance": 500 }, "pages/earn-search-merchant/earn-search-merchant": { "navigationBarTitleText": "商户搜索（21）", "onReachBottomDistance": 500 }, "pages/earn-search-device/earn-search-device": { "navigationBarTitleText": "设备搜索（22）", "onReachBottomDistance": 500 }, "pages/shops-device/shops-device": { "navigationBarTitleText": "商户下设备列表（23）", "onReachBottomDistance": 500 }, "pages/shops-deal/shops-deal": { "navigationBarTitleText": "商户下日月收益（24）" }, "pages/shops-translog/shops-translog": { "navigationBarTitleText": "商户下交易流水（25）" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

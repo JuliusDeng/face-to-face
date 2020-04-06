@@ -171,26 +171,30 @@ var _default =
   data: function data() {
     return {
       list: [],
-      loadtext: "上拉加载更多",
-      emit: 10,
+      // loadtext: "上拉加载更多",
+      emit: '',
       dev_id: "" };
 
   },
   onLoad: function onLoad() {
-    console.log('this.list:', this.list.length);
-    this.__init();
-    console.log('this.list:', this.list.length);
-  },
-  onReachBottom: function onReachBottom() {
-    if (this.emit > this.list.length) {
-      console.log('不会再上拉了哦');
-      return;
+    if (this.list.length < 1) {
+      uni.showLoading({
+        title: '加载中...',
+        mask: true });
+
     }
-    this.loadtext = "加载中...";
-    this.emit += 10;
-    console.log("触发上拉加载", this.emit);
     this.__init();
   },
+  /* onReachBottom() {
+     	if(this.emit > this.list.length) {
+     		console.log('不会再上拉了哦');
+     		return
+     	}
+     	this.loadtext = "加载中..."
+     	this.emit += 10 
+     	console.log("触发上拉加载", this.emit);
+     	this.__init()
+     }, */
   methods: {
     select: function select(item) {
       try {
@@ -212,14 +216,22 @@ var _default =
                   token: uni.getStorageSync('utoken'),
                   opt: "device_list",
                   slimit: 0,
-                  elimit: this.emit,
+                  elimit: '',
                   device_id: this.dev_id }).
                 then(function (data) {
                   _this.list = data.arr;
-                  console.log('fas:', _this.list.length);
-                  console.log('this.emit.length:', _this.emit);
+                  uni.hideLoading();
+                  if (_this.list.length < 1) {
+                    uni.showToast({
+                      title: "暂无数据",
+                      icon: "none",
+                      duration: 2500 });
+
+                  }
+                  // console.log('fas:', this.list.length);
+                  // console.log('this.emit.length:', this.emit);
                   // 恢复加载状态
-                  _this.loadtext = _this.list.length < _this.emit ? "没有更多了" : "上拉加载更多";
+                  // this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
                 }).catch(function () {
                   console.log("catch error");
                 });case 2:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;

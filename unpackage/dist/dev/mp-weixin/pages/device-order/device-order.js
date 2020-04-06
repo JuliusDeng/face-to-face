@@ -193,7 +193,7 @@ var _default =
       mer_name: '' };
 
   },
-  onLoad: function onLoad(option) {
+  onLoad: function onLoad() {
     this.order = uni.getStorageSync('DeviceOrder');
     this.mer_name = option.mer_name;
   } };exports.default = _default;

@@ -283,7 +283,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(5, "sc"),
                 staticStyle: { width: "10rpx", height: "10rpx" },
-                attrs: { src: "../../static/right/mmin.png", _i: 5 }
+                attrs: { src: _vm._$g(5, "a-src"), _i: 5 }
               })
             ],
             1
@@ -388,7 +388,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "39rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti-11.png", _i: 19 }
+                    attrs: { src: _vm._$g(19, "a-src"), _i: 19 }
                   }),
                   _c(
                     "v-uni-view",
@@ -401,7 +401,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(21, "sc"),
                 staticStyle: { width: "11rpx", height: "20rpx" },
-                attrs: { src: "../../static/right/rignt.png", _i: 21 }
+                attrs: { src: _vm._$g(21, "a-src"), _i: 21 }
               })
             ],
             1
@@ -425,7 +425,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "39rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti-.png", _i: 24 }
+                    attrs: { src: _vm._$g(24, "a-src"), _i: 24 }
                   }),
                   _c(
                     "v-uni-view",
@@ -438,7 +438,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(26, "sc"),
                 staticStyle: { width: "11rpx", height: "20rpx" },
-                attrs: { src: "../../static/right/rignt.png", _i: 26 }
+                attrs: { src: _vm._$g(26, "a-src"), _i: 26 }
               })
             ],
             1
@@ -462,7 +462,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "39rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti-2.png", _i: 29 }
+                    attrs: { src: _vm._$g(29, "a-src"), _i: 29 }
                   }),
                   _c(
                     "v-uni-view",
@@ -475,7 +475,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(31, "sc"),
                 staticStyle: { width: "11rpx", height: "20rpx" },
-                attrs: { src: "../../static/right/rignt.png", _i: 31 }
+                attrs: { src: _vm._$g(31, "a-src"), _i: 31 }
               })
             ],
             1
@@ -499,7 +499,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "39rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti-3.png", _i: 34 }
+                    attrs: { src: _vm._$g(34, "a-src"), _i: 34 }
                   }),
                   _c(
                     "v-uni-view",
@@ -512,7 +512,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(36, "sc"),
                 staticStyle: { width: "11rpx", height: "20rpx" },
-                attrs: { src: "../../static/right/rignt.png", _i: 36 }
+                attrs: { src: _vm._$g(36, "a-src"), _i: 36 }
               })
             ],
             1
@@ -536,7 +536,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "39rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti-1.png", _i: 39 }
+                    attrs: { src: _vm._$g(39, "a-src"), _i: 39 }
                   }),
                   _c(
                     "v-uni-view",
@@ -549,7 +549,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(41, "sc"),
                 staticStyle: { width: "11rpx", height: "20rpx" },
-                attrs: { src: "../../static/right/rignt.png", _i: 41 }
+                attrs: { src: _vm._$g(41, "a-src"), _i: 41 }
               })
             ],
             1
@@ -573,7 +573,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "39rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti-12.png", _i: 44 }
+                    attrs: { src: _vm._$g(44, "a-src"), _i: 44 }
                   }),
                   _c(
                     "v-uni-view",
@@ -586,7 +586,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(46, "sc"),
                 staticStyle: { width: "11rpx", height: "20rpx" },
-                attrs: { src: "../../static/right/rignt.png", _i: 46 }
+                attrs: { src: _vm._$g(46, "a-src"), _i: 46 }
               })
             ],
             1
@@ -610,7 +610,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "39rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti-12.png", _i: 49 }
+                    attrs: { src: _vm._$g(49, "a-src"), _i: 49 }
                   }),
                   _c(
                     "v-uni-view",
@@ -623,7 +623,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(51, "sc"),
                 staticStyle: { width: "11rpx", height: "20rpx" },
-                attrs: { src: "../../static/right/rignt.png", _i: 51 }
+                attrs: { src: _vm._$g(51, "a-src"), _i: 51 }
               })
             ],
             1
@@ -989,7 +989,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "40rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/qrcode.png", _i: 12 }
+                    attrs: { src: _vm._$g(12, "a-src"), _i: 12 }
                   })
                 ],
                 1
@@ -1086,10 +1086,7 @@ var render = function() {
                     [
                       _c("v-uni-image", {
                         staticStyle: { width: "39rpx", height: "40rpx" },
-                        attrs: {
-                          src: "../../static/icon/weibiaoti-2.png",
-                          _i: 25
-                        }
+                        attrs: { src: _vm._$g(25, "a-src"), _i: 25 }
                       }),
                       _c(
                         "v-uni-view",
@@ -1110,7 +1107,7 @@ var render = function() {
                       ),
                       _c("v-uni-image", {
                         staticStyle: { width: "11rpx", height: "20rpx" },
-                        attrs: { src: "../../static/right/rignt.png", _i: 29 }
+                        attrs: { src: _vm._$g(29, "a-src"), _i: 29 }
                       })
                     ],
                     1
@@ -1136,10 +1133,7 @@ var render = function() {
                     [
                       _c("v-uni-image", {
                         staticStyle: { width: "39rpx", height: "40rpx" },
-                        attrs: {
-                          src: "../../static/icon/weibiaoti-4.png",
-                          _i: 32
-                        }
+                        attrs: { src: _vm._$g(32, "a-src"), _i: 32 }
                       }),
                       _c(
                         "v-uni-view",
@@ -1160,7 +1154,7 @@ var render = function() {
                       ),
                       _c("v-uni-image", {
                         staticStyle: { width: "11rpx", height: "20rpx" },
-                        attrs: { src: "../../static/right/rignt.png", _i: 36 }
+                        attrs: { src: _vm._$g(36, "a-src"), _i: 36 }
                       })
                     ],
                     1
@@ -1186,10 +1180,7 @@ var render = function() {
                     [
                       _c("v-uni-image", {
                         staticStyle: { width: "39rpx", height: "40rpx" },
-                        attrs: {
-                          src: "../../static/icon/weibiaoti-9.png",
-                          _i: 39
-                        }
+                        attrs: { src: _vm._$g(39, "a-src"), _i: 39 }
                       }),
                       _c(
                         "v-uni-view",
@@ -1210,7 +1201,7 @@ var render = function() {
                       ),
                       _c("v-uni-image", {
                         staticStyle: { width: "11rpx", height: "20rpx" },
-                        attrs: { src: "../../static/right/rignt.png", _i: 43 }
+                        attrs: { src: _vm._$g(43, "a-src"), _i: 43 }
                       })
                     ],
                     1
@@ -1243,7 +1234,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "39rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti-5.png", _i: 46 }
+                    attrs: { src: _vm._$g(46, "a-src"), _i: 46 }
                   }),
                   _c(
                     "v-uni-view",
@@ -2509,7 +2500,7 @@ var render = function() {
                       ),
                       _c("v-uni-image", {
                         staticStyle: { width: "10rpx", height: "8rpx" },
-                        attrs: { src: "../../static/right/bottom.png", _i: 11 }
+                        attrs: { src: _vm._$g(11, "a-src"), _i: 11 }
                       })
                     ],
                     1
@@ -2563,7 +2554,7 @@ var render = function() {
                           ),
                       _c("v-uni-image", {
                         staticStyle: { width: "10rpx", height: "8rpx" },
-                        attrs: { src: "../../static/right/bottom.png", _i: 17 }
+                        attrs: { src: _vm._$g(17, "a-src"), _i: 17 }
                       })
                     ],
                     1
@@ -2603,7 +2594,7 @@ var render = function() {
                       ),
                       _c("v-uni-image", {
                         staticStyle: { width: "10rpx", height: "8rpx" },
-                        attrs: { src: "../../static/right/bottom.png", _i: 22 }
+                        attrs: { src: _vm._$g(22, "a-src"), _i: 22 }
                       })
                     ],
                     1
@@ -2645,7 +2636,7 @@ var render = function() {
                     [
                       _c("v-uni-image", {
                         staticStyle: { width: "42rpx", height: "42rpx" },
-                        attrs: { src: "../../static/icon/calendar.png", _i: 26 }
+                        attrs: { src: _vm._$g(26, "a-src"), _i: 26 }
                       })
                     ],
                     1
@@ -2704,7 +2695,7 @@ var render = function() {
                     [
                       _c("v-uni-image", {
                         staticStyle: { width: "42rpx", height: "42rpx" },
-                        attrs: { src: "../../static/icon/calendar.png", _i: 32 }
+                        attrs: { src: _vm._$g(32, "a-src"), _i: 32 }
                       })
                     ],
                     1
@@ -3891,7 +3882,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "39rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti-3.png", _i: 21 }
+                    attrs: { src: _vm._$g(21, "a-src"), _i: 21 }
                   }),
                   _c(
                     "v-uni-view",
@@ -3904,7 +3895,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(23, "sc"),
                 staticStyle: { width: "11rpx", height: "20rpx" },
-                attrs: { src: "../../static/right/rignt.png", _i: 23 }
+                attrs: { src: _vm._$g(23, "a-src"), _i: 23 }
               })
             ],
             1
@@ -3928,7 +3919,7 @@ var render = function() {
                 [
                   _c("v-uni-image", {
                     staticStyle: { width: "39rpx", height: "40rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti-1.png", _i: 26 }
+                    attrs: { src: _vm._$g(26, "a-src"), _i: 26 }
                   }),
                   _c(
                     "v-uni-view",
@@ -3941,7 +3932,7 @@ var render = function() {
               _c("v-uni-image", {
                 staticClass: _vm._$g(28, "sc"),
                 staticStyle: { width: "11rpx", height: "20rpx" },
-                attrs: { src: "../../static/right/rignt.png", _i: 28 }
+                attrs: { src: _vm._$g(28, "a-src"), _i: 28 }
               })
             ],
             1
@@ -4159,49 +4150,22 @@ var render = function() {
               expression: "_$g(8,'v-show')"
             }
           ],
-          staticClass: _vm._$g(8, "sc"),
           attrs: { _i: 8 }
-        },
-        [
-          _c("v-uni-image", {
-            staticClass: _vm._$g(9, "sc"),
-            staticStyle: { height: "240upx" },
-            attrs: {
-              src: "https://image.weilanwl.com/gif/loading-white.gif",
-              mode: "aspectFit",
-              _i: 9
-            }
-          })
-        ],
-        1
-      ),
-      _c(
-        "v-uni-view",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm._$g(10, "v-show"),
-              expression: "_$g(10,'v-show')"
-            }
-          ],
-          attrs: { _i: 10 }
         },
         [
           _c(
             "v-uni-text",
-            { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
-            [_vm._v("共有" + _vm._$g(11, "t0-0") + "户商家")]
+            { staticClass: _vm._$g(9, "sc"), attrs: { _i: 9 } },
+            [_vm._v("共有" + _vm._$g(9, "t0-0") + "户商家")]
           ),
-          _vm._l(_vm._$g(12, "f"), function(item, index, $20, $30) {
+          _vm._l(_vm._$g(10, "f"), function(item, index, $20, $30) {
             return _c(
               "v-uni-view",
               {
                 key: item,
-                staticClass: _vm._$g("12-" + $30, "sc"),
+                staticClass: _vm._$g("10-" + $30, "sc"),
                 staticStyle: { height: "180rpx" },
-                attrs: { _i: "12-" + $30 },
+                attrs: { _i: "10-" + $30 },
                 on: {
                   click: function($event) {
                     return _vm.$handleViewEvent($event)
@@ -4210,25 +4174,25 @@ var render = function() {
               },
               [
                 _c("v-uni-image", {
-                  staticClass: _vm._$g("13-" + $30, "sc"),
+                  staticClass: _vm._$g("11-" + $30, "sc"),
                   staticStyle: { width: "120rpx", height: "120rpx" },
-                  attrs: { src: _vm._$g("13-" + $30, "a-src"), _i: "13-" + $30 }
+                  attrs: { src: _vm._$g("11-" + $30, "a-src"), _i: "11-" + $30 }
                 }),
                 _c(
                   "v-uni-view",
                   {
-                    staticClass: _vm._$g("14-" + $30, "sc"),
-                    attrs: { _i: "14-" + $30 }
+                    staticClass: _vm._$g("12-" + $30, "sc"),
+                    attrs: { _i: "12-" + $30 }
                   },
                   [
+                    _c("v-uni-text", { attrs: { _i: "13-" + $30 } }, [
+                      _vm._v(_vm._$g("13-" + $30, "t0-0"))
+                    ]),
+                    _c("v-uni-text", { attrs: { _i: "14-" + $30 } }, [
+                      _vm._v("电话：" + _vm._$g("14-" + $30, "t0-0"))
+                    ]),
                     _c("v-uni-text", { attrs: { _i: "15-" + $30 } }, [
-                      _vm._v(_vm._$g("15-" + $30, "t0-0"))
-                    ]),
-                    _c("v-uni-text", { attrs: { _i: "16-" + $30 } }, [
-                      _vm._v("电话：" + _vm._$g("16-" + $30, "t0-0"))
-                    ]),
-                    _c("v-uni-text", { attrs: { _i: "17-" + $30 } }, [
-                      _vm._v("地址：" + _vm._$g("17-" + $30, "t0-0"))
+                      _vm._v("地址：" + _vm._$g("15-" + $30, "t0-0"))
                     ])
                   ],
                   1
@@ -4239,8 +4203,8 @@ var render = function() {
           }),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(18, "sc"), attrs: { _i: 18 } },
-            [_vm._v(_vm._$g(18, "t0-0"))]
+            { staticClass: _vm._$g(16, "sc"), attrs: { _i: 16 } },
+            [_vm._v(_vm._$g(16, "t0-0"))]
           )
         ],
         2
@@ -4415,9 +4379,7 @@ var render = function() {
               ],
               1
             ),
-            _c("v-uni-view", { attrs: { _i: "8-" + $30 } }, [
-              _vm._v("\n\t\t\t设置权限\n\t\t")
-            ])
+            _c("v-uni-view", { attrs: { _i: "8-" + $30 } }, [_vm._v("' '")])
           ],
           1
         )
@@ -4574,30 +4536,25 @@ var render = function() {
               ])
             ],
             1
-          ),
-          _c("v-uni-image", {
-            staticClass: _vm._$g(6, "sc"),
-            staticStyle: { width: "393rpx", height: "393rpx" },
-            attrs: { src: "../../static/logo.png", _i: 6 }
-          })
+          )
         ],
         1
       ),
       _c(
         "v-uni-view",
         {
-          staticClass: _vm._$g(7, "sc"),
+          staticClass: _vm._$g(6, "sc"),
           staticStyle: { height: "80rpx" },
-          attrs: { _i: 7 }
+          attrs: { _i: 6 }
         },
         [
           _c("v-uni-input", {
-            staticClass: _vm._$g(8, "sc"),
+            staticClass: _vm._$g(7, "sc"),
             attrs: {
               type: "text",
               placeholder: "输入手机号添加",
               maxlength: "11",
-              _i: 8
+              _i: 7
             }
           })
         ],
@@ -4608,9 +4565,9 @@ var render = function() {
           "v-uni-view",
           {
             key: i,
-            staticClass: _vm._$g("9-" + $30, "sc"),
+            staticClass: _vm._$g("8-" + $30, "sc"),
             staticStyle: { height: "100rpx" },
-            attrs: { _i: "9-" + $30 },
+            attrs: { _i: "8-" + $30 },
             on: {
               click: function($event) {
                 return _vm.$handleViewEvent($event)
@@ -4618,21 +4575,17 @@ var render = function() {
             }
           },
           [
-            _c("v-uni-image", {
-              staticStyle: { width: "80rpx", height: "80rpx" },
-              attrs: { src: "../../static/logo.png", _i: "10-" + $30 }
-            }),
             _c(
               "v-uni-view",
               {
-                staticClass: _vm._$g("11-" + $30, "sc"),
-                attrs: { _i: "11-" + $30 }
+                staticClass: _vm._$g("9-" + $30, "sc"),
+                attrs: { _i: "9-" + $30 }
               },
               [
-                _c("v-uni-view", { attrs: { _i: "12-" + $30 } }, [
+                _c("v-uni-view", { attrs: { _i: "10-" + $30 } }, [
                   _vm._v("海绵宝宝")
                 ]),
-                _c("v-uni-view", { attrs: { _i: "13-" + $30 } }, [
+                _c("v-uni-view", { attrs: { _i: "11-" + $30 } }, [
                   _vm._v("员工：1324567899")
                 ])
               ],
@@ -4769,39 +4722,29 @@ var render = function() {
     "v-uni-view",
     { attrs: { _i: 0 } },
     [
+      _c("v-uni-view", { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } }),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } },
+        { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
         [
-          _c("v-uni-image", {
-            staticStyle: { width: "160rpx", height: "160rpx" },
-            attrs: { src: "../../static/logo.png", _i: 2 }
-          })
+          _c("v-uni-view", { attrs: { _i: 3 } }, [_vm._v("章鱼哥")]),
+          _c("v-uni-view", { attrs: { _i: 4 } }, [_vm._v("员工：123456789")])
         ],
         1
       ),
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
-        [
-          _c("v-uni-view", { attrs: { _i: 4 } }, [_vm._v("章鱼哥")]),
-          _c("v-uni-view", { attrs: { _i: 5 } }, [_vm._v("员工：123456789")])
-        ],
-        1
-      ),
-      _c("v-uni-view", { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } }, [
+      _c("v-uni-view", { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } }, [
         _vm._v("权限设置")
       ]),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+        { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
         [
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
+            { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
             [
-              _c("v-uni-view", { attrs: { _i: 9 } }, [_vm._v("收款记录")]),
-              _c("v-uni-view", { attrs: { _i: 10 } }, [
+              _c("v-uni-view", { attrs: { _i: 8 } }, [_vm._v("收款记录")]),
+              _c("v-uni-view", { attrs: { _i: 9 } }, [
                 _vm._v("开启后，可以查看你的收款记录")
               ])
             ],
@@ -4809,11 +4752,11 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { attrs: { _i: 11 } },
+            { attrs: { _i: 10 } },
             [
               _c("v-uni-switch", {
                 staticStyle: { transform: "scale(1.0)" },
-                attrs: { checked: "true", color: "#F4CB2E", _i: 12 }
+                attrs: { checked: "true", color: "#F4CB2E", _i: 11 }
               })
             ],
             1
@@ -4824,9 +4767,9 @@ var render = function() {
       _c(
         "v-uni-button",
         {
-          staticClass: _vm._$g(13, "sc"),
+          staticClass: _vm._$g(12, "sc"),
           staticStyle: { "margin-top": "80rpx", background: "#FE1A1A" },
-          attrs: { _i: 13 }
+          attrs: { _i: 12 }
         },
         [_vm._v("移除员工")]
       )
@@ -4965,7 +4908,7 @@ var render = function() {
             "v-uni-view",
             {
               staticClass: _vm._$g(2, "sc"),
-              staticStyle: { height: "270rpx", width: "680rpx" },
+              staticStyle: { height: "360rpx", width: "680rpx" },
               attrs: { _i: 2 }
             },
             [
@@ -5013,13 +4956,29 @@ var render = function() {
                     "v-uni-view",
                     { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
                     [
-                      _c("v-uni-view", { attrs: { _i: 12 } }, [_vm._v("本月")]),
+                      _c("v-uni-view", { attrs: { _i: 12 } }, [_vm._v("昨日")]),
                       _c("v-uni-view", { attrs: { _i: 13 } }, [
                         _vm._v(
                           "收益：￥" +
                             _vm._$g(13, "t0-0") +
                             " 订单：" +
                             _vm._$g(13, "t0-1")
+                        )
+                      ])
+                    ],
+                    1
+                  ),
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+                    [
+                      _c("v-uni-view", { attrs: { _i: 15 } }, [_vm._v("本月")]),
+                      _c("v-uni-view", { attrs: { _i: 16 } }, [
+                        _vm._v(
+                          "收益：￥" +
+                            _vm._$g(16, "t0-0") +
+                            " 订单：" +
+                            _vm._$g(16, "t0-1")
                         )
                       ])
                     ],
@@ -5036,17 +4995,22 @@ var render = function() {
       ),
       _c(
         "v-uni-view",
-        { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+        { staticClass: _vm._$g(17, "sc"), attrs: { _i: 17 } },
         [
-          _vm._l(_vm._$g(15, "f"), function(order, idx, $20, $30) {
+          _c(
+            "v-uni-view",
+            { staticClass: _vm._$g(18, "sc"), attrs: { _i: 18 } },
+            [_vm._v("本年度交易流水如下：")]
+          ),
+          _vm._l(_vm._$g(19, "f"), function(order, idx, $20, $30) {
             return [
               _c(
                 "v-uni-view",
                 {
                   key: order["k0"],
-                  staticClass: _vm._$g("16-" + $30, "sc"),
+                  staticClass: _vm._$g("20-" + $30, "sc"),
                   staticStyle: { height: "345rpx" },
-                  attrs: { _i: "16-" + $30 },
+                  attrs: { _i: "20-" + $30 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
@@ -5057,68 +5021,68 @@ var render = function() {
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g("17-" + $30, "sc"),
-                      attrs: { _i: "17-" + $30 }
+                      staticClass: _vm._$g("21-" + $30, "sc"),
+                      attrs: { _i: "21-" + $30 }
                     },
                     [
                       _c(
                         "v-uni-view",
                         {
-                          staticClass: _vm._$g("18-" + $30, "sc"),
-                          attrs: { _i: "18-" + $30 }
+                          staticClass: _vm._$g("22-" + $30, "sc"),
+                          attrs: { _i: "22-" + $30 }
                         },
-                        [_vm._v("订单号：" + _vm._$g("18-" + $30, "t0-0"))]
+                        [_vm._v("订单号：" + _vm._$g("22-" + $30, "t0-0"))]
                       ),
-                      _vm._$g("19-" + $30, "i")
-                        ? _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g("19-" + $30, "sc"),
-                              attrs: { _i: "19-" + $30 }
-                            },
-                            [_vm._v("未支付")]
-                          )
-                        : _vm._$g("20-" + $30, "e")
-                        ? _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g("20-" + $30, "sc"),
-                              attrs: { _i: "20-" + $30 }
-                            },
-                            [_vm._v("已支付")]
-                          )
-                        : _vm._$g("21-" + $30, "e")
-                        ? _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g("21-" + $30, "sc"),
-                              attrs: { _i: "21-" + $30 }
-                            },
-                            [_vm._v("申请退款")]
-                          )
-                        : _vm._$g("22-" + $30, "e")
-                        ? _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g("22-" + $30, "sc"),
-                              attrs: { _i: "22-" + $30 }
-                            },
-                            [_vm._v("已退款")]
-                          )
-                        : _vm._$g("23-" + $30, "e")
+                      _vm._$g("23-" + $30, "i")
                         ? _c(
                             "v-uni-view",
                             {
                               staticClass: _vm._$g("23-" + $30, "sc"),
                               attrs: { _i: "23-" + $30 }
                             },
+                            [_vm._v("未支付")]
+                          )
+                        : _vm._$g("24-" + $30, "e")
+                        ? _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g("24-" + $30, "sc"),
+                              attrs: { _i: "24-" + $30 }
+                            },
+                            [_vm._v("已支付")]
+                          )
+                        : _vm._$g("25-" + $30, "e")
+                        ? _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g("25-" + $30, "sc"),
+                              attrs: { _i: "25-" + $30 }
+                            },
+                            [_vm._v("申请退款")]
+                          )
+                        : _vm._$g("26-" + $30, "e")
+                        ? _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g("26-" + $30, "sc"),
+                              attrs: { _i: "26-" + $30 }
+                            },
+                            [_vm._v("已退款")]
+                          )
+                        : _vm._$g("27-" + $30, "e")
+                        ? _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g("27-" + $30, "sc"),
+                              attrs: { _i: "27-" + $30 }
+                            },
                             [_vm._v("取消支付")]
                           )
                         : _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g("24-" + $30, "sc"),
-                              attrs: { _i: "24-" + $30 }
+                              staticClass: _vm._$g("28-" + $30, "sc"),
+                              attrs: { _i: "28-" + $30 }
                             },
                             [_vm._v("支付失败")]
                           )
@@ -5128,15 +5092,15 @@ var render = function() {
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g("25-" + $30, "sc"),
-                      attrs: { _i: "25-" + $30 }
+                      staticClass: _vm._$g("29-" + $30, "sc"),
+                      attrs: { _i: "29-" + $30 }
                     },
                     [
-                      _c("v-uni-view", { attrs: { _i: "26-" + $30 } }, [
+                      _c("v-uni-view", { attrs: { _i: "30-" + $30 } }, [
                         _vm._v("支付类型")
                       ]),
-                      _c("v-uni-view", { attrs: { _i: "27-" + $30 } }, [
-                        _vm._v(_vm._$g("27-" + $30, "t0-0"))
+                      _c("v-uni-view", { attrs: { _i: "31-" + $30 } }, [
+                        _vm._v(_vm._$g("31-" + $30, "t0-0"))
                       ])
                     ],
                     1
@@ -5144,15 +5108,15 @@ var render = function() {
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g("28-" + $30, "sc"),
-                      attrs: { _i: "28-" + $30 }
+                      staticClass: _vm._$g("32-" + $30, "sc"),
+                      attrs: { _i: "32-" + $30 }
                     },
                     [
-                      _c("v-uni-view", { attrs: { _i: "29-" + $30 } }, [
+                      _c("v-uni-view", { attrs: { _i: "33-" + $30 } }, [
                         _vm._v("设备编号")
                       ]),
-                      _c("v-uni-view", { attrs: { _i: "30-" + $30 } }, [
-                        _vm._v(_vm._$g("30-" + $30, "t0-0"))
+                      _c("v-uni-view", { attrs: { _i: "34-" + $30 } }, [
+                        _vm._v(_vm._$g("34-" + $30, "t0-0"))
                       ])
                     ],
                     1
@@ -5160,15 +5124,15 @@ var render = function() {
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g("31-" + $30, "sc"),
-                      attrs: { _i: "31-" + $30 }
+                      staticClass: _vm._$g("35-" + $30, "sc"),
+                      attrs: { _i: "35-" + $30 }
                     },
                     [
-                      _c("v-uni-view", { attrs: { _i: "32-" + $30 } }, [
+                      _c("v-uni-view", { attrs: { _i: "36-" + $30 } }, [
                         _vm._v("支付时间")
                       ]),
-                      _c("v-uni-view", { attrs: { _i: "33-" + $30 } }, [
-                        _vm._v(_vm._$g("33-" + $30, "t0-0"))
+                      _c("v-uni-view", { attrs: { _i: "37-" + $30 } }, [
+                        _vm._v(_vm._$g("37-" + $30, "t0-0"))
                       ])
                     ],
                     1
@@ -5176,15 +5140,15 @@ var render = function() {
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g("34-" + $30, "sc"),
-                      attrs: { _i: "34-" + $30 }
+                      staticClass: _vm._$g("38-" + $30, "sc"),
+                      attrs: { _i: "38-" + $30 }
                     },
                     [
-                      _c("v-uni-view", { attrs: { _i: "35-" + $30 } }, [
+                      _c("v-uni-view", { attrs: { _i: "39-" + $30 } }, [
                         _vm._v("支付人")
                       ]),
-                      _c("v-uni-view", { attrs: { _i: "36-" + $30 } }, [
-                        _vm._v(_vm._$g("36-" + $30, "t0-0"))
+                      _c("v-uni-view", { attrs: { _i: "40-" + $30 } }, [
+                        _vm._v(_vm._$g("40-" + $30, "t0-0"))
                       ])
                     ],
                     1
@@ -5192,15 +5156,15 @@ var render = function() {
                   _c(
                     "v-uni-view",
                     {
-                      staticClass: _vm._$g("37-" + $30, "sc"),
-                      attrs: { _i: "37-" + $30 }
+                      staticClass: _vm._$g("41-" + $30, "sc"),
+                      attrs: { _i: "41-" + $30 }
                     },
                     [
-                      _c("v-uni-view", { attrs: { _i: "38-" + $30 } }, [
+                      _c("v-uni-view", { attrs: { _i: "42-" + $30 } }, [
                         _vm._v("消费金额")
                       ]),
-                      _c("v-uni-view", { attrs: { _i: "39-" + $30 } }, [
-                        _vm._v(_vm._$g("39-" + $30, "t0-0"))
+                      _c("v-uni-view", { attrs: { _i: "43-" + $30 } }, [
+                        _vm._v(_vm._$g("43-" + $30, "t0-0"))
                       ])
                     ],
                     1
@@ -6293,7 +6257,7 @@ var render = function() {
                   _c("v-uni-image", {
                     staticClass: _vm._$g(7, "sc"),
                     staticStyle: { width: "50rpx", height: "50rpx" },
-                    attrs: { src: "../../static/icon/weibiaoti.png", _i: 7 },
+                    attrs: { src: _vm._$g(7, "a-src"), _i: 7 },
                     on: {
                       click: function($event) {
                         return _vm.$handleViewEvent($event)
@@ -7042,57 +7006,6 @@ var render = function() {
           )
         ],
         1
-      ),
-      _c(
-        "v-uni-view",
-        {
-          staticClass: _vm._$g(32, "sc"),
-          staticStyle: { height: "160rpx" },
-          attrs: { _i: 32 }
-        },
-        [
-          _vm._l(_vm._$g(33, "f"), function(item, idx, $20, $30) {
-            return _c(
-              "v-uni-view",
-              {
-                key: item,
-                staticClass: _vm._$g("33-" + $30, "sc"),
-                attrs: { _i: "33-" + $30 }
-              },
-              [
-                _c("v-uni-view", { attrs: { _i: "34-" + $30 } }, [
-                  _vm._v(_vm._$g("34-" + $30, "t0-0"))
-                ]),
-                _c("v-uni-view", { attrs: { _i: "35-" + $30 } }, [
-                  _vm._v(_vm._$g("35-" + $30, "t0-0"))
-                ])
-              ],
-              1
-            )
-          }),
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
-            [
-              _c("v-uni-view", { attrs: { _i: 37 } }, [_vm._v("备注")]),
-              _c(
-                "v-uni-view",
-                { attrs: { _i: 38 } },
-                [
-                  _c("v-uni-text", { attrs: { _i: 39 } }, [_vm._v("设备故障")]),
-                  _c(
-                    "v-uni-text",
-                    { staticClass: _vm._$g(40, "sc"), attrs: { _i: 40 } },
-                    [_vm._v("修改")]
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        2
       )
     ],
     1
@@ -7286,48 +7199,55 @@ var render = function() {
               attrs: { _i: 6 }
             },
             [
-              _c("v-uni-view", {
-                staticClass: _vm._$g(7, "sc"),
-                staticStyle: { width: "24rpx", height: "34rpx" },
-                attrs: { _i: 7 }
-              }),
-              _c("v-uni-input", {
-                staticClass: _vm._$g(8, "sc"),
-                attrs: {
-                  type: "text",
-                  placeholder: "请输入验证码",
-                  maxlength: "4",
-                  _i: 8
-                },
-                on: {
-                  focus: function($event) {
-                    return _vm.$handleViewEvent($event)
-                  },
-                  blur: function($event) {
-                    return _vm.$handleViewEvent($event)
-                  }
-                },
-                model: {
-                  value: _vm._$g(8, "v-model"),
-                  callback: function($$v) {
-                    _vm.$handleVModelEvent(8, $$v)
-                  },
-                  expression: "password"
-                }
-              }),
+              _c(
+                "v-uni-view",
+                { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
+                [
+                  _c("v-uni-view", {
+                    staticClass: _vm._$g(8, "sc"),
+                    staticStyle: { width: "24rpx", height: "34rpx" },
+                    attrs: { _i: 8 }
+                  }),
+                  _c("v-uni-input", {
+                    staticClass: _vm._$g(9, "sc"),
+                    attrs: {
+                      type: "text",
+                      placeholder: "请输入验证码",
+                      maxlength: "4",
+                      _i: 9
+                    },
+                    on: {
+                      focus: function($event) {
+                        return _vm.$handleViewEvent($event)
+                      },
+                      blur: function($event) {
+                        return _vm.$handleViewEvent($event)
+                      }
+                    },
+                    model: {
+                      value: _vm._$g(9, "v-model"),
+                      callback: function($$v) {
+                        _vm.$handleVModelEvent(9, $$v)
+                      },
+                      expression: "password"
+                    }
+                  })
+                ],
+                1
+              ),
               _c(
                 "v-uni-view",
                 {
-                  staticClass: _vm._$g(9, "sc"),
+                  staticClass: _vm._$g(10, "sc"),
                   staticStyle: { width: "160rpx", height: "60rpx" },
-                  attrs: { _i: 9 },
+                  attrs: { _i: 10 },
                   on: {
                     click: function($event) {
                       return _vm.$handleViewEvent($event)
                     }
                   }
                 },
-                [_vm._v(_vm._$g(9, "t0-0"))]
+                [_vm._v(_vm._$g(10, "t0-0"))]
               )
             ],
             1
@@ -7338,27 +7258,43 @@ var render = function() {
       _c(
         "v-uni-view",
         {
-          staticClass: _vm._$g(10, "sc"),
-          staticStyle: {
-            width: "570rpx",
-            height: "80rpx",
-            "margin-top": "90rpx",
-            "margin-left": "90rpx"
-          },
-          attrs: { "hover-class": "bg", _i: 10 },
+          staticClass: _vm._$g(11, "sc"),
+          staticStyle: { "z-index": "9999" },
+          attrs: { _i: 11 },
           on: {
             click: function($event) {
               return _vm.$handleViewEvent($event)
             }
           }
         },
-        [_vm._v("登录")]
+        [
+          _c("v-uni-image", {
+            staticStyle: { width: "80rpx", height: "80rpx" },
+            attrs: { src: _vm._$g(12, "a-src"), mode: "", _i: 12 }
+          })
+        ],
+        1
       ),
-      _c("v-uni-image", {
-        staticClass: _vm._$g(11, "sc"),
-        staticStyle: { bottom: "0" },
-        attrs: { src: "../../static/login.png", _i: 11 }
-      })
+      _c(
+        "v-uni-view",
+        {
+          staticClass: _vm._$g(13, "sc"),
+          staticStyle: {
+            width: "570rpx",
+            height: "80rpx",
+            "margin-top": "40rpx",
+            "margin-left": "90rpx"
+          },
+          attrs: { "hover-class": "bg", _i: 13 },
+          on: {
+            click: function($event) {
+              return _vm.$handleViewEvent($event)
+            }
+          }
+        },
+        [_vm._v("登录222")]
+      ),
+      _c("v-uni-image", { attrs: { src: _vm._$g(14, "a-src"), _i: 14 } })
     ],
     1
   )
@@ -7584,7 +7520,7 @@ var render = function() {
         1
       ),
       _c("v-uni-view", { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } }, [
-        _vm._v(_vm._$g(13, "t0-0"))
+        _vm._v("\n\t\t没有更多了\n\t")
       ])
     ],
     1

@@ -182,6 +182,10 @@ var _default =
   },
   onLoad: function onLoad() {
     this.__init();
+    uni.showLoading({
+      title: '加载中...',
+      mask: true });
+
   },
   onReachBottom: function onReachBottom() {
     if (this.emit > this.merchantList.length) {
@@ -217,8 +221,15 @@ var _default =
                   elimit: this.emit, //列表  数量
                   key_value: this.searchID || this.searchname }).
                 then(function (data) {
-                  console.log('接口调用了一次', data);
+                  uni.hideLoading();
                   _this.merchantList = data.arr;
+                  if (_this.merchantList.length < 1) {
+                    uni.showToast({
+                      title: "暂无数据",
+                      icon: "none",
+                      duration: 2500 });
+
+                  }
                   // 恢复加载状态
                   _this.loadtext = _this.merchantList.length < _this.emit ? "没有更多了" : "上拉加载更多";
                   uni.setStorageSync('list', data);

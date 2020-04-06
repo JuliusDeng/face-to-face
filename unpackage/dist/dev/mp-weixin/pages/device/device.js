@@ -196,18 +196,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
       dev_id: "",
       mer_name: "",
+
+      // start_time: "",
+      today_end_time: "",
+      yesterday_end_time: "",
+      tomorrow_end_time: "",
+      year_start_time: "",
+
       day_money: "",
       day_amount: "",
+      yes_money: "",
+      yes_amount: "",
       month_money: "",
       month_amount: "",
-      start_time: "",
-      end_time: "",
 
       mer_id: "",
       emit: 10,
@@ -220,115 +232,148 @@ var _default =
       console.log('不会再上拉了哦');
       return;
     }
-    console.log('啦啦啦');
     this.loadtext = "加载中...";
     this.emit += 10;
     console.log("触发上拉加载", this.emit);
-    // this.__init()
     this.__deal();
   },
   onLoad: function onLoad(option) {
-    this.dev_id = option.dev_id;
-    this.mer_name = option.mer_name;
-    // 从收益统计页 获取时间
-    var value = uni.getStorageSync('earn');
-    console.log('value', value);
-    if (!value.start_time) {
-      uni.showToast({
-        title: "请先去'收益统计'确定起始时间",
-        icon: "none",
-        duration: 3000 });
+    if (this.list < 1) {
+      uni.showLoading({
+        title: '加载中...',
+        mask: true });
 
     }
-    this.start_time = value.start_time;
-    this.end_time = this.$Time.getTime();
-    console.log("开始时间：", this.start_time, '结束时间：', this.end_time);
+    this.dev_id = option.dev_id;
+    this.mer_name = option.mer_name;
+
+    // 今天
+    this.today_end_time = this.$timeout.today();
+    console.log(this.today_end_time);
+    // 明天
+    this.tomorrow_end_time = this.$timeout.tomorrow();
+    console.log(this.tomorrow_end_time);
+    // 昨天
+    this.yesterday_end_time = this.$timeout.yesterday();
+    console.log(this.yesterday_end_time);
+    // 今年2020-01-01
+    this.year_start_time = this.$timeout.year();
+    console.log(this.year_start_time);
+
     this.__today();
+    this.__yesterday();
     this.__month();
     // 请求商户ID
     this.__init();
 
-
-
   },
   methods: {
-    // 本月 收益统计
-    __month: function () {var _month = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                this.$H.post("/agent/", {
-                  user_id: uni.getStorageSync('uid'),
-                  token: uni.getStorageSync('utoken'),
-                  opt: "agent_device_statistics",
-                  order_status: "1",
-                  device_id: this.dev_id,
-                  start_time: this.start_time,
-                  end_time: this.end_time,
-                  slimit: 0,
-                  elimit: 5,
-                  group: 'month' }).
-                then(function (res) {
-                  _this.month_money = res.count[0].sum_money;
-                  _this.month_amount = res.count[0].count_num;
-                }).catch(function (e) {
-                  console.log("catch error:", e);
-                });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __month() {return _month.apply(this, arguments);}return __month;}(),
-
     // 今天 收益统计
-    __today: function () {var _today = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this2 = this;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    __today: function () {var _today = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: uni.getStorageSync('uid'),
                   token: uni.getStorageSync('utoken'),
                   opt: "agent_device_statistics",
                   order_status: 1,
                   device_id: this.dev_id,
-                  start_time: this.start_time,
-                  end_time: this.end_time,
-                  slimit: 0,
-                  elimit: 5,
+                  // start_time: this.today_end_time,
+                  // end_time: tomorrow_end_time,
+                  start_time: '2019-07-09',
+                  end_time: '2019-12-12',
                   group: 'day' }).
                 then(function (res) {
-                  _this2.day_money = res.count[0].sum_money;
-                  _this2.day_amount = res.count[0].count_num;
+                  console.log(res);
+                  _this.day_money = res.count[0].sum_money;
+                  _this.day_amount = res.count[0].count_num;
                 }).catch(function (e) {
                   console.log("catch error:", e);
-                });case 1:case "end":return _context2.stop();}}}, _callee2, this);}));function __today() {return _today.apply(this, arguments);}return __today;}(),
+                });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __today() {return _today.apply(this, arguments);}return __today;}(),
+
+    // 昨天 收益统计
+    __yesterday: function () {var _yesterday = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this2 = this;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                this.$H.post("/agent/", {
+                  user_id: uni.getStorageSync('uid'),
+                  token: uni.getStorageSync('utoken'),
+                  opt: "agent_device_statistics",
+                  order_status: 1,
+                  device_id: this.dev_id,
+                  start_time: this.yesterday_end_time,
+                  end_time: this.today_end_time,
+                  group: 'day' }).
+                then(function (res) {
+                  _this2.yes_money = res.count[0].sum_money;
+                  _this2.yes_amount = res.count[0].count_num;
+                }).catch(function (e) {
+                  console.log("catch error:", e);
+                });case 1:case "end":return _context2.stop();}}}, _callee2, this);}));function __yesterday() {return _yesterday.apply(this, arguments);}return __yesterday;}(),
+
+    // 本月 收益统计
+    __month: function () {var _month = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var _this3 = this;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+                this.$H.post("/agent/", {
+                  user_id: uni.getStorageSync('uid'),
+                  token: uni.getStorageSync('utoken'),
+                  opt: "agent_device_statistics",
+                  order_status: "1",
+                  device_id: this.dev_id,
+                  start_time: this.today_end_time,
+                  end_time: this.tomorrow_end_time,
+                  group: 'month' }).
+                then(function (res) {
+                  _this3.month_money = res.count[0].sum_money;
+                  _this3.month_amount = res.count[0].count_num;
+                }).catch(function (e) {
+                  console.log("catch error:", e);
+                });case 1:case "end":return _context3.stop();}}}, _callee3, this);}));function __month() {return _month.apply(this, arguments);}return __month;}(),
 
     // 请求商户ID
-    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var _this3 = this;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var _this4 = this;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: uni.getStorageSync('uid'),
                   token: uni.getStorageSync('utoken'),
                   opt: "merchant_list",
                   key_value: this.mer_name }).
                 then(function (data) {
-                  _this3.mer_id = data.arr[0].merchant_id;
-                  console.log('商户ID:', _this3.mer_id);
-                  // 交易流水
-                  _this3.__deal();
+                  _this4.mer_id = data.arr[0].merchant_id;
+                  console.log('商户ID:', _this4.mer_id);
+                  // 请求交易流水
+                  if (_this4.mer_id) {
+                    _this4.__deal();
+                  }
                 }).catch(function (e) {
                   console.log("catch error:", e);
-                });case 1:case "end":return _context3.stop();}}}, _callee3, this);}));function __init() {return _init.apply(this, arguments);}return __init;}(),
+                });case 1:case "end":return _context4.stop();}}}, _callee4, this);}));function __init() {return _init.apply(this, arguments);}return __init;}(),
 
     // 交易流水
-    __deal: function () {var _deal = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var _this4 = this;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:
+    __deal: function () {var _deal = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var _this5 = this;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: uni.getStorageSync('uid'),
                   token: uni.getStorageSync('utoken'),
                   opt: "order_list",
                   merchant_id: this.mer_id,
                   // merchant_id: 375,
-                  order_status: "1",
-                  start_time: this.start_time,
-                  end_time: this.end_time,
+                  order_status: "",
+                  // start_time: this.year_start_time,
+                  // end_time: this.tomorrow_end_time,
+                  start_time: '2019-10-10',
+                  end_time: '2019-10-11',
                   slimit: 0,
                   elimit: this.emit }).
                 then(function (res) {
-                  _this4.list = res.arr;
-                  console.log("list数组长度：", _this4.list.length, 'emit长度：', _this4.emit);
+                  _this5.list = res.arr;
+                  uni.hideLoading();
+                  if (_this5.list.length < 1) {
+                    uni.showToast({
+                      title: "暂无数据",
+                      icon: "none",
+                      duration: 2500 });
+
+                  }
+                  console.log("list数组长度：", _this5.list.length, 'emit长度：', _this5.emit);
                   // 恢复加载状态
-                  _this4.loadtext = _this4.list.length < _this4.emit ? "没有更多了" : "上拉加载更多";
+                  _this5.loadtext = _this5.list.length < _this5.emit ? "没有更多了" : "上拉加载更多";
                 }).catch(function (e) {
                   console.log("catch error:", e);
-                });case 1:case "end":return _context4.stop();}}}, _callee4, this);}));function __deal() {return _deal.apply(this, arguments);}return __deal;}(),
+                });case 1:case "end":return _context5.stop();}}}, _callee5, this);}));function __deal() {return _deal.apply(this, arguments);}return __deal;}(),
 
     // 去详情页
     toDeviceOrder: function toDeviceOrder(item) {

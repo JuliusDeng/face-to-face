@@ -12,9 +12,10 @@
 					<view>员工：{{item.phone}}</view>
 				</view>
 			</view>
-			<view class="">
-				设置权限
-			</view>
+			<!-- <view class="">设置权限</view> -->
+			<view class="">' '</view>
+				
+			
 		</view>
 		
 		<!-- <view class="bg-yellow d-flex a-center j-center position-fixed" 
@@ -38,6 +39,12 @@
 			}
 		},
 		onLoad() {
+			if(this.staff.length < 1) {
+				uni.showLoading({
+					title: '加载中...',
+					mask: true
+				})
+			} 
 			this.__init()
 		},
 		methods: {
@@ -47,9 +54,15 @@
 					token: uni.getStorageSync('utoken'),
 					opt: "user_list"
 				}).then((res) => {
-					console.log(res);
 					this.staff = res
-					
+					uni.hideLoading()
+					if(this.staff.length < 1) {
+						uni.showToast({
+							title: "暂无数据",
+							icon: "none",
+							duration: 2500
+						})
+					}
 				}).catch(() => {
 					console.log("catch error!!");
 				})

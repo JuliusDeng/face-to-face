@@ -168,11 +168,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -185,17 +180,22 @@ var _default =
       loadtext: "上拉加载更多" };
 
   },
-  onLoad: function onLoad() {
-    console.log(this.merchantList);
-    this.__init();
-  },
   onReachBottom: function onReachBottom() {
     if (this.emit > this.merchantList.length) {
-      console.log('不会再上拉了哦');
       return;
     }
     this.loadtext = "加载中...";
     this.emit += 10;
+    this.__init();
+  },
+  onLoad: function onLoad() {
+    if (this.merchantList < 1) {
+      uni.showLoading({
+        title: '加载中...',
+        mask: true });
+
+    }
+    console.log(this.merchantList);
     this.__init();
   },
   methods: {
@@ -216,6 +216,14 @@ var _default =
                   key_value: this.searchID || this.searchname }).
                 then(function (data) {
                   _this.merchantList = data.arr;
+                  uni.hideLoading();
+                  if (_this.merchantList.length < 1) {
+                    uni.showToast({
+                      title: "暂无数据",
+                      icon: "none",
+                      duration: 2500 });
+
+                  }
                   // 恢复加载状态
                   _this.loadtext = _this.merchantList.length < _this.emit ? "没有更多了" : "上拉加载更多";
                 }).catch(function () {

@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "商户搜索（21）",
+  "onReachBottomDistance": 500,
   "usingComponents": {}
 }

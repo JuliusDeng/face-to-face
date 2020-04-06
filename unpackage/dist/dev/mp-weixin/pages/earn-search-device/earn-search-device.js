@@ -180,9 +180,6 @@ var _default =
       dev_id: "" };
 
   },
-  onLoad: function onLoad() {
-    this.__init();
-  },
   onReachBottom: function onReachBottom() {
     if (this.emit > this.list.length) {
       console.log('不会再上拉了哦');
@@ -191,6 +188,13 @@ var _default =
     this.loadtext = "加载中...";
     this.emit += 10;
     console.log("触发上拉加载", this.emit);
+    this.__init();
+  },
+  onLoad: function onLoad() {
+    uni.showLoading({
+      title: '加载中...',
+      mask: true });
+
     this.__init();
   },
   methods: {
@@ -207,9 +211,10 @@ var _default =
       data.dev_name = item.device_id;
       console.log('设备信息：', item, data);
       uni.setStorageSync('earn', data);
-      setTimeout(function () {
-        uni.navigateBack();
-      }, 200);
+      uni.navigateBack();
+      // setTimeout(() => {
+      // 	uni.navigateBack();
+      // },200)
     },
     searchbtn: function searchbtn() {
       this.__init();
@@ -223,7 +228,15 @@ var _default =
                   elimit: this.emit,
                   device_id: this.dev_id }).
                 then(function (data) {
+                  uni.hideLoading();
                   _this.list = data.arr;
+                  if (_this.list.length < 1) {
+                    uni.showToast({
+                      title: "暂无数据",
+                      icon: "none",
+                      duration: 2500 });
+
+                  }
                   console.log('this.list.length', _this.list.length);
                   // 恢复加载状态
                   _this.loadtext = _this.list.length < _this.emit ? "没有更多了" : "上拉加载更多";

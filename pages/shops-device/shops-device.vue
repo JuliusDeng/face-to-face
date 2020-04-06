@@ -47,12 +47,6 @@
 				
 			}
 		},
-		onLoad() {
-			const value = uni.getStorageSync('merchant');
-			this.mer_name = value.merchant_name
-			console.log(this.mer_name);
-			this.__init()
-		},
 		onReachBottom() {
 			if(this.emit > this.list.length) {
 				console.log('不会再上拉了哦');
@@ -61,6 +55,12 @@
 			this.loadtext = "加载中..."
 			this.emit += 10 
 			console.log("触发上拉加载", this.emit);
+			this.__init()
+		},
+		onLoad() {
+			const value = uni.getStorageSync('merchant');
+			this.mer_name = value.merchant_name
+			console.log(this.mer_name);
 			this.__init()
 		},
 		methods: {

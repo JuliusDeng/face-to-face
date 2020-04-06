@@ -43,8 +43,9 @@
 				<view>接口没有返回这个数据</view>
 			</view>
 		</view>
+		
 		<!-- 退款时间 -->
-		<view class="font-22 text-black pt-3 border-top" style="height: 160rpx;">
+		<!-- <view class="font-22 text-black pt-3 border-top" style="height: 160rpx;">
 			<view class="d-flex j-sb pb-1" v-for="(item, idx) in refund" :key="idx">
 				<view>{{item.tit}}</view>
 				<view>{{item.cont}}</view>
@@ -55,7 +56,7 @@
 					<text>设备故障</text> <text class="ml-1 text-blue">修改</text>
 				</view>
 			</view>
-		</view>
+		</view> -->
 		
 	</view>
 </template>
@@ -65,23 +66,12 @@
 		data() {
 			return {
 				order: {},
-				refund: [
-					{tit: "退款时间", cont: "2019.05.31 12:23:55"},
-					{tit: "退款经手", cont: "痞老板"}
-				]
+				mer_name: ''
 			}
 		},
 		onLoad() {
-			try {
-			    const value = uni.getStorageSync('remsg');
-			    if (value) {
-			        this.order = this.value
-					this.ordersn = this.value.order_sn
-					// console.log('order:', this.order);
-			    }
-			} catch (e) {
-			    console.log('error: ', e);
-			}
+			this.order = uni.getStorageSync('remsg');
+			this.mer_name = option.mer_name
 		},
 		methods: {
 			

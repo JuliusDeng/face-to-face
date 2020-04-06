@@ -35,7 +35,7 @@
 		</view>
 		<!-- 按钮 -->
 		<button class="mx-3 text-white font-30" style="background:#00D499;" 
-		@click="this.$navigate('order-detail')">校正</button>
+		@click="$navigate('order-detail')">校正</button>
 		<button class="mx-3 mt-4 text-white font-30" style="background:#FE1A1A;" 
 		@click="this.refund">退单</button>
 		

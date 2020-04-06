@@ -5,9 +5,9 @@
 			<view class="ml-3 font-32 text-black">接收统计推送</view>
 			<switch class="mr-3" checked color="#F1F1F1" />
 		</view>
-		<!-- 两行状态 -->
+		<!-- 两行筛选 -->
 		<view class="d-flex flex-column bg-main">
-			<!-- 上面 状态-->
+			<!-- 状态-->
 			<view class="ml-3  d-flex a-center" style="height: 100rpx;">
 				<view class="border d-flex bg-white mr-3 text-gray" style="width: 210rpx;height: 70rpx;" >
 					<view class="flex-1 border-right d-flex a-center j-center font-20">状态</view>
@@ -233,11 +233,17 @@
 					end_time: this.end_time, //结束日期 如：2020-02-17
 					group: "day"
 				}).then((res) => {
-					console.log('res嗷嗷：',res);
-					// this.setlocation()
+					uni.hideLoading()
 					console.log('打印改变后的值：', '->'+this.status,'->'+this.dev_name,'->'+this.mer_name);
 					this.all_money = 0
 					this.amount = 0
+					if(res.count.length < 1) {
+						uni.showToast({
+							title: "暂无数据",
+							icon: "none",
+							duration: 2500
+						})
+					}
 					for(var i=0; i<res.count.length; i++) {
 						console.log('for里面：', this.all_money + '+' + res.count[i].sum_money);
 						this.all_money += (parseFloat(res.count[i].sum_money))

@@ -165,6 +165,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
@@ -280,10 +286,10 @@ var _default =
         if (res) {
           uni.hideLoading();
           try {
-            // uni.setStorageSync('uid', '100003');
-            // uni.setStorageSync('utoken', 'dXQyMDIwMDMzMDE1MTIyODc2NDYzOTA1');
-            uni.setStorageSync('uid', res.user_id);
-            uni.setStorageSync('utoken', res.openid);
+            uni.setStorageSync('uid', '100003');
+            uni.setStorageSync('utoken', 'dXQyMDIwMDMzMDE1MTIyODc2NDYzOTA1');
+            // uni.setStorageSync('uid', res.user_id);
+            // uni.setStorageSync('utoken', res.openid);
             uni.navigateTo({
               url: "/pages/index/index" });
 
@@ -294,8 +300,22 @@ var _default =
       }).catch(function (err) {
         console.log(err);
       });
+    },
+    // 微信登录
+    login: function login() {
+      uni.login({
+        provider: 'weixin',
+        success: function success(loginRes, errMsg) {
+          console.log('---:', loginRes, errMsg);
+          // 获取用户信息
+          uni.getUserInfo({
+            provider: 'weixin',
+            success: function success(infoRes) {
+              console.log('用户昵称为', infoRes);
+              // console.log('用户昵称为：' + infoRes.userInfo.nickName);
+            } });
 
-
+        } });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

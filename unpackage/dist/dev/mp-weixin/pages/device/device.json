@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "设备交易统计10",
+  "onReachBottomDistance": 500,
   "usingComponents": {}
 }

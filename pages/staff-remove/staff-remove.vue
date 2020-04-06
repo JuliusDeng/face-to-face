@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="d-flex j-center py-4">
-			<image src="../../static/logo.png" style="width: 160rpx;height: 160rpx;"></image>
+			<!-- <image src="../../static/logo.png" style="width: 160rpx;height: 160rpx;"></image> -->
 		</view>
 		<view class="d-flex flex-column font-30 a-center">
 			<view>章鱼哥</view>

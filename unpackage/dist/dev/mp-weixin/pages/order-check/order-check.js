@@ -154,7 +154,8 @@ var _permission = _interopRequireDefault(__webpack_require__(/*! @/common/lib/pe
     change: function change() {
       this.ways = !this.ways;
     },
-    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var _this2 = this;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
+                console.log('点击查询');
                 this.$H.post("/agent/", {
                   user_id: uni.getStorageSync('uid'),
                   token: uni.getStorageSync('utoken'),
@@ -163,28 +164,37 @@ var _permission = _interopRequireDefault(__webpack_require__(/*! @/common/lib/pe
                   search_pay_time: this.paytime, // 时间
                   search_device_id: this.deviceid // 设备号
                 }).then(function (res) {
-                  _this2.msg = res;
-                  try {
-                    uni.setStorageSync('remsg', res.arr[0]);
-                    // uni.setStorageSync('ordersn', res.arr[0].order_sn);
-                    if (_this2.msg) {
-                      console.log('this.msg', _this2.msg);
-                      uni.navigateTo({
-                        url: "/pages/order-refund/order-refund" });
+                  console.log('点击查询', res);
+                  uni.navigateTo({
+                    url: "/pages/order-refund/order-refund" });
 
-                    } else {
-                      uni.showToast({
-                        title: "输入有误，未找到！",
-                        duration: 2500 });
 
-                    }
-                  } catch (e) {
-                    // error
-                    console.log('catch error: ', e);
-                  }
+                  /* this.msg = res
+                                                                try {
+                                                                    uni.setStorageSync('remsg', res.arr[0]);
+                                                                	// uni.setStorageSync('ordersn', res.arr[0].order_sn);
+                                                                	if(this.msg) {
+                                                                		console.log('this.msg', this.msg);
+                                                                		uni.navigateTo({
+                                                                			url: "/pages/order-refund/order-refund"
+                                                                		})
+                                                                	} else {
+                                                                		uni.showToast({
+                                                                			title: "输入有误，未找到！",
+                                                                			duration: 2500
+                                                                		})
+                                                                	}
+                                                                } catch (e) {
+                                                                    // error
+                                                                	console.log('catch error: ',e);
+                                                                } */
                 }).catch(function (e) {
+                  uni.showToast({
+                    title: "请输入有效订单",
+                    icon: 'none' });
+
                   console.log("catch error!!", e);
-                });case 1:case "end":return _context2.stop();}}}, _callee2, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;
+                });case 2:case "end":return _context2.stop();}}}, _callee2, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

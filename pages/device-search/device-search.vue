@@ -25,7 +25,7 @@
 		</view>
 		<!-- 上拉加载 -->
 		<view class="d-flex a-center j-center text-light-muted font-md py-3">
-			{{loadtext}}
+			没有更多了
 		</view>
 		
 		
@@ -40,17 +40,21 @@
 		data() {
 			return {
 				list: [],
-				loadtext: "上拉加载更多",
-				emit: 10,
+				// loadtext: "上拉加载更多",
+				emit: '',
 				dev_id: ""
 			}
 		},
 		onLoad() {
-			console.log('this.list:', this.list.length);
+			if(this.list.length < 1) {
+				uni.showLoading({
+					title: '加载中...',
+					mask: true
+				});
+			}
 			this.__init()
-			console.log('this.list:', this.list.length);
 		},
-		onReachBottom() {
+		/* onReachBottom() {
 			if(this.emit > this.list.length) {
 				console.log('不会再上拉了哦');
 				return
@@ -59,7 +63,7 @@
 			this.emit += 10 
 			console.log("触发上拉加载", this.emit);
 			this.__init()
-		},
+		}, */
 		methods: {
 			select(item) {
 				try {
@@ -81,14 +85,22 @@
 					token: uni.getStorageSync('utoken'),
 					opt: "device_list",
 					slimit: 0,
-					elimit: this.emit,
+					elimit: '',
 					device_id: this.dev_id
 				}).then((data) => {
 					this.list = data.arr
-					console.log('fas:', this.list.length);
-					console.log('this.emit.length:', this.emit);
+					uni.hideLoading()
+					if(this.list.length < 1) {
+						uni.showToast({
+							title: "暂无数据",
+							icon: "none",
+							duration: 2500
+						})
+					}
+					// console.log('fas:', this.list.length);
+					// console.log('this.emit.length:', this.emit);
 					// 恢复加载状态
-					this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
+					// this.loadtext = this.list.length < this.emit ? "没有更多了" :  "上拉加载更多"
 				}).catch(() => {
 					console.log("catch error");
 				})

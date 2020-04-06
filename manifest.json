@@ -100,9 +100,9 @@
                     }
                 },
                 "android" : {
-                    "hdpi" : "C:/Users/tt/Desktop/maiwei/android/00.png",
-                    "xhdpi" : "C:/Users/tt/Desktop/maiwei/android/01.png",
-                    "xxhdpi" : "C:/Users/tt/Desktop/maiwei/android/03.png"
+                    "hdpi" : "C:/Users/tt/Desktop/maiwei/480.png",
+                    "xhdpi" : "C:/Users/tt/Desktop/maiwei/720.png",
+                    "xxhdpi" : "C:/Users/tt/Desktop/maiwei/1882.png"
                 }
             }
         }

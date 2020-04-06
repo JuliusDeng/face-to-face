@@ -161,6 +161,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
@@ -169,6 +170,12 @@ var _default =
 
   },
   onLoad: function onLoad() {
+    if (this.staff.length < 1) {
+      uni.showLoading({
+        title: '加载中...',
+        mask: true });
+
+    }
     this.__init();
   },
   methods: {
@@ -178,9 +185,15 @@ var _default =
                   token: uni.getStorageSync('utoken'),
                   opt: "user_list" }).
                 then(function (res) {
-                  console.log(res);
                   _this.staff = res;
+                  uni.hideLoading();
+                  if (_this.staff.length < 1) {
+                    uni.showToast({
+                      title: "暂无数据",
+                      icon: "none",
+                      duration: 2500 });
 
+                  }
                 }).catch(function () {
                   console.log("catch error!!");
                 });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;

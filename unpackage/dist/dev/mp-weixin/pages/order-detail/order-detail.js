@@ -191,28 +191,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 var _default =
 {
   data: function data() {
     return {
       order: {},
-      refund: [
-      { tit: "退款时间", cont: "2019.05.31 12:23:55" },
-      { tit: "退款经手", cont: "痞老板" }] };
-
+      mer_name: '' };
 
   },
   onLoad: function onLoad() {
-    try {
-      var value = uni.getStorageSync('remsg');
-      if (value) {
-        this.order = this.value;
-        this.ordersn = this.value.order_sn;
-        // console.log('order:', this.order);
-      }
-    } catch (e) {
-      console.log('error: ', e);
-    }
+    this.order = uni.getStorageSync('remsg');
+    this.mer_name = option.mer_name;
   },
   methods: {} };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

@@ -1,6 +1,6 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{
+		{	// 上拉触发距离是 500
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "面对面交易(商户服务)1"
@@ -47,7 +47,8 @@
 		}, {
 			"path": "pages/device/device",
 			"style": {
-				"navigationBarTitleText": "设备交易统计10"
+				"navigationBarTitleText": "设备交易统计10",
+				"onReachBottomDistance": 500
 			}
 		}, {
 			"path": "pages/device-order/device-order",
@@ -93,25 +94,28 @@
 			"path": "pages/device-search/device-search",
 			"style": {
 				"navigationBarTitleText": "设备列表（20）",
-				"onReachBottomDistance": 90
+				"onReachBottomDistance": 500
 			}
 		}
 
 		, {
 			"path": "pages/earn-search-merchant/earn-search-merchant",
 			"style": {
-				"navigationBarTitleText": "商户搜索（21）"
+				"navigationBarTitleText": "商户搜索（21）",
+				"onReachBottomDistance": 500
 			}
 		}, {
 			"path": "pages/earn-search-device/earn-search-device",
 			"style": {
-				"navigationBarTitleText": "设备搜索（22）"
+				"navigationBarTitleText": "设备搜索（22）",
+				"onReachBottomDistance": 500
 			}
 		}
 	    ,{
             "path" : "pages/shops-device/shops-device",
             "style" : {
-				"navigationBarTitleText": "商户下设备列表（23）"
+				"navigationBarTitleText": "商户下设备列表（23）",
+				"onReachBottomDistance": 500
 			}
         },{
             "path" : "pages/shops-deal/shops-deal",

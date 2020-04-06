@@ -239,6 +239,10 @@ var _default =
 
   },
   onLoad: function onLoad() {
+    console.log(this.$timeout);
+    console.log(this.$timeout.today());
+    console.log(this.$timeout.tomorrow());
+    console.log(this.$timeout.yesterday());
     this.__init();
     try {
       uni.setStorageSync('uid', '100003');
@@ -248,6 +252,30 @@ var _default =
     }
   },
   methods: {
+    // if(this.emit > this.merchantList.length) {
+    // 	console.log('不会再上拉了哦');
+    // 	return
+    // }
+    // this.loadtext = "加载中..."
+    // console.log("触发上拉加载", this.emit);
+    // this.emit += 10 
+    // this.__init()
+
+    // uni.showLoading({
+    // 	title: '加载中...',
+    // 	mask: true
+    // });
+
+    // uni.hideLoading()
+
+    // if(this.list.length < 1) {
+    // 	uni.showToast({
+    // 		title: "暂无数据",
+    // 		icon: "none",
+    // 		duration: 2500
+    // 	})
+    // }
+
     navUser: function navUser(name, tel, agentName) {
       uni.navigateTo({
         url: "/pages/user/user?name=".concat(name, "&tel=").concat(tel, "&agentName=").concat(agentName) });

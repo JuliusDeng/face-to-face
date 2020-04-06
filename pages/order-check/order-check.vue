@@ -129,6 +129,7 @@
 				this.ways = !this.ways
 			},
 			async __init() {
+				console.log('点击查询');
 				this.$H.post("/agent/", {
 					user_id: uni.getStorageSync('uid'),
 					token: uni.getStorageSync('utoken'),
@@ -137,7 +138,12 @@
 					search_pay_time: this.paytime, // 时间
 					search_device_id: this.deviceid // 设备号
 				}).then((res) => {
-					this.msg = res
+					console.log('点击查询', res);
+					uni.navigateTo({
+						url: "/pages/order-refund/order-refund"
+					})
+					
+					/* this.msg = res
 					try {
 					    uni.setStorageSync('remsg', res.arr[0]);
 						// uni.setStorageSync('ordersn', res.arr[0].order_sn);
@@ -155,8 +161,12 @@
 					} catch (e) {
 					    // error
 						console.log('catch error: ',e);
-					}
+					} */
 				}).catch((e) => {
+					uni.showToast({
+						title: "请输入有效订单",
+						icon: 'none'
+					})
 					console.log("catch error!!", e);
 				})
 				

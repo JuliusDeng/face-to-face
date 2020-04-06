@@ -1,5 +1,5 @@
 <template>
-	<view class="h-vh100 position-relative">
+	<view class="h-vh100 d-flex flex-column j-end">
 		<view class="d-flex j-center">
 			<view class="d-flex border-bottom a-center" :class="focusClass.username ? 'input-border-color' : ''" style="width: 550rpx;height: 130rpx;margin-top: 150rpx;">
 				<view class="iconfont iconshouji text-ab d-flex a-center" style="width: 24rpx;height: 34rpx;"></view>
@@ -10,21 +10,27 @@
 		
 		<view class="d-flex j-center">
 			<view class="d-flex border-bottom a-center j-sb" :class="focusClass.password ? 'input-border-color' : ''" style="width: 550rpx;height: 130rpx;">
-				<view class="iconfont iconmima text-ab d-flex a-center" style="width: 24rpx;height: 34rpx;"></view>
-				<input type="text" placeholder="请输入验证码" class="ml-3 text-ab text-black font-30 d-flex a-center" 
-				v-model="password" maxlength=4 @focus="focus('password')" @blur="blur('password')"/>
+				<view class="d-flex a-center">
+					<view class="iconfont iconmima text-ab d-flex a-center" style="width: 24rpx;height: 34rpx;"></view>
+					<input type="text" placeholder="请输入验证码" class="ml-3 text-ab text-black font-30 d-flex a-center" 
+					v-model="password" maxlength=4 @focus="focus('password')" @blur="blur('password')"/>
+				</view>
 				<view class="rounded-28 bg-yellow d-flex a-center j-center font-22" 
 				style="width: 160rpx;height: 60rpx;" @click="!safety.state ? getCode() : ''">
 					{{!safety.state ? '获取验证码' : (safety.time + 's')}}
 				</view>
 			</view>
 		</view>
-		
+		<!-- 微信登录 -->
+		<view class="d-flex j-center mt-5" @click="login" style="z-index: 9999;">
+			<image src="../../static/wechat.jpg" mode="" style="width: 80rpx;height: 80rpx;"></image>
+		</view>
+		<!-- 登录按钮 -->
 		<view class="bg-yellow rounded-36 d-flex a-center j-center font-28" hover-class="bg"
-		style="width: 570rpx;height: 80rpx;margin-top: 90rpx;margin-left: 90rpx;" @click="submit">登录</view>
+		style="width: 570rpx;height: 80rpx;margin-top: 40rpx;margin-left: 90rpx;" @click="submit">登录222</view>
 		
-		<image src="../../static/login.png" class="position-absolute" style="bottom: 0;"></image>
-		
+		<!-- 底部背景图 -->
+		<image src="../../static/login.png"></image>
 		
 	</view>
 </template>
@@ -144,10 +150,10 @@
 					if(res) {
 						uni.hideLoading()
 						try {
-						    // uni.setStorageSync('uid', '100003');
-							// uni.setStorageSync('utoken', 'dXQyMDIwMDMzMDE1MTIyODc2NDYzOTA1');
-							uni.setStorageSync('uid', res.user_id);
-							uni.setStorageSync('utoken', res.openid);
+						    uni.setStorageSync('uid', '100003');
+							uni.setStorageSync('utoken', 'dXQyMDIwMDMzMDE1MTIyODc2NDYzOTA1');
+							// uni.setStorageSync('uid', res.user_id);
+							// uni.setStorageSync('utoken', res.openid);
 							uni.navigateTo({
 								url: "/pages/index/index"
 							})
@@ -158,14 +164,31 @@
 				}).catch((err) => {
 					console.log(err);
 				})
-				
-				
-				
+			},
+			// 微信登录
+			login() {
+				uni.login({
+				  provider: 'weixin',
+				  success: function (loginRes, errMsg) {
+						console.log('---:', loginRes, errMsg);
+						 // 获取用户信息
+						    uni.getUserInfo({
+						      provider: 'weixin',
+						      success: function (infoRes) {
+										console.log('用户昵称为', infoRes);
+						        // console.log('用户昵称为：' + infoRes.userInfo.nickName);
+						      }
+						    });
+				  }
+				});
 			}
+			
+			
 			
 		}
 	}
 </script>
 
 <style>
+
 </style>

@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "商户下设备列表（23）",
+  "onReachBottomDistance": 500,
   "usingComponents": {}
 }

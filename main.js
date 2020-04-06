@@ -6,8 +6,8 @@ import App from './App'
 import $H from "@/common/lib/request.js"
 Vue.prototype.$H = $H
 // 引入时间time.js
-import $Time from "@/common/lib/time.js"
-Vue.prototype.$Time = $Time
+import $timeout from "@/common/lib/timeout.js"
+Vue.prototype.$timeout = $timeout
 
 
 // 引入全局导航navigate
