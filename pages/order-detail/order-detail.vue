@@ -66,15 +66,35 @@
 		data() {
 			return {
 				order: {},
-				mer_name: ''
+				mer_name: '',
+				mer_id: ''
 			}
 		},
 		onLoad() {
-			this.order = uni.getStorageSync('remsg');
-			this.mer_name = option.mer_name
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
+			this.order = uni.getStorageSync('order-check');
+			this.mer_id = this.order.merchant_id
+			this.__init()
 		},
 		methods: {
-			
+			// 由商户ID查到其商户名称
+			async __init() {
+				this.$H.post("/agent/", {
+					user_id: uni.getStorageSync('uid'),
+					token: uni.getStorageSync('utoken'),
+					opt: "merchant_list",
+					key_value: this.mer_id, //始值
+				}).then((res) => {
+					console.log(res);
+					this.mer_name = res.arr[0].merchant_name
+					uni.hideLoading()
+				}).catch((e) => {
+					console.log("catch error!!", e);
+				})
+			}
 		}
 	}
 </script>

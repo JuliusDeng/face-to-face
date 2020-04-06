@@ -51,20 +51,13 @@
 		data() {
 			return {
 				order: {},
-				ordersn: "",
+				order_sn: '',
 			}
 		},
 		onLoad() {
-			try {
-			    const value = uni.getStorageSync('remsg');
-			    if (value) {
-			        this.order = this.value
-					this.ordersn = this.value.order_sn
-					// console.log('order:', this.order);
-			    }
-			} catch (e) {
-			    console.log('error: ', e);
-			}
+			const value = uni.getStorageSync('order-check');
+			this.order = value
+			this.order_sn = value.order_sn
 		},
 		methods: {
 			async refund() {
@@ -73,14 +66,19 @@
 					user_id: uni.getStorageSync('uid'),
 					token: uni.getStorageSync('utoken'),
 					opt: "order_refund",
-					order_sn: this.ordersn, //始值
+					order_sn: this.order_sn, //始值
 				}).then((res) => {
-					if(res) {
+					console.log(res);
+					
+					setTimeout(() => {
 						uni.showToast({
-							title: "退单成功"
-						})
-						uni.navigateBack()
-					}
+						    title: '退款成功!',
+						    icon: 'none'
+						});
+					}, 200)
+					console.log('22');
+					uni.navigateBack()
+					console.log('333');
 				}).catch((e) => {
 					console.log("catch error!!", e);
 				})

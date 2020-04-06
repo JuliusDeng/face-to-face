@@ -165,29 +165,10 @@ var _permission = _interopRequireDefault(__webpack_require__(/*! @/common/lib/pe
                   search_device_id: this.deviceid // 设备号
                 }).then(function (res) {
                   console.log('点击查询', res);
+                  uni.setStorageSync('order-check', res.arr[0]);
                   uni.navigateTo({
                     url: "/pages/order-refund/order-refund" });
 
-
-                  /* this.msg = res
-                                                                try {
-                                                                    uni.setStorageSync('remsg', res.arr[0]);
-                                                                	// uni.setStorageSync('ordersn', res.arr[0].order_sn);
-                                                                	if(this.msg) {
-                                                                		console.log('this.msg', this.msg);
-                                                                		uni.navigateTo({
-                                                                			url: "/pages/order-refund/order-refund"
-                                                                		})
-                                                                	} else {
-                                                                		uni.showToast({
-                                                                			title: "输入有误，未找到！",
-                                                                			duration: 2500
-                                                                		})
-                                                                	}
-                                                                } catch (e) {
-                                                                    // error
-                                                                	console.log('catch error: ',e);
-                                                                } */
                 }).catch(function (e) {
                   uni.showToast({
                     title: "请输入有效订单",

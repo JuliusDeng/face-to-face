@@ -189,20 +189,13 @@ var _default =
   data: function data() {
     return {
       order: {},
-      ordersn: "" };
+      order_sn: '' };
 
   },
   onLoad: function onLoad() {
-    try {
-      var value = uni.getStorageSync('remsg');
-      if (value) {
-        this.order = this.value;
-        this.ordersn = this.value.order_sn;
-        // console.log('order:', this.order);
-      }
-    } catch (e) {
-      console.log('error: ', e);
-    }
+    var value = uni.getStorageSync('order-check');
+    this.order = value;
+    this.order_sn = value.order_sn;
   },
   methods: {
     refund: function () {var _refund = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
@@ -211,14 +204,19 @@ var _default =
                   user_id: uni.getStorageSync('uid'),
                   token: uni.getStorageSync('utoken'),
                   opt: "order_refund",
-                  order_sn: this.ordersn //始值
+                  order_sn: this.order_sn //始值
                 }).then(function (res) {
-                  if (res) {
-                    uni.showToast({
-                      title: "退单成功" });
+                  console.log(res);
 
-                    uni.navigateBack();
-                  }
+                  setTimeout(function () {
+                    uni.showToast({
+                      title: '退款成功!',
+                      icon: 'none' });
+
+                  }, 200);
+                  console.log('22');
+                  uni.navigateBack();
+                  console.log('333');
                 }).catch(function (e) {
                   console.log("catch error!!", e);
                 });case 1:case "end":return _context.stop();}}}, _callee, this);}));function refund() {return _refund.apply(this, arguments);}return refund;}(),

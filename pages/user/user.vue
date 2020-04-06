@@ -36,6 +36,7 @@
 				style="width: 600rpx;height: 755rpx;margin-top: -50rpx;">
 					<view class="mt-5 pt-2">{{relname}}</view>
 					<view>ID：{{userID}}</view>
+					<!-- 生成二维码 -->
 					<tki-qrcode class="mt-5" ref="qrcode" :val="userID" :size="size" 
 					unit="upx" :onval="onval" :loadMake="loadMake" :usingComponents="true" />
 					<view class="mt-5">快速签到，一扫即可</view>
@@ -132,6 +133,7 @@
 				// this.$refs.qrcode._makeCode()
 			},
 			async __init() {
+				// 2.1用户详情
 				this.$H.post("/user/", {
 					user_id: "183823",
 					token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",

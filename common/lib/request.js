@@ -36,7 +36,7 @@ export default {
 					}
 					// 服务端请求失败
 					if(result.statusCode !== 200) {
-						console.log('result.statusCode !== 200');
+						// console.log('result.statusCode !== 200');
 						uni.showToast({
 							title: result.data.err_msg || '服务端请求失败',
 							icon: 'none'
@@ -49,6 +49,7 @@ export default {
 				},
 				
 				fail: (error) => {
+					// console.log('requser fail:', error);
 					uni.showToast({
 						title: error.errMsg || '请求失败（如断网）',
 						icon: 'none'

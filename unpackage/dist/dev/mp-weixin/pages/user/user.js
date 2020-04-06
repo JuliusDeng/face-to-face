@@ -251,6 +251,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 {
   components: {
     uniPopup: uniPopup,
@@ -287,6 +288,7 @@ __webpack_require__.r(__webpack_exports__);
       // this.$refs.qrcode._makeCode()
     },
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                // 2.1用户详情
                 this.$H.post("/user/", {
                   user_id: "183823",
                   token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",

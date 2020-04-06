@@ -7,7 +7,7 @@
 		</view>
 		<!-- 两行筛选 -->
 		<view class="d-flex flex-column bg-main">
-			<!-- 状态-->
+			<!-- 状态 设备 商户-->
 			<view class="ml-3  d-flex a-center" style="height: 100rpx;">
 				<view class="border d-flex bg-white mr-3 text-gray" style="width: 210rpx;height: 70rpx;" >
 					<view class="flex-1 border-right d-flex a-center j-center font-20">状态</view>
@@ -109,14 +109,14 @@
 				status: "",
 				// 设备和商户
 				dev_name: "全部",
-				mer_name: "全部",
 				dev_id: "",
+				mer_name: "全部",
 				mer_id: "",
 				// 日历时间
 				showCalendar: false,
 				info: {
 					startDate: '2019-06-01',
-					endDate: '2020-06-01',
+					endDate: this.$timeout.today(),
 					range: true,
 					insert: false,
 					selected: []
@@ -130,26 +130,36 @@
 			}
 		},
 		onShow() {
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
 			try {
 			    const value = uni.getStorageSync('earn');
-				console.log('onShow取出缓存：', value)
+				  console.log('onShow取出缓存：', value)
 			    if (value) {
-					// 取设备
-					if (value.dev_id) {
-						this.dev_id = value.dev_id
-						this.dev_name = value.dev_id
-					} else {
-						this.dev_id = ''
-						this.dev_name = '全部'
-					}
-					// 取商户
-					if (value.mer_id) {
-						this.mer_id = value.mer_id
-						this.mer_name = value.mer_id
-					} else {
-						this.mer_id = ''
-						this.mer_name = '全部'
-					}
+						// 取状态
+						this.index = value.index
+						this.status = value.status
+						// 取设备
+						if (value.dev_id) {
+							this.dev_id = value.dev_id
+							this.dev_name = value.dev_id
+						} else {
+							this.dev_id = ''
+							this.dev_name = '全部'
+						}
+						// 取商户
+						if (value.mer_id) {
+							this.mer_id = value.mer_id
+							this.mer_name = value.mer_id
+						} else {
+							this.mer_id = ''
+							this.mer_name = '全部'
+						}
+						// 取时间
+						this.start_time = value.start_time
+						this.end_time = value.end_time
 			    } else {
 					// console.log('value没有值：');
 				}
@@ -161,11 +171,11 @@
 		methods: {
 			// 日期选择
 			open_one() {
-				console.log('open_one',this.$refs.calendar_one.open());
+				// console.log('open_one',this.$refs.calendar_one.open());
 				this.$refs.calendar_one.open()
 			},
 			open_two() {
-				console.log('open_two',this.$refs.calendar_one.open());
+				// console.log('open_two',this.$refs.calendar_o.open());
 				this.$refs.calendar_two.open()
 			},
 			confirm_one(e) {

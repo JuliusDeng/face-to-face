@@ -104,7 +104,7 @@
 			this.__init()
 			try {
 			    uni.setStorageSync('uid', '100003');
-				uni.setStorageSync('utoken', 'dXQyMDIwMDMzMDE1MTIyODc2NDYzOTA1');
+				uni.setStorageSync('utoken', 'dXQyMDIwMDQwNjE5NDI1NzQ2ODgxMDk0');
 			} catch (e) {
 			    // error
 			}

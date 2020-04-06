@@ -246,14 +246,14 @@ __webpack_require__.r(__webpack_exports__);
       status: "",
       // 设备和商户
       dev_name: "全部",
-      mer_name: "全部",
       dev_id: "",
+      mer_name: "全部",
       mer_id: "",
       // 日历时间
       showCalendar: false,
       info: {
         startDate: '2019-06-01',
-        endDate: '2020-06-01',
+        endDate: this.$timeout.today(),
         range: true,
         insert: false,
         selected: [] },
@@ -267,10 +267,17 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   onShow: function onShow() {
+    uni.showLoading({
+      title: '加载中...',
+      mask: true });
+
     try {
       var value = uni.getStorageSync('earn');
       console.log('onShow取出缓存：', value);
       if (value) {
+        // 取状态
+        this.index = value.index;
+        this.status = value.status;
         // 取设备
         if (value.dev_id) {
           this.dev_id = value.dev_id;
@@ -287,6 +294,9 @@ __webpack_require__.r(__webpack_exports__);
           this.mer_id = '';
           this.mer_name = '全部';
         }
+        // 取时间
+        this.start_time = value.start_time;
+        this.end_time = value.end_time;
       } else {
         // console.log('value没有值：');
       }
@@ -298,11 +308,11 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     // 日期选择
     open_one: function open_one() {
-      console.log('open_one', this.$refs.calendar_one.open());
+      // console.log('open_one',this.$refs.calendar_one.open());
       this.$refs.calendar_one.open();
     },
     open_two: function open_two() {
-      console.log('open_two', this.$refs.calendar_one.open());
+      // console.log('open_two',this.$refs.calendar_o.open());
       this.$refs.calendar_two.open();
     },
     confirm_one: function confirm_one(e) {
