@@ -21,13 +21,12 @@
 				</view>
 			</view>
 		</view>
-		<!-- 微信登录 -->
-		<view class="d-flex j-center mt-5" @click="login" style="z-index: 9999;">
-			<image src="../../static/wechat.jpg" mode="" style="width: 80rpx;height: 80rpx;"></image>
-		</view>
-		<!-- 登录按钮 -->
+		<!-- 手机验证码登录 -->
 		<view class="bg-yellow rounded-36 d-flex a-center j-center font-28" hover-class="bg"
-		style="width: 570rpx;height: 80rpx;margin-top: 40rpx;margin-left: 90rpx;" @click="submit">登录222</view>
+		style="width: 570rpx;height: 80rpx;margin-top: 40rpx;margin-left: 90rpx;" @click="submit">登录</view>
+		<!-- 微信登录 -->
+		<view class="bg-green rounded-36 d-flex a-center j-center font-28" hover-class="bg"
+		style="width: 570rpx;height: 80rpx;margin-top: 40rpx;margin-left: 90rpx;" @click="wechatLogin">微信登录</view>
 		
 		<!-- 底部背景图 -->
 		<image src="../../static/login.png"></image>
@@ -150,7 +149,7 @@
 					if(res) {
 						uni.hideLoading()
 						try {
-						    uni.setStorageSync('uid', '100003');
+						  uni.setStorageSync('uid', '100003');
 							uni.setStorageSync('utoken', 'dXQyMDIwMDMzMDE1MTIyODc2NDYzOTA1');
 							// uni.setStorageSync('uid', res.user_id);
 							// uni.setStorageSync('utoken', res.openid);
@@ -166,21 +165,75 @@
 				})
 			},
 			// 微信登录
-			login() {
+			wechatLogin() {
+				// 加载中
+				uni.showLoading({
+					title: '登录中...',
+					mask: false
+				});
+				// 开始登录
 				uni.login({
 				  provider: 'weixin',
-				  success: function (loginRes, errMsg) {
-						console.log('---:', loginRes, errMsg);
-						 // 获取用户信息
-						    uni.getUserInfo({
-						      provider: 'weixin',
-						      success: function (infoRes) {
-										console.log('用户昵称为', infoRes);
-						        // console.log('用户昵称为：' + infoRes.userInfo.nickName);
-						      }
-						    });
+				  success: (loginRes) => {
+						var openId = loginRes.authResult.openid
+						console.log(openId);
+						if(openId) {
+							console.log('openId', openId);
+							this.$H.post("/agent/", {
+								opt: "openid_login",
+								openid: openId,
+							}).then((res) => {
+								console.log(res);
+								uni.setStorageSync('uid', res.user_id);
+								uni.setStorageSync('utoken', res.token);
+								uni.hideLoading()
+								uni.navigateTo({
+									url: "/pages/index/index"
+								})
+							}).catch((error) => {
+								uni.showToast({
+									title: "用户不正确",
+									icon: 'none'
+								})
+								console.log(error);
+							})
+						} else {
+							console.log('elseeeeeee');
+						}
+						
+						
+				  //   // 获取用户信息
+				  /*  uni.getUserInfo({
+				      provider: 'weixin',
+				      success: (res, errMsg) => {
+				    		var openId = res.userInfo.openId
+				    		console.log(this.openId);
+				    		if(openId) {
+									console.log(this);
+				    			this.$H.post("/agent/", {
+				    				opt: "openid_login",
+				    				openid: openid,
+				    			}).then((res) => {
+				    				console.log(res);
+				    				uni.setStorageSync('uid', res.user_id);
+				    				uni.setStorageSync('utoken', res.token);
+				    				uni.hideLoading()
+				    				uni.navigateTo({
+				    					url: "/pages/index/index"
+				    				})
+				    			}).catch((error) => {
+				    				uni.showToast({
+				    					title: "用户不正确",
+				    					icon: 'none'
+				    				})
+				    				console.log(error);
+				    			})
+				    		}
+				      }
+				    }); */
 				  }
 				});
+				console.log('222');
 			}
 			
 			

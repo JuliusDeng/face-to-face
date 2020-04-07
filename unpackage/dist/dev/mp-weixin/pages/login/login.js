@@ -170,7 +170,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 var _default =
 {
   data: function data() {
@@ -302,18 +301,41 @@ var _default =
       });
     },
     // 微信登录
-    login: function login() {
-      uni.login({
+    wechatLogin: function wechatLogin() {
+      uni.showLoading({
+        title: '登录中...',
+        mask: false });
+
+      // 开始登录
+      uni.getUserInfo({
         provider: 'weixin',
-        success: function success(loginRes, errMsg) {
-          console.log('---:', loginRes, errMsg);
-          // 获取用户信息
-          uni.getUserInfo({
-            provider: 'weixin',
-            success: function success(infoRes) {
-              console.log('用户昵称为', infoRes);
-              // console.log('用户昵称为：' + infoRes.userInfo.nickName);
-            } });
+        success: function success(res, errMsg) {
+          console.log('---:', res, errMsg);
+          var openid = loginRes.authResult.openid;
+          console.log(openid);
+          if (openid) {
+            this.$H.post("/agent/", {
+              opt: "openid_login",
+              openid: openid }).
+            then(function (res) {
+              console.log(res);
+              uni.setStorageSync('uid', res.user_id);
+              uni.setStorageSync('utoken', res.token);
+              uni.hideLoading();
+              uni.navigateTo({
+                url: "/pages/index/index" });
+
+            }).catch(function (error) {
+              uni.showToast({
+                title: "用户不正确",
+                icon: 'none' });
+
+              console.log(error);
+            });
+          }
+
+
+
 
         } });
 
