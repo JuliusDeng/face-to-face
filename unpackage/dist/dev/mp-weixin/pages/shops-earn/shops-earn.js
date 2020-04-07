@@ -196,7 +196,7 @@ var _default =
 
   },
   onLoad: function onLoad() {
-    var value = uni.getStorageSync('merchant');
+    var value = uni.getStorageSync('shops-mer');
     console.log('value--:', value);
     this.img = value.logo_url;
     this.name = value.merchant_name;

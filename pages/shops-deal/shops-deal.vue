@@ -61,15 +61,19 @@
 				init_group: "day",
 				start_time: "",
 				end_time: "",
-				out: "",
+				out_length: "",
 				money: [],
 				mer_id: ""
 			}
 		},
 		onLoad() {
-			const res_mer = uni.getStorageSync('merchant');
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
+			const res_mer = uni.getStorageSync('shops-mer');
 			this.mer_id =res_mer.merchant_id
-			// 从收益统计页 获取时间
+			// 从收益统计页获取时间
 			const value = uni.getStorageSync('earn');
 			console.log('value', value);
 			if(!value.start_time) {
@@ -80,16 +84,16 @@
 				})
 			}
 			this.start_time = value.start_time
-			this.end_time = this.$Time.getTime()
+			// 这个接口是截止时间应该在今天上加一天
+			this.end_time = this.$timeout.tomorrow()
 			console.log("开始结束：", this.start_time, this.end_time);
 			this.__init()
 		},
 		onReachBottom() {
-			if(this.emit > this.out.length) {
+			if(this.emit > this.out_length) {
 				console.log('不会再上拉了哦');
 				return
 			}
-			console.log('啦啦啦');
 			this.loadtext = "加载中..."
 			this.emit += 10 
 			console.log("触发上拉加载", this.emit);
@@ -103,12 +107,16 @@
 			},
 			// 切换选项卡
 			changeTab(item, index) {
+				uni.showLoading({
+					title: '加载中...',
+					mask: true
+				});
 				this.tabIndex = index
 				this.init_group = item.group
 				this.emit = 10
 				this.__init()
 			},
-			// 获取后台数据
+			// 收益统计
 			async __init() {
 				this.$H.post("/agent/", {
 					user_id: uni.getStorageSync('uid'),
@@ -123,9 +131,15 @@
 					end_time: this.end_time, //结束日期 如：2020-02-17
 					group: this.init_group
 				}).then((res) => {
+					console.log(res);
+					uni.hideLoading()
+					this.out_length = res.count.length
+					console.log(res);
 					if(this.init_group == 'day') {
 						this.tabBars[0].list = res.count
+						console.log(res.count);
 						this.money = res.count.map((item) => {
+							console.log(item.sum_money);
 							return parseFloat(item.sum_money).toFixed(2)
 						})
 						console.log('aa:', this.money);
@@ -134,13 +148,15 @@
 					}
 					if(this.init_group == 'week') {
 						this.tabBars[1].list = res.count
+						console.log(res.count);
 					}
 					if(this.init_group == 'month') {
 						this.tabBars[2].list = res.count
+						console.log(res.count);
 					}
 					// 恢复加载状态
 					console.log('比较长度：', this.out.length, this.emit);
-					this.loadtext = this.out.length < this.emit ? "没有更多了" :  "上拉加载更多"
+					this.loadtext = this.out_length < this.emit ? "没有更多了" :  "上拉加载更多"
 				}).catch((e) => {
 					console.log("catch error!!", e);
 				})

@@ -96,23 +96,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  if (!_vm._isMounted) {
-    _vm.e0 = function($event) {
-      return this.$navigate("deal-check")
-    }
-
-    _vm.e1 = function($event) {
-      return this.$navigate("device-order")
-    }
-
-    _vm.e2 = function($event) {
-      return this.$navigate("deal-check")
-    }
-
-    _vm.e3 = function($event) {
-      return this.$navigate("device-order")
-    }
-  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -146,7 +129,15 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 23));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -190,35 +181,70 @@ var _default =
 {
   data: function data() {
     return {
-      order: [] };
+      mer_id: "",
+      list: [],
+      start_time: "",
+      end_time: "",
+      emit: 10,
+      loadtext: "上拉加载更多" };
 
   },
-  methods: {
-    __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                this.$H.post("/agent/", {
-                  user_id: "100003",
-                  token: "dXQyMDIwMDMyMzExMjM0OTMzNzM3ODAz",
-                  opt: "order_list",
-                  merchant_id: "371", //商户ID
-                  day: "201910", //开始日期 如：201910
-                  order_status: "" //订单状态  空为全部  1为已支付 2为申请退款  -1已退款
-                }).then(function (res) {
-                  var out = res.count;
-                  console.log("res.count", res.count);
+  onReachBottom: function onReachBottom() {
+    console.log('111');
+    if (this.list.length < this.emit) {
+      console.log('333');
+      return;
+    }
+    this.loadtext = "加载中...";
+    this.emit += 10;
+    this.__deal();
+    console.log('222');
+  },
+  onLoad: function onLoad(option) {
+    uni.showLoading({
+      title: '加载中...',
+      mask: true });
 
+    console.log('option嗷嗷：', option);
+    this.start_time = option.time;
+    // 转化出后一天的日期
+    var aftime = new Date(this.start_time);
+    var bftime = aftime.getTime() + 86400000;
+    var outtime = new Date(bftime);
+    var Y = outtime.getFullYear() + '-';
+    var M = (outtime.getMonth() + 1 < 10 ? '0' + (outtime.getMonth() + 1) : outtime.getMonth() + 1) + '-';
+    var D = outtime.getDate() + ' ';
+    this.end_time = Y + M + D;
+    console.log(this.end_time);
+
+    // 获取设备ID
+    var res_mer = uni.getStorageSync('deal-list-mer');
+    this.mer_id = res_mer.merchant_id;
+    this.__deal();
+  },
+  methods: {
+    __deal: function () {var _deal = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                this.$H.post("/agent/", {
+                  user_id: uni.getStorageSync('uid'),
+                  token: uni.getStorageSync('utoken'),
+                  opt: "order_list",
+                  merchant_id: this.mer_id,
+                  order_status: "",
+                  start_time: this.start_time,
+                  end_time: this.end_time,
+                  slimit: 0,
+                  elimit: this.emit }).
+                then(function (res) {
+                  uni.hideLoading();
+                  console.log(res.arr);
+                  _this.list = res.arr;
+                  console.log("list数组长度：", _this.list.length, 'emit长度：', _this.emit);
                   // 恢复加载状态
-                  _this.loadtext = _this.tabBars[0].list.length < _this.emit ? "没有更多了" : "上拉加载更多";
-                  /* this.out_money = 0
-                                                                                                   for(let i=0; i<out.length; i++) {
-                                                                                                   	this.out_money += (parseFloat(out[i].sum_money))
-                                                                                                   	this.amount += parseFloat(out[i].count_num)
-                                                                                                   }
-                                                                                                   console.log('out_money', this.out_money);
-                                                                                                   this.total_money = this.out_money.toFixed(2)
-                                                                                                   this.money = (this.total_money / this.amount).toFixed(2) */
+                  _this.loadtext = _this.list.length < _this.emit ? "没有更多了" : "上拉加载更多";
                 }).catch(function (e) {
-                  console.log("catch error!!", e);
-                });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;
+                  console.log("catch error:", e);
+                });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __deal() {return _deal.apply(this, arguments);}return __deal;}() } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ })
 

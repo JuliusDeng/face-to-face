@@ -36,7 +36,12 @@
 					</view>
 				</view>
 			</block>
-			<!-- <text class="font-22 text-blue d-flex a-center j-center" style="margin-top: 250rpx;">添加备注</text> -->
+			
+			<!-- 上拉加载 -->
+			<view class="d-flex a-center j-center text-light-muted font-md py-3">
+				{{loadtext}}
+			</view>
+			
 		</view>
 	</view>
 </template>
@@ -46,13 +51,29 @@
 		data() {
 			return {
 				mer_id: "",
-				list: "",
+				list: [],
 				start_time: "",
 				end_time: "",
-				emit: ""
+				emit: 10,
+				loadtext: "上拉加载更多",
 			}
 		},
+		onReachBottom() {
+			console.log('111');
+			if(this.list.length < this.emit) {
+				console.log('333');
+				return
+			}
+			this.loadtext = "加载中..."
+			this.emit += 10 
+			this.__deal()
+			console.log('222');
+		},
 		onLoad(option) {
+			uni.showLoading({
+				title: '加载中...',
+				mask: true
+			});
 			console.log('option嗷嗷：', option);
 			this.start_time = option.time
 			// 转化出后一天的日期
@@ -66,7 +87,7 @@
 			console.log(this.end_time);
 			
 			// 获取设备ID
-			const res_mer = uni.getStorageSync('merchant');
+			const res_mer = uni.getStorageSync('shops-mer');
 			this.mer_id =res_mer.merchant_id
 			this.__deal()
 		},
@@ -83,6 +104,7 @@
 					slimit: 0,
 					elimit: this.emit,
 				}).then((res) => {
+					uni.hideLoading()
 					console.log(res.arr);
 					this.list = res.arr
 					console.log("list数组长度：", this.list.length,'emit长度：',this.emit);

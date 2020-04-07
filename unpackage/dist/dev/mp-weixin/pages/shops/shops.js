@@ -192,7 +192,7 @@ var _default =
     if (this.merchantList < 1) {
       uni.showLoading({
         title: '加载中...',
-        mask: true });
+        mask: false });
 
     }
     console.log(this.merchantList);
@@ -201,7 +201,7 @@ var _default =
   methods: {
     toshopEarn: function toshopEarn(item) {
       console.log('item', item);
-      uni.setStorageSync('merchant', item);
+      uni.setStorageSync('shops-mer', item);
       uni.navigateTo({
         url: "/pages/shops-earn/shops-earn" });
 

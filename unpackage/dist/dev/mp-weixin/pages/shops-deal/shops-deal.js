@@ -194,15 +194,19 @@ var _default =
       init_group: "day",
       start_time: "",
       end_time: "",
-      out: "",
+      out_length: "",
       money: [],
       mer_id: "" };
 
   },
   onLoad: function onLoad() {
-    var res_mer = uni.getStorageSync('merchant');
+    uni.showLoading({
+      title: '加载中...',
+      mask: true });
+
+    var res_mer = uni.getStorageSync('shops-mer');
     this.mer_id = res_mer.merchant_id;
-    // 从收益统计页 获取时间
+    // 从收益统计页获取时间
     var value = uni.getStorageSync('earn');
     console.log('value', value);
     if (!value.start_time) {
@@ -213,16 +217,16 @@ var _default =
 
     }
     this.start_time = value.start_time;
-    this.end_time = this.$Time.getTime();
+    // 这个接口是截止时间应该在今天上加一天
+    this.end_time = this.$timeout.tomorrow();
     console.log("开始结束：", this.start_time, this.end_time);
     this.__init();
   },
   onReachBottom: function onReachBottom() {
-    if (this.emit > this.out.length) {
+    if (this.emit > this.out_length) {
       console.log('不会再上拉了哦');
       return;
     }
-    console.log('啦啦啦');
     this.loadtext = "加载中...";
     this.emit += 10;
     console.log("触发上拉加载", this.emit);
@@ -236,12 +240,16 @@ var _default =
     },
     // 切换选项卡
     changeTab: function changeTab(item, index) {
+      uni.showLoading({
+        title: '加载中...',
+        mask: true });
+
       this.tabIndex = index;
       this.init_group = item.group;
       this.emit = 10;
       this.__init();
     },
-    // 获取后台数据
+    // 收益统计
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
                   user_id: uni.getStorageSync('uid'),
@@ -256,9 +264,15 @@ var _default =
                   end_time: this.end_time, //结束日期 如：2020-02-17
                   group: this.init_group }).
                 then(function (res) {
+                  console.log(res);
+                  uni.hideLoading();
+                  _this.out_length = res.count.length;
+                  console.log(res);
                   if (_this.init_group == 'day') {
                     _this.tabBars[0].list = res.count;
+                    console.log(res.count);
                     _this.money = res.count.map(function (item) {
+                      console.log(item.sum_money);
                       return parseFloat(item.sum_money).toFixed(2);
                     });
                     console.log('aa:', _this.money);
@@ -267,13 +281,15 @@ var _default =
                   }
                   if (_this.init_group == 'week') {
                     _this.tabBars[1].list = res.count;
+                    console.log(res.count);
                   }
                   if (_this.init_group == 'month') {
                     _this.tabBars[2].list = res.count;
+                    console.log(res.count);
                   }
                   // 恢复加载状态
                   console.log('比较长度：', _this.out.length, _this.emit);
-                  _this.loadtext = _this.out.length < _this.emit ? "没有更多了" : "上拉加载更多";
+                  _this.loadtext = _this.out_length < _this.emit ? "没有更多了" : "上拉加载更多";
                 }).catch(function (e) {
                   console.log("catch error!!", e);
                 });case 1:case "end":return _context.stop();}}}, _callee, this);}));function __init() {return _init.apply(this, arguments);}return __init;}() } };exports.default = _default;

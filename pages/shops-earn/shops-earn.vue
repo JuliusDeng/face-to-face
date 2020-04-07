@@ -65,7 +65,7 @@
 			}
 		},
 		onLoad() {
-			const value = uni.getStorageSync('merchant');
+			const value = uni.getStorageSync('shops-mer');
 			console.log('value--:', value);
 			this.img = value.logo_url
 			this.name = value.merchant_name

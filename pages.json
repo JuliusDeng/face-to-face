@@ -130,6 +130,12 @@
 				"navigationBarTitleText": "商户下交易流水（25）"
 			}
         }
+        ,{
+            "path" : "pages/deal-list/deal-list",
+            "style" : {
+							"navigationBarTitleText": "请选择商户（26）"
+						}
+        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

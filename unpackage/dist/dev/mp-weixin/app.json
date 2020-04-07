@@ -21,7 +21,8 @@
     "pages/earn-search-device/earn-search-device",
     "pages/shops-device/shops-device",
     "pages/shops-deal/shops-deal",
-    "pages/shops-translog/shops-translog"
+    "pages/shops-translog/shops-translog",
+    "pages/deal-list/deal-list"
   ],
   "subPackages": [],
   "window": {

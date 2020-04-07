@@ -172,18 +172,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 var _default =
 {
   data: function data() {
     return {
       mer_id: "",
-      list: "",
+      list: [],
       start_time: "",
       end_time: "",
-      emit: "" };
+      emit: 10,
+      loadtext: "上拉加载更多" };
 
   },
+  onReachBottom: function onReachBottom() {
+    console.log('111');
+    if (this.list.length < this.emit) {
+      console.log('333');
+      return;
+    }
+    this.loadtext = "加载中...";
+    this.emit += 10;
+    this.__deal();
+    console.log('222');
+  },
   onLoad: function onLoad(option) {
+    uni.showLoading({
+      title: '加载中...',
+      mask: true });
+
     console.log('option嗷嗷：', option);
     this.start_time = option.time;
     // 转化出后一天的日期
@@ -197,7 +218,7 @@ var _default =
     console.log(this.end_time);
 
     // 获取设备ID
-    var res_mer = uni.getStorageSync('merchant');
+    var res_mer = uni.getStorageSync('shops-mer');
     this.mer_id = res_mer.merchant_id;
     this.__deal();
   },
@@ -214,6 +235,7 @@ var _default =
                   slimit: 0,
                   elimit: this.emit }).
                 then(function (res) {
+                  uni.hideLoading();
                   console.log(res.arr);
                   _this.list = res.arr;
                   console.log("list数组长度：", _this.list.length, 'emit长度：', _this.emit);
