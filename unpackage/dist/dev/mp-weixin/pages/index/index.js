@@ -239,42 +239,39 @@ var _default =
 
   },
   onLoad: function onLoad() {
+    uni.setStorageSync('uid', '100003');
+    uni.setStorageSync('utoken', 'dXQyMDIwMDQwODExMzIxNDI4OTM1NDU5');
     console.log(this.$timeout);
     console.log(this.$timeout.today());
     console.log(this.$timeout.tomorrow());
     console.log(this.$timeout.yesterday());
     this.__init();
-    try {
-      uni.setStorageSync('uid', '100003');
-      uni.setStorageSync('utoken', 'dXQyMDIwMDQwNjE5NDI1NzQ2ODgxMDk0');
-    } catch (e) {
-      // error
-    }
+
   },
   methods: {
-    // if(this.emit > this.merchantList.length) {
-    // 	console.log('不会再上拉了哦');
-    // 	return
-    // }
-    // this.loadtext = "加载中..."
-    // console.log("触发上拉加载", this.emit);
-    // this.emit += 10 
-    // this.__init()
-
-    // uni.showLoading({
-    // 	title: '加载中...',
-    // 	mask: true
-    // });
-
-    // uni.hideLoading()
-
-    // if(this.list.length < 1) {
-    // 	uni.showToast({
-    // 		title: "暂无数据",
-    // 		icon: "none",
-    // 		duration: 2500
-    // 	})
-    // }
+    /* if(this.emit > this.merchantList.length) {
+             	console.log('不会再上拉了哦');
+             	return
+             }
+             this.loadtext = "加载中..."
+             console.log("触发上拉加载", this.emit);
+             this.emit += 10 
+             this.__init()
+             
+             uni.showLoading({
+             	title: '加载中...',
+             	mask: true
+             });
+             
+             uni.hideLoading()
+             
+             if(this.list.length < 1) {
+             	uni.showToast({
+             		title: "暂无数据",
+             		icon: "none",
+             		duration: 2500
+             	})
+             } */
 
     navUser: function navUser(name, tel, agentName) {
       uni.navigateTo({
@@ -283,10 +280,10 @@ var _default =
     },
     __init: function () {var _init = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var _this = this;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 this.$H.post("/agent/", {
-                  // user_id: uni.getStorageSync('user_id'),
-                  // token: uni.getStorageSync('token'),
-                  user_id: "183823",
-                  token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",
+                  user_id: uni.getStorageSync('uid'),
+                  token: uni.getStorageSync('utoken'),
+                  /* user_id: "183823",
+                                                       token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0", */
                   opt: "home" }).
                 then(function (res) {
                   console.log(res);

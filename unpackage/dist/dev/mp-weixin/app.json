@@ -15,7 +15,6 @@
     "pages/order-check/order-check",
     "pages/order-refund/order-refund",
     "pages/order-detail/order-detail",
-    "pages/login/login",
     "pages/device-search/device-search",
     "pages/earn-search-merchant/earn-search-merchant",
     "pages/earn-search-device/earn-search-device",

@@ -120,7 +120,7 @@
 			}
 		},
 		onLoad(options) {
-			// console.log(options);
+			console.log(options);
 			this.company = options.name
 			this.tel = options.tel
 			this.agentname = options.agentName
@@ -135,8 +135,8 @@
 			async __init() {
 				// 2.1用户详情
 				this.$H.post("/user/", {
-					user_id: "183823",
-					token: "dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0",
+					user_id: '183823',
+					token: 'dXQyMDIwMDMyNjExNDUyNTgyNjc4Njc0',
 					app: "app"
 				}).then((res) => {
 					// console.log(data);

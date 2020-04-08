@@ -64,7 +64,7 @@
 					state: false,
 					interval: ''
 				},
-				
+				opp: ''
 				
 			}
 		},
@@ -126,7 +126,7 @@
 						check = false
 						return false
 					} else {
-						console.log('key通过：', v);
+						console.log('key通过：');
 					}
 				})
 				return check
@@ -135,24 +135,26 @@
 			submit() {
 				if(!this.validate('username')) return
 				if(!this.validate('password')) return
-				
-				uni.showLoading({
-					title: '登录中...',
-					mask: true
-				});
+				// uni.setStorageSync('uid', '100003');
+				// uni.setStorageSync('utoken', 'dXQyMDIwMDQwODExMzIxNDI4OTM1NDU5');
+				// uni.showLoading({
+				// 	title: '登录中...',
+				// 	mask: true
+				// });
 				// 对接后台 实现登录
 				this.$H.post("/agent/", {
 					mobile: this.username,
 					opt: 'verify_login',
 					verify_code: this.password
 				}).then((res) => {
+					uni.hideLoading()
+					// uni.setStorageSync('uid', '100003');
+					// uni.setStorageSync('utoken', 'dXQyMDIwMDQwODExMzIxNDI4OTM1NDU5');
+					console.log(res);
 					if(res) {
-						uni.hideLoading()
 						try {
-						  uni.setStorageSync('uid', '100003');
-							uni.setStorageSync('utoken', 'dXQyMDIwMDMzMDE1MTIyODc2NDYzOTA1');
-							// uni.setStorageSync('uid', res.user_id);
-							// uni.setStorageSync('utoken', res.openid);
+							uni.setStorageSync('uid', res.user_id);
+							uni.setStorageSync('utoken', res.token);
 							uni.navigateTo({
 								url: "/pages/index/index"
 							})
@@ -167,73 +169,52 @@
 			// 微信登录
 			wechatLogin() {
 				// 加载中
-				uni.showLoading({
-					title: '登录中...',
-					mask: false
-				});
+				// uni.showLoading({
+				// 	title: '登录中...',
+				// 	mask: false
+				// });
 				// 开始登录
+				console.log('ssss');
 				uni.login({
 				  provider: 'weixin',
 				  success: (loginRes) => {
-						var openId = loginRes.authResult.openid
-						console.log(openId);
-						if(openId) {
-							console.log('openId', openId);
-							this.$H.post("/agent/", {
-								opt: "openid_login",
-								openid: openId,
-							}).then((res) => {
-								console.log(res);
-								uni.setStorageSync('uid', res.user_id);
-								uni.setStorageSync('utoken', res.token);
-								uni.hideLoading()
-								uni.navigateTo({
-									url: "/pages/index/index"
-								})
-							}).catch((error) => {
-								uni.showToast({
-									title: "用户不正确",
-									icon: 'none'
-								})
-								console.log(error);
-							})
-						} else {
-							console.log('elseeeeeee');
-						}
+						console.log(loginRes);
+						uni.getUserInfo({
+						      provider: 'weixin',
+						      success: (infoRes) => {
+										console.log(infoRes);
+										this.opp = infoRes.userInfo.openId
+										if(this.opp) {
+											this.$H.post("/agent/", {
+												opt: "openid_login",
+												openid: this.opp,
+											}).then((res) => {
+												uni.navigateTo({
+													url: "/pages/index/index"
+												})
+												uni.setStorageSync('uid', res.user_id);
+												uni.setStorageSync('utoken', res.token);
+												// uni.setStorageSync('uid','100003');
+												// uni.setStorageSync('utoken', 'dXQyMDIwMDQwODExMzIxNDI4OTM1NDU5');
+												// uni.hideLoading() 
+											}).catch((error) => {
+												console.log(this.opp);
+												uni.showToast({
+													title: "用户不正确",
+													icon: 'none'
+												})
+												console.log(error);
+											})
+										} else {
+											console.log('elseeeeeee');
+										}
+										
+						      }
+						    });
+					
 						
-						
-				  //   // 获取用户信息
-				  /*  uni.getUserInfo({
-				      provider: 'weixin',
-				      success: (res, errMsg) => {
-				    		var openId = res.userInfo.openId
-				    		console.log(this.openId);
-				    		if(openId) {
-									console.log(this);
-				    			this.$H.post("/agent/", {
-				    				opt: "openid_login",
-				    				openid: openid,
-				    			}).then((res) => {
-				    				console.log(res);
-				    				uni.setStorageSync('uid', res.user_id);
-				    				uni.setStorageSync('utoken', res.token);
-				    				uni.hideLoading()
-				    				uni.navigateTo({
-				    					url: "/pages/index/index"
-				    				})
-				    			}).catch((error) => {
-				    				uni.showToast({
-				    					title: "用户不正确",
-				    					icon: 'none'
-				    				})
-				    				console.log(error);
-				    			})
-				    		}
-				      }
-				    }); */
 				  }
 				});
-				console.log('222');
 			}
 			
 			

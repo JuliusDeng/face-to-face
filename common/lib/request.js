@@ -26,6 +26,8 @@ export default {
 				...options,
 				
 				success: (result) => {
+					console.log(options);
+					console.log(result);
 					// console.log('request.js-result:', result);
 					if(result.data.err_code !== 0) {
 						uni.showToast({

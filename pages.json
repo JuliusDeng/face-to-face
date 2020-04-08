@@ -1,6 +1,12 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		{	// 上拉触发距离是 500
+		// {
+		// 	"path": "pages/login/login",
+		// 	"style": {
+		// 		"navigationBarTitleText": "登录18"
+		// 	}
+		// },
+		{ // 上拉触发距离是 500
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "面对面交易(商户服务)1"
@@ -85,12 +91,6 @@
 				"navigationBarTitleText": "账单详情17"
 			}
 		}, {
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "登录18"
-			}
-
-		}, {
 			"path": "pages/device-search/device-search",
 			"style": {
 				"navigationBarTitleText": "设备列表（20）",
@@ -110,33 +110,31 @@
 				"navigationBarTitleText": "设备搜索（22）",
 				"onReachBottomDistance": 500
 			}
-		}
-	    ,{
-            "path" : "pages/shops-device/shops-device",
-            "style" : {
+		}, {
+			"path": "pages/shops-device/shops-device",
+			"style": {
 				"navigationBarTitleText": "商户下设备列表（23）",
 				"onReachBottomDistance": 500
 			}
-        },{
-            "path" : "pages/shops-deal/shops-deal",
-            "style" : {
+		}, {
+			"path": "pages/shops-deal/shops-deal",
+			"style": {
 				"navigationBarTitleText": "商户下日月收益（24）"
 			}
-        }
-       
-        ,{
-            "path" : "pages/shops-translog/shops-translog",
-            "style" : {
+		}
+
+		, {
+			"path": "pages/shops-translog/shops-translog",
+			"style": {
 				"navigationBarTitleText": "商户下交易流水（25）"
 			}
-        }
-        ,{
-            "path" : "pages/deal-list/deal-list",
-            "style" : {
-							"navigationBarTitleText": "请选择商户（26）"
-						}
-        }
-    ],
+		}, {
+			"path": "pages/deal-list/deal-list",
+			"style": {
+				"navigationBarTitleText": "请选择商户（26）"
+			}
+		}
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

@@ -1977,6 +1977,8 @@ function normalizeComponent (
       options, {
 
         success: function success(result) {
+          console.log(options);
+          console.log(result);
           // console.log('request.js-result:', result);
           if (result.data.err_code !== 0) {
             uni.showToast({
@@ -2103,7 +2105,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 
-/***/ 177:
+/***/ 171:
 /*!*******************************************************************************!*\
   !*** C:/Users/tt/Desktop/maiwei/face-to-face/components/tki-qrcode/qrcode.js ***!
   \*******************************************************************************/
@@ -3316,7 +3318,7 @@ QRCode;exports.default = _default;
 
 /***/ }),
 
-/***/ 185:
+/***/ 179:
 /*!*******************************************************************************!*\
   !*** C:/Users/tt/Desktop/maiwei/face-to-face/components/uni-calendar/util.js ***!
   \*******************************************************************************/
@@ -3324,7 +3326,7 @@ QRCode;exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 186));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _calendar = _interopRequireDefault(__webpack_require__(/*! ./calendar.js */ 180));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _classCallCheck(instance, Constructor) {if (!(instance instanceof Constructor)) {throw new TypeError("Cannot call a class as a function");}}function _defineProperties(target, props) {for (var i = 0; i < props.length; i++) {var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);}}function _createClass(Constructor, protoProps, staticProps) {if (protoProps) _defineProperties(Constructor.prototype, protoProps);if (staticProps) _defineProperties(Constructor, staticProps);return Constructor;}var
 
 Calendar = /*#__PURE__*/function () {
   function Calendar()
@@ -3654,7 +3656,7 @@ Calendar;exports.default = _default;
 
 /***/ }),
 
-/***/ 186:
+/***/ 180:
 /*!***********************************************************************************!*\
   !*** C:/Users/tt/Desktop/maiwei/face-to-face/components/uni-calendar/calendar.js ***!
   \***********************************************************************************/
@@ -11982,7 +11984,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1" }, "pages/user/user": { "navigationBarTitleText": "个人中心2" }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3" }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情5" }, "pages/shops/shops": { "navigationBarTitleText": "商户管理6", "onReachBottomDistance": 60 }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7" }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8" }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9" }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10", "onReachBottomDistance": 500 }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11" }, "pages/deal/deal": { "navigationBarTitleText": "交易流水12(19)" }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12" }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14" }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16" }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17" }, "pages/login/login": { "navigationBarTitleText": "登录18" }, "pages/device-search/device-search": { "navigationBarTitleText": "设备列表（20）", "onReachBottomDistance": 500 }, "pages/earn-search-merchant/earn-search-merchant": { "navigationBarTitleText": "商户搜索（21）", "onReachBottomDistance": 500 }, "pages/earn-search-device/earn-search-device": { "navigationBarTitleText": "设备搜索（22）", "onReachBottomDistance": 500 }, "pages/shops-device/shops-device": { "navigationBarTitleText": "商户下设备列表（23）", "onReachBottomDistance": 500 }, "pages/shops-deal/shops-deal": { "navigationBarTitleText": "商户下日月收益（24）" }, "pages/shops-translog/shops-translog": { "navigationBarTitleText": "商户下交易流水（25）" }, "pages/deal-list/deal-list": { "navigationBarTitleText": "请选择商户（26）" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "面对面交易(商户服务)1", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/user/user": { "navigationBarTitleText": "个人中心2", "usingComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tki-qrcode": "/components/tki-qrcode/tki-qrcode" }, "usingAutoImportComponents": { "uni-popup": "/components/uni-popup/uni-popup", "tki-qrcode": "/components/tki-qrcode/tki-qrcode" } }, "pages/earn/earn": { "navigationBarTitleText": "收益统计3", "usingComponents": { "uni-calendar": "/components/uni-calendar/uni-calendar" }, "usingAutoImportComponents": { "uni-calendar": "/components/uni-calendar/uni-calendar" } }, "pages/shops-earn/shops-earn": { "navigationBarTitleText": "商户详情5", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/shops/shops": { "navigationBarTitleText": "商户管理6", "onReachBottomDistance": 60, "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff/staff": { "navigationBarTitleText": "员工管理7", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-add/staff-add": { "navigationBarTitleText": "添加员工8", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/staff-remove/staff-remove": { "navigationBarTitleText": "移除员工9", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device/device": { "navigationBarTitleText": "设备交易统计10", "onReachBottomDistance": 500, "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device-order/device-order": { "navigationBarTitleText": "账单详情11", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal/deal": { "navigationBarTitleText": "交易流水12(19)", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal-order/deal-order": { "navigationBarTitleText": "交易流水12", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-check/order-check": { "navigationBarTitleText": "校正订单14", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-refund/order-refund": { "navigationBarTitleText": "退单校正16", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/order-detail/order-detail": { "navigationBarTitleText": "账单详情17", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/device-search/device-search": { "navigationBarTitleText": "设备列表（20）", "onReachBottomDistance": 500, "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn-search-merchant/earn-search-merchant": { "navigationBarTitleText": "商户搜索（21）", "onReachBottomDistance": 500, "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/earn-search-device/earn-search-device": { "navigationBarTitleText": "设备搜索（22）", "onReachBottomDistance": 500, "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/shops-device/shops-device": { "navigationBarTitleText": "商户下设备列表（23）", "onReachBottomDistance": 500, "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/shops-deal/shops-deal": { "navigationBarTitleText": "商户下日月收益（24）", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/shops-translog/shops-translog": { "navigationBarTitleText": "商户下交易流水（25）", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/deal-list/deal-list": { "navigationBarTitleText": "请选择商户（26）", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/login/login": { "navigationBarTitleText": "登录18", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

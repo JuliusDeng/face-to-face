@@ -17,7 +17,9 @@
             "delay" : 0
         },
         /* 模块配置 */
-        "modules" : {},
+        "modules" : {
+            "OAuth" : {}
+        },
         /* 应用发布信息 */
         "distribute" : {
             /* android打包配置 */
@@ -55,7 +57,14 @@
             },
             /* SDK配置 */
             "sdkConfigs" : {
-                "ad" : {}
+                "ad" : {},
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "",
+                        "appsecret" : "",
+                        "UniversalLinks" : ""
+                    }
+                }
             },
             "icons" : {
                 "android" : {
@@ -92,17 +101,19 @@
             "splashscreen" : {
                 "ios" : {
                     "iphone" : {
-                        "retina55" : "C:/Users/tt/Desktop/maiwei/ios/04.png",
-                        "retina47" : "C:/Users/tt/Desktop/maiwei/ios/05.png",
-                        "portrait-896h@3x" : "C:/Users/tt/Desktop/maiwei/ios/01.png",
-                        "portrait-896h@2x" : "C:/Users/tt/Desktop/maiwei/ios/02.png",
-                        "iphonex" : "C:/Users/tt/Desktop/maiwei/ios/03.png"
+                        "retina55" : "启动页/iOS12422208.png",
+                        "retina47" : "启动页/ios7501334.png",
+                        "portrait-896h@3x" : "启动页/ios 12422688.png",
+                        "portrait-896h@2x" : "启动页/ios 8281792.png",
+                        "iphonex" : "启动页/ios 11252436.png",
+                        "retina40" : "启动页/ios 6401136.png",
+                        "retina35" : "启动页/ios 640960.png"
                     }
                 },
                 "android" : {
-                    "hdpi" : "C:/Users/tt/Desktop/maiwei/480.png",
-                    "xhdpi" : "C:/Users/tt/Desktop/maiwei/720.png",
-                    "xxhdpi" : "C:/Users/tt/Desktop/maiwei/1882.png"
+                    "hdpi" : "启动页/安卓480762.png",
+                    "xhdpi" : "启动页/安卓7201242.png",
+                    "xxhdpi" : "启动页/安卓10801882.png"
                 }
             }
         }
